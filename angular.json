@@ -23,9 +23,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/build/styles/ltr-core.css",
+              "src/assets/build/styles/ltr-vendor.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/build/scripts/core.js",
+              "src/assets/build/scripts/mandatory.js",
+              "src/assets/build/scripts/vendor.js",
+              "src/assets/app/pages/home.js"
+            ]
           },
           "configurations": {
             "production": {
