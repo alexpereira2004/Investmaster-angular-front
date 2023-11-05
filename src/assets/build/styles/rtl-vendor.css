@@ -2462,9 +2462,9 @@ body.dt-rowReorder-noOverflow {
   stroke-linejoin: round;
 }
 /*!
- * Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- * Copyright 2022 Fonticons, Inc.
+ * Copyright 2023 Fonticons, Inc.
  */
 .fa {
   font-family: var(--fa-style-family, "Font Awesome 6 Free");
@@ -2758,7 +2758,9 @@ body.dt-rowReorder-noOverflow {
     animation-duration: 1ms;
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
+    -webkit-transition-delay: 0s;
     transition-delay: 0s;
+    -webkit-transition-duration: 0s;
     transition-duration: 0s;
   }
 }
@@ -2878,14 +2880,14 @@ body.dt-rowReorder-noOverflow {
 }
 @-webkit-keyframes fa-flip {
   50% {
-    -webkit-transform: rotate3d(var«-1650:1», var«1650:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
-    transform: rotate3d(var«-1651:1», var«1651:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+    -webkit-transform: rotate3d(var«-1647:1», var«1647:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+    transform: rotate3d(var«-1648:1», var«1648:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
   }
 }
 @keyframes fa-flip {
   50% {
-    -webkit-transform: rotate3d(var«-1652:1», var«1652:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
-    transform: rotate3d(var«-1653:1», var«1653:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+    -webkit-transform: rotate3d(var«-1649:1», var«1649:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+    transform: rotate3d(var«-1650:1», var«1650:-2», var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
   }
 }
 @-webkit-keyframes fa-shake {
@@ -10896,7 +10898,7 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url("src/assets/fonts/katex/fontawesome/fa-regular-400.woff2") format("woff2"), url("src/assets/fonts/katex/fontawesome/fa-regular-400.ttf") format("truetype");
+  src: url("../../fonts/fontawesome/fa-regular-400.woff2") format("woff2"), url("../../fonts/fontawesome/fa-regular-400.ttf") format("truetype");
 }
 .far,
 .fa-regular {
@@ -10918,7 +10920,7 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 900;
   font-display: block;
-  src: url("src/assets/fonts/katex/fontawesome/fa-solid-900.woff2") format("woff2"), url("src/assets/fonts/katex/fontawesome/fa-solid-900.ttf") format("truetype");
+  src: url("../../fonts/fontawesome/fa-solid-900.woff2") format("woff2"), url("../../fonts/fontawesome/fa-solid-900.ttf") format("truetype");
 }
 .fas,
 .fa-solid {
@@ -10940,7 +10942,7 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url("src/assets/fonts/katex/fontawesome/fa-brands-400.woff2") format("woff2"), url("src/assets/fonts/katex/fontawesome/fa-brands-400.ttf") format("truetype");
+  src: url("../../fonts/fontawesome/fa-brands-400.woff2") format("woff2"), url("../../fonts/fontawesome/fa-brands-400.ttf") format("truetype");
 }
 .fab,
 .fa-brands {
@@ -13690,123 +13692,121 @@ readers do not read off random characters that represent icons */
 /* stylelint-disable font-family-no-missing-generic-family-keyword */
 @font-face {
   font-family: "KaTeX_AMS";
-  /*src: url(src/assets/fonts/katex/katexKaTeX_AMS-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_AMS-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_AMS-Regular.ttf) format("truetype");*/
-  src: url(src/assets/fonts/katex/katexKaTeX_AMS-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_AMS-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_AMS-Regular.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_AMS-Regular.woff2) format("woff2"), url(../../fonts/katexKaTeX_AMS-Regular.woff) format("woff"), url(../../fonts/katexKaTeX_AMS-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Caligraphic";
-  src: url(src/assets/fonts/katex/katexKaTeX_Caligraphic-Bold.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Caligraphic-Bold.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Caligraphic-Bold.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Caligraphic-Bold.woff2) format("woff2"), url(../../fonts/katexKaTeX_Caligraphic-Bold.woff) format("woff"), url(../../fonts/katexKaTeX_Caligraphic-Bold.ttf) format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Caligraphic";
-  src: url(src/assets/fonts/katex/katexKaTeX_Caligraphic-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Caligraphic-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Caligraphic-Regular.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Caligraphic-Regular.woff2) format("woff2"), url(../../fonts/katexKaTeX_Caligraphic-Regular.woff) format("woff"), url(../../fonts/katexKaTeX_Caligraphic-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Fraktur";
-  src: url(src/assets/fonts/katex/katexKaTeX_Fraktur-Bold.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Fraktur-Bold.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Fraktur-Bold.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Fraktur-Bold.woff2) format("woff2"), url(../../fonts/katexKaTeX_Fraktur-Bold.woff) format("woff"), url(../../fonts/katexKaTeX_Fraktur-Bold.ttf) format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Fraktur";
-  src: url(src/assets/fonts/katex/katexKaTeX_Fraktur-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Fraktur-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Fraktur-Regular.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Fraktur-Regular.woff2) format("woff2"), url(../../fonts/katexKaTeX_Fraktur-Regular.woff) format("woff"), url(../../fonts/katexKaTeX_Fraktur-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Main";
-  src: url(src/assets/fonts/katex/katexKaTeX_Main-Bold.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Main-Bold.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Main-Bold.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Main-Bold.woff2) format("woff2"), url(../../fonts/katexKaTeX_Main-Bold.woff) format("woff"), url(../../fonts/katexKaTeX_Main-Bold.ttf) format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Main";
-  src: url(src/assets/fonts/katex/katexKaTeX_Main-BoldItalic.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Main-BoldItalic.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Main-BoldItalic.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Main-BoldItalic.woff2) format("woff2"), url(../../fonts/katexKaTeX_Main-BoldItalic.woff) format("woff"), url(../../fonts/katexKaTeX_Main-BoldItalic.ttf) format("truetype");
   font-weight: bold;
   font-style: italic;
 }
 @font-face {
   font-family: "KaTeX_Main";
-  src: url(src/assets/fonts/katex/katexKaTeX_Main-Italic.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Main-Italic.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Main-Italic.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Main-Italic.woff2) format("woff2"), url(../../fonts/katexKaTeX_Main-Italic.woff) format("woff"), url(../../fonts/katexKaTeX_Main-Italic.ttf) format("truetype");
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: "KaTeX_Main";
-  src: url(src/assets/fonts/katex/katexKaTeX_Main-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Main-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Main-Regular.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Main-Regular.woff2) format("woff2"), url(../../fonts/katexKaTeX_Main-Regular.woff) format("woff"), url(../../fonts/katexKaTeX_Main-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Math";
-  src: url(src/assets/fonts/katex/katexKaTeX_Math-BoldItalic.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Math-BoldItalic.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Math-BoldItalic.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Math-BoldItalic.woff2) format("woff2"), url(../../fonts/katexKaTeX_Math-BoldItalic.woff) format("woff"), url(../../fonts/katexKaTeX_Math-BoldItalic.ttf) format("truetype");
   font-weight: bold;
   font-style: italic;
 }
 @font-face {
   font-family: "KaTeX_Math";
-  src: url(src/assets/fonts/katex/katexKaTeX_Math-Italic.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Math-Italic.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Math-Italic.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Math-Italic.woff2) format("woff2"), url(../../fonts/katexKaTeX_Math-Italic.woff) format("woff"), url(../../fonts/katexKaTeX_Math-Italic.ttf) format("truetype");
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: "KaTeX_SansSerif";
-  src: url(src/assets/fonts/katex/katexKaTeX_SansSerif-Bold.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_SansSerif-Bold.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_SansSerif-Bold.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_SansSerif-Bold.woff2) format("woff2"), url(../../fonts/katexKaTeX_SansSerif-Bold.woff) format("woff"), url(../../fonts/katexKaTeX_SansSerif-Bold.ttf) format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_SansSerif";
-  src: url(src/assets/fonts/katex/katexKaTeX_SansSerif-Italic.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_SansSerif-Italic.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_SansSerif-Italic.ttf) format("truetype");
-  /*src: url(src/assets/fonts/katex/katexKaTeX_SansSerif-Italic.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_SansSerif-Italic.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_SansSerif-Italic.ttf) format("truetype");*/
+  src: url(../../fonts/katexKaTeX_SansSerif-Italic.woff2) format("woff2"), url(../../fonts/katexKaTeX_SansSerif-Italic.woff) format("woff"), url(../../fonts/katexKaTeX_SansSerif-Italic.ttf) format("truetype");
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: "KaTeX_SansSerif";
-  src: url(src/assets/fonts/katex/katexKaTeX_SansSerif-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_SansSerif-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_SansSerif-Regular.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_SansSerif-Regular.woff2) format("woff2"), url(../../fonts/katexKaTeX_SansSerif-Regular.woff) format("woff"), url(../../fonts/katexKaTeX_SansSerif-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Script";
-  src: url(src/assets/fonts/katex/katexKaTeX_Script-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Script-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Script-Regular.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Script-Regular.woff2) format("woff2"), url(../../fonts/katexKaTeX_Script-Regular.woff) format("woff"), url(../../fonts/katexKaTeX_Script-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Size1";
-  src: url(src/assets/fonts/katex/katexKaTeX_Size1-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Size1-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Size1-Regular.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Size1-Regular.woff2) format("woff2"), url(../../fonts/katexKaTeX_Size1-Regular.woff) format("woff"), url(../../fonts/katexKaTeX_Size1-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Size2";
-  src: url(src/assets/fonts/katex/katexKaTeX_Size2-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Size2-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Size2-Regular.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Size2-Regular.woff2) format("woff2"), url(../../fonts/katexKaTeX_Size2-Regular.woff) format("woff"), url(../../fonts/katexKaTeX_Size2-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Size3";
-  src: url(src/assets/fonts/katex/katexKaTeX_Size3-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Size3-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Size3-Regular.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Size3-Regular.woff2) format("woff2"), url(../../fonts/katexKaTeX_Size3-Regular.woff) format("woff"), url(../../fonts/katexKaTeX_Size3-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Size4";
-  src: url(src/assets/fonts/katex/katexKaTeX_Size4-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Size4-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Size4-Regular.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Size4-Regular.woff2) format("woff2"), url(../../fonts/katexKaTeX_Size4-Regular.woff) format("woff"), url(../../fonts/katexKaTeX_Size4-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "KaTeX_Typewriter";
-  src: url(src/assets/fonts/katex/katexKaTeX_Typewriter-Regular.woff2) format("woff2"), url(src/assets/fonts/katex/katexKaTeX_Typewriter-Regular.woff) format("woff"), url(src/assets/fonts/katex/katexKaTeX_Typewriter-Regular.ttf) format("truetype");
+  src: url(../../fonts/katexKaTeX_Typewriter-Regular.woff2) format("woff2"), url(../../fonts/katexKaTeX_Typewriter-Regular.woff) format("woff"), url(../../fonts/katexKaTeX_Typewriter-Regular.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
