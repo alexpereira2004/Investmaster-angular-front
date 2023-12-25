@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { AtivoModule } from "./ativo";
+import { AtivoModule, AtivoRoutingModule } from "./ativo";
 
 @NgModule({
   declarations: [
@@ -12,7 +12,8 @@ import { AtivoModule } from "./ativo";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AtivoModule
+    AtivoModule,
+    AtivoRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
