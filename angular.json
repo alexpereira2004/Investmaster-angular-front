@@ -29,7 +29,7 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
-              "src/assets/app/pages/home.js",
+
               "src/assets/build/scripts/mandatory.js",
               "src/assets/build/scripts/core.js",
               "src/assets/build/scripts/vendor.js",
@@ -111,7 +111,7 @@
               "src/assets/build/scripts/core.js",
               "src/assets/build/scripts/mandatory.js",
               "src/assets/build/scripts/vendor.js",
-              "src/assets/app/pages/home.js",
+
               "src/assets/app/utilities/copyright-year.js",
               "src/assets/app/utilities/theme-switcher.js",
               "src/assets/app/utilities/tooltip-popover.js",
