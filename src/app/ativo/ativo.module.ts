@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AtivoCadastroComponent } from './components/ativo-cadastro/ativo-cadastro.component';
+
+import { AtivoRoutingModule } from './ativo-routing.module';
+import { AtivoCadastroComponent } from "./components/ativo-cadastro/ativo-cadastro.component";
 
 
 @NgModule({
@@ -8,7 +10,8 @@ import { AtivoCadastroComponent } from './components/ativo-cadastro/ativo-cadast
     AtivoCadastroComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AtivoRoutingModule
   ]
 })
 export class AtivoModule { }
