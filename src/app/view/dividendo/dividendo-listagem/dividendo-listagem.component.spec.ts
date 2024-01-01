@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListagemDividendoComponent } from './listagem-dividendo.component';
+import { DividendoListagemComponent } from './dividendo-listagem.component';
 
 describe('ListagemDividendoComponent', () => {
-  let component: ListagemDividendoComponent;
-  let fixture: ComponentFixture<ListagemDividendoComponent>;
+  let component: DividendoListagemComponent;
+  let fixture: ComponentFixture<DividendoListagemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListagemDividendoComponent ]
+      declarations: [ DividendoListagemComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListagemDividendoComponent);
+    fixture = TestBed.createComponent(DividendoListagemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
