@@ -5,19 +5,21 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { AtivoModule } from "./view/ativo/ativo.module";
 import { AtivoRoutingModule } from "./view/ativo/ativo-routing.module";
-import { ListagemComponent } from './view/dividendo/listagem/listagem.component';
+import { DividendoModule } from "./view/dividendo/dividendo.module";
+import { DividendoRoutingModule } from "./view/dividendo/dividendo-routing.module";
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ListagemComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AtivoModule,
-    AtivoRoutingModule
+    AtivoRoutingModule,
+    DividendoModule,
+    DividendoRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
