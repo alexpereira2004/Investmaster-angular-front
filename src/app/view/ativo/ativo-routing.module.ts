@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AtivoCadastroComponent } from "./components/ativo-cadastro/ativo-cadastro.component";
+import { AtivoCadastroComponent } from "./ativo-cadastro/ativo-cadastro.component";
+
 
 const routes: Routes = [
   {
