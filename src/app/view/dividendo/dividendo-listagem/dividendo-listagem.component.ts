@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DividendoService } from "../../../service/dividendo/dividendo.service";
 
 @Component({
   selector: 'app-listagem-dividendo',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DividendoListagemComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: DividendoService) { }
 
   ngOnInit(): void {
+    this.service.buscarDividendos().subscribe((response) => {
+      console.log(response)
+    });
   }
 
 }

@@ -14,7 +14,7 @@ export class DividendoService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getInspectionInfo(): Observable<Dividendo[]> {
+  buscarDividendos(): Observable<Dividendo[]> {
     const url = this.baseUrl + routes.dividendo.listar;
     return this.httpClient.get<Dividendo[]>(url);
   }
