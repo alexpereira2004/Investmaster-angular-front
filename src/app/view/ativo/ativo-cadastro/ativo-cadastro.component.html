@@ -1,1 +1,23 @@
-<p>Novo Ativo!</p>
+
+<form [formGroup]="FRMnovoCadastro" (ngSubmit)="onSubmit()">
+  <label for="codigo">Código:</label>
+  <input id="codigo" formControlName="codigo" maxlength="10" required>
+
+  <label for="nome">Nome:</label>
+  <input id="nome" formControlName="nome" maxlength="200" required>
+
+  <label for="cnpj">CNPJ:</label>
+  <input id="cnpj" formControlName="cnpj" required>
+
+  <label for="tipo">Tipo:</label>
+  <select id="tipo" formControlName="tipo">
+    <option value="A">Ação</option>
+    <option value="F">Fundo Imobiliário</option>
+    <option value="B">BDR</option>
+  </select>
+
+  <label for="seguindo">Seguindo:</label>
+  <input id="seguindo" type="checkbox" formControlName="seguindo">
+
+  <button type="submit">Enviar</button>
+</form>
