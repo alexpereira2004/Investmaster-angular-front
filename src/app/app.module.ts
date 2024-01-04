@@ -7,6 +7,7 @@ import { AtivoModule } from "./view/ativo/ativo.module";
 import { AtivoRoutingModule } from "./view/ativo/ativo-routing.module";
 import { DividendoModule } from "./view/dividendo/dividendo.module";
 import { DividendoRoutingModule } from "./view/dividendo/dividendo-routing.module";
+import { HttpClientModule } from "@angular/common/http";
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { DividendoRoutingModule } from "./view/dividendo/dividendo-routing.modul
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     AtivoModule,
     AtivoRoutingModule,
