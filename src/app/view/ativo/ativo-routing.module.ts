@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AtivoCadastroComponent } from "./ativo-cadastro/ativo-cadastro.component";
+import { AtivoListagemComponent } from "./ativo-listagem/ativo-listagem.component";
 
 
-const routes: Routes = [
+const AtivoRoutes: Routes = [
   {
     path: 'ativo',
-    component: AtivoCadastroComponent,
     children: [
       {
-        path: 'listagem',
-        component: AtivoCadastroComponent
+        path: '',
+        component: AtivoListagemComponent
       },
       {
         path: 'cadastro',
@@ -25,7 +25,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forChild(AtivoRoutes)]
 })
 export class AtivoRoutingModule { }

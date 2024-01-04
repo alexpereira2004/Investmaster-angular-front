@@ -15,7 +15,9 @@ export class DividendoService {
   constructor(private httpClient: HttpClient) {}
 
   buscarDividendos(): Observable<Dividendo[]> {
-    const url = this.baseUrl + routes.dividendo.listar;
+    let url = this.baseUrl + routes.dividendo.listar;
+    url = url+'v2/dividendo/listagem-paginado';
+    console.log(url);
     return this.httpClient.get<Dividendo[]>(url);
   }
 }

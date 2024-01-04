@@ -3,17 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { DividendoListagemComponent } from "./dividendo-listagem/dividendo-listagem.component";
 import { DividendoCadastroComponent } from "./dividendo-cadastro/dividendo-cadastro.component";
 
-const routes: Routes = [
+const DividendoRoutes: Routes = [
   {
     path: 'dividendo',
-    component: DividendoListagemComponent,
     children: [
       {
-        path: 'cadastro',
-        component: DividendoCadastroComponent
+        path: '',
+        component: DividendoListagemComponent
       },
       {
-        path: 'editar/:id',
+        path: 'cadastro',
         component: DividendoCadastroComponent
       },
     ]
@@ -21,7 +20,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forChild(DividendoRoutes)],
 })
 export class DividendoRoutingModule { }
