@@ -9,6 +9,7 @@ import { Ativo } from "../../../model/ativo";
 })
 export class AtivoCadastroComponent implements OnInit {
 
+  titulo: string;
   FRMnovoCadastro: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -22,6 +23,7 @@ export class AtivoCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titulo = "Cadastrar novo ativo";
   }
 
   onSubmit() {
