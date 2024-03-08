@@ -1,4 +1,5 @@
 export class Ativo {
+  id!: string;
   nome: string;
   nomeCompleto: string;
   codigo: string;

@@ -11,8 +11,17 @@ export class DividendoListagemComponent implements OnInit {
   constructor(private service: DividendoService) { }
 
   ngOnInit(): void {
-    this.service.buscarDividendos().subscribe((response) => {
-      console.log(response)
+    this.service.buscarDividendos().subscribe({
+      next: (result) => {
+
+
+      },
+      error: (result: any) => {
+        // this.contextService.openGenericDialog('warning', 'user-form.failed-operation', result);
+      },
+      complete: () => {
+        // this.spinner.hide();
+      }
     });
   }
 

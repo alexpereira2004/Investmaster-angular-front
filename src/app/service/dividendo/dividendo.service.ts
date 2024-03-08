@@ -10,7 +10,7 @@ import { Dividendo } from "../../model/dividendo";
 })
 export class DividendoService {
 
-  private baseUrl = environment.baseUrl;
+  private baseUrl = environment.portalApi.baseUrl;
 
   constructor(private httpClient: HttpClient) {}
 
