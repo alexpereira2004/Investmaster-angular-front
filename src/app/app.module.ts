@@ -8,11 +8,15 @@ import { AtivoRoutingModule } from "./view/ativo/ativo-routing.module";
 import { DividendoModule } from "./view/dividendo/dividendo.module";
 import { DividendoRoutingModule } from "./view/dividendo/dividendo-routing.module";
 import { HttpClientModule } from "@angular/common/http";
+import { ComumComponent } from './view/comum/comum.component';
+import { MenuLateralComponent } from './view/comum/menu-lateral/menu-lateral.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ComumComponent,
+    MenuLateralComponent
   ],
   imports: [
     BrowserModule,
