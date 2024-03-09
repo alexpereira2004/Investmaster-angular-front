@@ -16,12 +16,9 @@ export class MenuLateralComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
-
     this.montarMenuDashboard();
     this.montarMenuAtivo();
     this.montarMenuDividendo();
-
     this.itens = [
       this.dashboard, this.ativo, this.dividendo
     ]
@@ -35,30 +32,29 @@ export class MenuLateralComponent implements OnInit {
   }
 
   montarMenuAtivo() {
-    let subItemAtivoAdicionar = new MenuItem();
     let subItemAtivoListar = new MenuItem();
-
-    subItemAtivoAdicionar.titulo  = 'Adicionar';
-    subItemAtivoAdicionar.link    = '/ativo/cadastro';
     subItemAtivoListar.titulo  = 'Listar';
     subItemAtivoListar.link    = '/ativo';
+    let subItemAtivoAdicionar = new MenuItem();
+    subItemAtivoAdicionar.titulo  = 'Adicionar';
+    subItemAtivoAdicionar.link    = '/ativo/cadastro';
+
     this.ativo.classeIcone = 'fa fa fa-book';
     this.ativo.titulo = 'Ativo';
     this.ativo.itens = [subItemAtivoListar, subItemAtivoAdicionar];
   }
 
   private montarMenuDividendo() {
-    let subItemDividendoAdicionar = new MenuItem();
     let subItemDividendoListar = new MenuItem();
-
-    subItemDividendoAdicionar.titulo  = 'Adicionar';
-    subItemDividendoAdicionar.link    = '/dividendo/cadastro';
     subItemDividendoListar.titulo  = 'Listar';
     subItemDividendoListar.link    = '/dividendo';
+    let subItemDividendoAdicionar = new MenuItem();
+    subItemDividendoAdicionar.titulo  = 'Adicionar';
+    subItemDividendoAdicionar.link    = '/dividendo/cadastro';
+
     this.dividendo.classeIcone = 'fa fa-dollar-sign';
     this.dividendo.titulo = 'Dividendo';
     this.dividendo.itens = [subItemDividendoListar, subItemDividendoAdicionar];
-
   }
 
 
