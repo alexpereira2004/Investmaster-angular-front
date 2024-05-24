@@ -10,6 +10,8 @@ import { DividendoRoutingModule } from "./view/dividendo/dividendo-routing.modul
 import { HttpClientModule } from "@angular/common/http";
 import { ComumComponent } from './view/comum/comum.component';
 import { MenuLateralComponent } from './view/comum/menu-lateral/menu-lateral.component';
+import { MatTableModule } from "@angular/material/table";
+import { MatSortModule } from "@angular/material/sort";
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { MenuLateralComponent } from './view/comum/menu-lateral/menu-lateral.com
     AtivoModule,
     AtivoRoutingModule,
     DividendoModule,
-    DividendoRoutingModule
+    DividendoRoutingModule,
+    MatSortModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
