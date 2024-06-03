@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { Ativo } from "../../model/ativo";
+import { PageSpring } from "../../model/page-spring";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +35,22 @@ export class AtivoService {
     const url = environment.portalApi.baseUrl
       + environment.portalApi.recurso.ativo;
     return this.httpClient.get<Ativo[]>(url);
+  }
+
+  pesquisarPaginado(page: number, size: number): Observable<PageSpring> {
+    const url = environment.portalApi.baseUrl
+      + environment.portalApi.recurso.ativoPaginado;
+    const params: any = {};
+
+    if (page) {
+      params['page'] = page;
+    }
+
+    if (size) {
+      params['size'] = size;
+    }
+
+    return this.httpClient.get<PageSpring>(url, {params: params});
   }
 
   pesquisarPorId(id: string) {

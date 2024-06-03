@@ -17,28 +17,29 @@
               <div>
                 <table mat-table [dataSource]="dataSource" matSort class="table table-bordered table-striped table-hover dataTable no-footer dtr-inline">
 
-                  <!-- ID Column -->
-                  <ng-container matColumnDef="position">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> ID </th>
-                    <td mat-cell *matCellDef="let row"> {{row.position}} </td>
+                  <ng-container matColumnDef="codigo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Código </th>
+                    <td mat-cell *matCellDef="let row"> {{row.codigo}} </td>
                   </ng-container>
 
-                  <!-- Progress Column -->
-                  <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Progress </th>
-                    <td mat-cell *matCellDef="let row"> {{row.name}}% </td>
+                  <ng-container matColumnDef="nome">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Nome </th>
+                    <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
                   </ng-container>
 
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="weight">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Name </th>
-                    <td mat-cell *matCellDef="let row"> {{row.weight}} </td>
+                  <ng-container matColumnDef="tipoDescricao">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Tipo </th>
+                    <td mat-cell *matCellDef="let row"> {{row.tipoDescricao}} </td>
                   </ng-container>
 
-                  <!-- Fruit Column -->
-                  <ng-container matColumnDef="symbol">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Fruit </th>
-                    <td mat-cell *matCellDef="let row"> {{row.symbol}} </td>
+                  <ng-container matColumnDef="seguindoDescricao">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Seguindo </th>
+                    <td mat-cell *matCellDef="let row"> {{row.seguindoDescricao}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="cnpj">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> CNPJ </th>
+                    <td mat-cell *matCellDef="let row"> {{row.cnpj}} </td>
                   </ng-container>
 
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -50,13 +51,21 @@
                   </tr>
                 </table>
 
-                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
+                               [length]="pagination.totalElements"
+                               [pageSize]="pagination.pageSize"
+                               [pageIndex]="pagination.page"
+                               (page)="onPageChange($event)"
+                               aria-label="Select page of users">
+                </mat-paginator>
 
 
 
             </div>
           </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+   </div>
+ </div>

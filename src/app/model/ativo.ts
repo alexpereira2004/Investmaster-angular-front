@@ -5,7 +5,9 @@ export class Ativo {
   codigo: string;
   cnpj: string;
   tipo: string;
+  tipoDescricao: string;
   seguindo: string;
+  seguindoDescricao: string;
   pais: string;
   caminho: string;
 }
