@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AtivoRoutingModule } from './ativo-routing.module';
 import { AtivoCadastroComponent } from "./ativo-cadastro/ativo-cadastro.component";
 import { AtivoListagemComponent } from './ativo-listagem/ativo-listagem.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from "@angular/material/table";
@@ -27,7 +27,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ]
 })
 export class AtivoModule { }

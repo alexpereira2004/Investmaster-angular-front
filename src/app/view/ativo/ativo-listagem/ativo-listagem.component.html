@@ -9,13 +9,40 @@
             </div>
             <div class="portlet-body">
 
-              <mat-form-field>
-                <mat-label>Filter</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-              </mat-form-field>
+              <div class="d-grid gap-3">
+                <form #form="ngForm">
+                  <div class="row">
 
-              <div>
-                <table mat-table [dataSource]="dataSource" matSort class="table table-bordered table-striped table-hover dataTable no-footer dtr-inline">
+                    <div class="col-md-4">
+                      <div>
+                        <label for="codigo" class="form-label">Código:</label>
+                        <input class="form-control form-control-lg" id="codigo" name="codigo" maxlength="10" required [(ngModel)]="formData.codigo">
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label for="option" class="form-label">Código:</label>
+                      <select class="form-select form-select-lg" id="option" name="option" [(ngModel)]="formData.option">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md4">
+                      <button class="btn btn-primary mt-3" type="submit" (click)="submitForm()" >Enviar</button>
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+
+              <div class="mt-5">
+                <table mat-table [dataSource]="dataSource" matSort class="table table-bordered table-striped table-hover dataTable no-footer dtr-inline mt-0">
 
                   <ng-container matColumnDef="codigo">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Código </th>
@@ -47,7 +74,7 @@
 
                   <!-- Row shown when there is no matching data. -->
                   <tr class="mat-row" *matNoDataRow>
-                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    <td class="mat-cell" colspan="4">No data matching the filter </td>
                   </tr>
                 </table>
 

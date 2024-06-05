@@ -16,6 +16,11 @@ export class AtivoListagemComponent implements AfterViewInit {
   dataSource: MatTableDataSource<Ativo>;
   public pagination: Pagination = new Pagination(0, 5, 0);
 
+  formData = {
+    codigo: '',
+    option: ''
+  };
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -57,6 +62,9 @@ export class AtivoListagemComponent implements AfterViewInit {
     this.montarDataTable(this.pagination.page, this.pagination.pageSize);
   }
 
-
+  submitForm() {
+    console.log('Código:', this.formData.codigo);
+    console.log('Opção:', this.formData.option);
+  }
 
 }
