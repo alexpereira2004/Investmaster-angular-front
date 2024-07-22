@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js/auto';
+import Chart, { ChartConfiguration, ChartDataset } from 'chart.js/auto';
+import { ProjecaoService } from "../../../service/projecao/projecao.service";
 
 @Component({
   selector: 'app-dividendo-esperado-alcancado',
@@ -7,64 +8,98 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./dividendo-esperado-alcancado.component.css']
 })
 export class DividendoEsperadoAlcancadoComponent implements OnInit {
-  constructor() {}
+  constructor(private projecaoService: ProjecaoService) {}
 
   ngOnInit(): void {
     this.createChart();
   }
 
   public lineChart: any;
+  public teste: any;
 
   createChart() {
-    this.lineChart = new Chart('lineChart', {
-      type: 'bar',
-      data: {
-        labels: ['jan', 'feb', 'mar', 'april', 'may', 'june', 'july', 'aug'],
-        datasets: [
-          {
-            label: 'Barra 1',
-            data: [65, 59, 80, 81, 56, 55, 40],
-            borderColor: 'rgb(201,191,129)',
-            backgroundColor: 'rgb(201,191,129)',
-            order: 2
+    this.projecaoService.buscarDados().subscribe({
+      next: (result) => {
+
+        console.log(result.content);
+
+        let newVar: ChartConfiguration<'bar' | 'line'> = {
+          type: 'bar',
+          data: {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            datasets: [],
           },
-          {
-            label: 'Barra 2',
-            data: [50, 40, 30, 20, 10, 5, 1],
-            borderColor: 'rgb(206,125,125)',
-            backgroundColor: 'rgb(200, 150, 150)',
-            order: 3
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Dividendos Esperados x Alcançados'
+              }
+            }
           },
-          {
-            label: 'Linha 1',
-            data:  [50, 51, 54, 59, 65, 69, 70],
-            borderColor: 'rgb(255,202,0)',
-            backgroundColor: 'rgb(255,195,0)',
-            type: 'line',
-            order: 0
-          },
-          {
-            label: 'Linha 2',
-            data:  [40, 55, 40, 60, 30, 70, 20],
-            borderColor: 'rgb(250,0,0)',
-            backgroundColor: 'rgb(255,0,0)',
-            type: 'line',
-            order: 1
+        };
+
+        let alcancadoLista: number[] = [];
+        let projetadoLista: number[] = [];
+        let totalAlcancadoLista: number[] = [];
+        let totalizadorAlcancado: number = 0;
+        let totalProjetadoLista: number[] = [];
+        let totalizadorProjetado: number = 0;
+        result.content.forEach(item => {
+
+          alcancadoLista.push(item.valorAlcancado);
+          totalizadorAlcancado += item.valorAlcancado;
+          if (item.valorAlcancado > 0 ) {
+            totalAlcancadoLista.push(totalizadorAlcancado);
           }
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: true,
-            text: 'Dividendos Esperados x Alcançados'
-          }
+
+          projetadoLista.push(item.valor);
+          totalizadorProjetado += item.valor;
+          totalProjetadoLista.push(totalizadorProjetado);
+        });
+
+        let alcancado :ChartDataset<'bar'> = {
+          label: 'Alcançado',
+          data: alcancadoLista,
+          borderColor: 'rgb(201,191,129)',
+          backgroundColor: 'rgb(201,191,129)',
+          order: 2
+        };
+
+        let projetado :ChartDataset<'bar'> = {
+          label: 'Projetado',
+          data: projetadoLista,
+          borderColor: 'rgb(206,125,125)',
+          backgroundColor: 'rgb(200, 150, 150)',
+          order: 3
+        };
+
+        let total :ChartDataset<'line'> = {
+          label: 'Total Alcançado',
+          data: totalAlcancadoLista,
+          borderColor: 'rgb(255,202,0)',
+          backgroundColor: 'rgb(255,195,0)',
+          type: 'line',
+          order: 0
+        };
+
+        let totalProjetado :ChartDataset<'line'> = {
+          label: 'Total Projetado',
+          data: totalProjetadoLista,
+          borderColor: 'rgb(250,0,0)',
+          backgroundColor: 'rgb(255,0,0)',
+          type: 'line',
+          order: 1
         }
+        newVar.data.datasets.push(alcancado, projetado, total, totalProjetado);
+
+        this.lineChart = new Chart('lineChart', newVar );
       },
+    // this.teste = new Chart('lineChart', {});
     });
   }
 }
