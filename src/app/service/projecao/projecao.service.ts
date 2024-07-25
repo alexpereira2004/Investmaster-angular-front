@@ -20,7 +20,7 @@ export class ProjecaoService {
       params['size'] = 100;
       params['ano'] = 2024;
       params['totalizador'] = 0;
-      params['tipo'] = 'A';
+      params['tipoLista'] = 'A,F';
 
 
     return this.httpClient.get<PageSpring>(url, {params: params});
