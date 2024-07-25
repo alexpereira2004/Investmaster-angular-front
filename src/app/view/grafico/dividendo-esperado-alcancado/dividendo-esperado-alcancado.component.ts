@@ -51,15 +51,18 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
         let totalizadorProjetado: number = 0;
         result.content.forEach(item => {
 
-          alcancadoLista.push(item.valorAlcancado);
-          totalizadorAlcancado += item.valorAlcancado;
-          if (item.valorAlcancado > 0 ) {
-            totalAlcancadoLista.push(totalizadorAlcancado);
+          if (item.tipo == 'A') {
+            alcancadoLista.push(item.valorAlcancado);
+            totalizadorAlcancado += item.valorAlcancado;
+            if (item.valorAlcancado > 0 ) {
+              totalAlcancadoLista.push(totalizadorAlcancado);
+            }
+
+            projetadoLista.push(item.valor);
+            totalizadorProjetado += item.valor;
+            totalProjetadoLista.push(totalizadorProjetado);
           }
 
-          projetadoLista.push(item.valor);
-          totalizadorProjetado += item.valor;
-          totalProjetadoLista.push(totalizadorProjetado);
         });
 
         let alcancado :ChartDataset<'bar'> = {
@@ -98,8 +101,11 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
         newVar.data.datasets.push(alcancado, projetado, total, totalProjetado);
 
         this.lineChart = new Chart('lineChart', newVar );
+        // this.lineChart2 = new Chart('lineChart');
       },
     // this.teste = new Chart('lineChart', {});
     });
+
+
   }
 }
