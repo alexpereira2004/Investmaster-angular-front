@@ -108,4 +108,10 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
 
 
   }
+
+  atualiza() {
+    console.log('Teste Update');
+    this.lineChart.data.datasets[0].data = [28, 48, 40, 19, 86, 27];
+    this.lineChart.update();
+  }
 }
