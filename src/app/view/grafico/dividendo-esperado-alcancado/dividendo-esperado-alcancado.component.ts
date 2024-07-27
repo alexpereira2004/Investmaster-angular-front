@@ -68,24 +68,24 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
         let alcancado :ChartDataset<'bar'> = {
           label: 'Alcançado',
           data: alcancadoLista,
-          borderColor: 'rgb(201,191,129)',
-          backgroundColor: 'rgb(201,191,129)',
+          borderColor: 'rgb(255,200,0)',
+          backgroundColor: 'rgb(255, 200, 0)',
           order: 2
         };
 
         let projetado :ChartDataset<'bar'> = {
           label: 'Projetado',
           data: projetadoLista,
-          borderColor: 'rgb(206,125,125)',
-          backgroundColor: 'rgb(200, 150, 150)',
+          borderColor: 'rgb(255,255,80)',
+          backgroundColor: 'rgb(255, 255, 80)',
           order: 3
         };
 
         let total :ChartDataset<'line'> = {
           label: 'Total Alcançado',
           data: totalAlcancadoLista,
-          borderColor: 'rgb(255,202,0)',
-          backgroundColor: 'rgb(255,195,0)',
+          borderColor: 'rgb(255,200,0)',
+          backgroundColor: 'rgb(255, 200, 0)',
           type: 'line',
           order: 0
         };
@@ -93,8 +93,8 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
         let totalProjetado :ChartDataset<'line'> = {
           label: 'Total Projetado',
           data: totalProjetadoLista,
-          borderColor: 'rgb(250,0,0)',
-          backgroundColor: 'rgb(255,0,0)',
+          borderColor: 'rgb(255,255,80)',
+          backgroundColor: 'rgb(255, 255, 80)',
           type: 'line',
           order: 1
         }
