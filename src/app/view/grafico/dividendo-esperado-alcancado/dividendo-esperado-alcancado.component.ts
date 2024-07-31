@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart, { ChartConfiguration, ChartDataset } from 'chart.js/auto';
 import { ProjecaoService } from "../../../service/projecao/projecao.service";
+import { Select2Data, Select2UpdateEvent } from "ng-select2-component";
 
 @Component({
   selector: 'app-dividendo-esperado-alcancado',
@@ -10,12 +11,29 @@ import { ProjecaoService } from "../../../service/projecao/projecao.service";
 export class DividendoEsperadoAlcancadoComponent implements OnInit {
   constructor(private projecaoService: ProjecaoService) {}
 
+  data: Select2Data = [
+    {
+      value: 'heliotrope',
+      label: 'Heliotrope',
+    },
+    {
+      value: 'hibiscus',
+      label: 'Hibiscus',
+    },
+  ];
+  value = 'CA';
+
   ngOnInit(): void {
     this.createChart();
   }
 
   public lineChart: any;
   public teste: any;
+
+  update(key: string, event: Select2UpdateEvent<any>) {
+    console.log('update', event.component.id, event.value);
+    this[key] = event.value;
+  }
 
   createChart() {
     this.projecaoService.buscarDados().subscribe({

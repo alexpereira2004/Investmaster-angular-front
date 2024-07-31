@@ -21,7 +21,14 @@
           <div class="portlet-body">
             <div class="row">
               <div class="col-md4">
-                <button class="btn btn-primary mt-3" type="submit" (click)="atualiza()" >Atualizar</button>
+
+                <select2
+                  [data]="data"
+                  [value]="value"
+                  multiple="true"
+                  (update)="update('value1', $event)">
+                </select2>
+
               </div>
             </div>
           </div>
