@@ -6,7 +6,8 @@ export const environment = {
       ativo: "v2/ativo",
       ativoId: "v2/ativo/{id}",
       ativoPaginado: "v2/ativo/listagem-paginado",
-      projecao: "v2/projecao/listagem-paginado"
+      projecao: "v2/projecao/listagem-paginado",
+      projecaoAnos: "v2/projecao/anos"
     }
   }
 };

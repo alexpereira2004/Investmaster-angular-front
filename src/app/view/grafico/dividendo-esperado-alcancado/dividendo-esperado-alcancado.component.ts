@@ -11,20 +11,23 @@ import { Select2Data, Select2UpdateEvent } from "ng-select2-component";
 export class DividendoEsperadoAlcancadoComponent implements OnInit {
   constructor(private projecaoService: ProjecaoService) {}
 
-  data: Select2Data = [
-    {
-      value: 'heliotrope',
-      label: 'Heliotrope',
-    },
-    {
-      value: 'hibiscus',
-      label: 'Hibiscus',
-    },
-  ];
-  value = 'CA';
+  listaDeAnosComProjecao: Select2Data = [];
+  value: number[] = [];
 
   ngOnInit(): void {
     this.createChart();
+    this.projecaoService.buscarAnosComProjecao().subscribe({
+        next: (result: number[]) => {
+          this.listaDeAnosComProjecao = result.map(item => ({
+            value: item,
+            label: item.toString()
+          }));
+          this.value = [2024];
+        },
+        error: error => {
+          console.error('Erro ao buscar dados dos anos das Projeções', error);
+        }
+    });
   }
 
   public lineChart: any;

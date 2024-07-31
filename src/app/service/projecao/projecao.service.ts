@@ -12,8 +12,6 @@ export class ProjecaoService {
 
   buscarDados() {
     const url = environment.portalApi.baseUrl + environment.portalApi.recurso.projecao;
-    console.log(url);
-
     const params: any = {};
 
       params['sort'] = 'mes,asc';
@@ -25,5 +23,10 @@ export class ProjecaoService {
 
     return this.httpClient.get<PageSpring>(url, {params: params});
 
+  }
+
+  buscarAnosComProjecao() {
+    const url = environment.portalApi.baseUrl + environment.portalApi.recurso.projecaoAnos;
+    return this.httpClient.get<number[]>(url);
   }
 }
