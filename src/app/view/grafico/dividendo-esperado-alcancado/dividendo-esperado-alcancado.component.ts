@@ -22,7 +22,7 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
             value: item,
             label: item.toString()
           }));
-          this.value = [2024];
+          this.value = [2024]; // @Config
         },
         error: error => {
           console.error('Erro ao buscar dados dos anos das Projeções', error);
@@ -64,62 +64,55 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
           },
         };
 
-        let alcancadoLista: number[] = [];
-        let projetadoLista: number[] = [];
-        let totalAlcancadoLista: number[] = [];
-        let totalizadorAlcancado: number = 0;
-        let totalProjetadoLista: number[] = [];
-        let totalizadorProjetado: number = 0;
+        let alcancadoLista: number[][] = [];
+        let projetadoLista: number[][] = [];
+        let totalAlcancadoLista: number[][] = [];
+        let totalizadorAlcancado: { [key: number]: number } = {};
+        let totalProjetadoLista: number[][] = [];
+        let totalizadorProjetado: { [key: number]: number } = {};
+
         result.content.forEach(item => {
+          if (!alcancadoLista[item.ano]) {
+            alcancadoLista[item.ano] = [];
+            projetadoLista[item.ano] = [];
+            totalAlcancadoLista[item.ano] = [];
+            totalProjetadoLista[item.ano] = [];
+            totalizadorAlcancado[item.ano] = 0;
+            totalizadorProjetado[item.ano] = 0;
+          }
 
           if (item.tipo == 'A') {
-            alcancadoLista.push(item.valorAlcancado);
-            totalizadorAlcancado += item.valorAlcancado;
+            alcancadoLista[item.ano].push(item.valorAlcancado);
+            totalizadorAlcancado[item.ano] += item.valorAlcancado;
             if (item.valorAlcancado > 0 ) {
-              totalAlcancadoLista.push(totalizadorAlcancado);
+              totalAlcancadoLista[item.ano].push(totalizadorAlcancado[item.ano]);
             }
 
-            projetadoLista.push(item.valor);
-            totalizadorProjetado += item.valor;
-            totalProjetadoLista.push(totalizadorProjetado);
+            projetadoLista[item.ano].push(item.valor);
+            totalizadorProjetado[item.ano] += item.valor;
+            totalProjetadoLista[item.ano].push(totalizadorProjetado[item.ano]);
           }
 
         });
 
-        let alcancado :ChartDataset<'bar'> = {
-          label: 'Alcançado',
-          data: alcancadoLista,
-          borderColor: 'rgb(255,200,0)',
-          backgroundColor: 'rgb(255, 200, 0)',
-          order: 2
-        };
+        alcancadoLista.forEach((item, ano) => {
+          this.montarDados(
+            ano,
+            newVar,
+            alcancadoLista[ano], projetadoLista[ano],
+            totalAlcancadoLista[ano], totalProjetadoLista[ano]
+          );
+        })
 
-        let projetado :ChartDataset<'bar'> = {
-          label: 'Projetado',
-          data: projetadoLista,
-          borderColor: 'rgb(255,255,80)',
-          backgroundColor: 'rgb(255, 255, 80)',
-          order: 3
-        };
 
-        let total :ChartDataset<'line'> = {
-          label: 'Total Alcançado',
-          data: totalAlcancadoLista,
-          borderColor: 'rgb(255,200,0)',
-          backgroundColor: 'rgb(255, 200, 0)',
-          type: 'line',
-          order: 0
-        };
+        // newVar.data.datasets.push( projetado, alcancadoTotal, totalProjetado, alcancado);
 
-        let totalProjetado :ChartDataset<'line'> = {
-          label: 'Total Projetado',
-          data: totalProjetadoLista,
-          borderColor: 'rgb(255,255,80)',
-          backgroundColor: 'rgb(255, 255, 80)',
-          type: 'line',
-          order: 1
-        }
-        newVar.data.datasets.push(alcancado, projetado, total, totalProjetado);
+
+
+
+        // result.content.forEach(item => {
+        //
+        // });
 
         this.lineChart = new Chart('lineChart', newVar );
         // this.lineChart2 = new Chart('lineChart');
@@ -127,6 +120,66 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
     // this.teste = new Chart('lineChart', {});
     });
 
+
+  }
+
+  montarDados(ano, newVar, alcancadoLista: number[], projetadoLista: number[], totalAlcancadoLista: number[], totalProjetadoLista: number[]) {
+    let coresFracas: { [key: number]: string };
+    let coresFortes: { [key: number]: string };
+    coresFortes = {
+      2022: 'rgb(255,200,0)',
+      2023: 'rgb(255,111,0)',
+      2024: 'rgb(68,255,0)',
+      2025: 'rgb(0,64,255)'
+    };
+    coresFracas = {
+      2022: 'rgb(255,255,80)',
+      2023: 'rgb(255,150,80)',
+      2024: 'rgb(112,255,80)',
+      2025: 'rgb(80,89,255)',
+    };
+
+    let corFraca = coresFracas[ano];
+    let corForte = coresFortes[ano];
+
+    console.log(alcancadoLista);
+
+    let alcancado :ChartDataset<'bar'> = {
+      label: 'Alcançado '+ano,
+      data: alcancadoLista,
+      borderColor: corFraca,
+      backgroundColor: corFraca,
+      order: 2
+    };
+
+    let projetado :ChartDataset<'bar'> = {
+      label: 'Projetado',
+      data: projetadoLista,
+      borderColor: corForte,
+      backgroundColor: corForte,
+      order: 3
+    };
+
+    let totalAlcancado :ChartDataset<'line'> = {
+      label: 'Total Alcançado '+ano,
+      data: totalAlcancadoLista,
+      borderColor: corFraca,
+      backgroundColor: corFraca,
+      type: 'line',
+      order: 0
+    };
+
+    let totalProjetado :ChartDataset<'line'> = {
+      label: 'Total Projetado',
+      data: totalProjetadoLista,
+      borderColor: corForte,
+      backgroundColor: corForte,
+      type: 'line',
+      order: 1
+    }
+
+
+    newVar.data.datasets.push( totalAlcancado, alcancado);
 
   }
 
