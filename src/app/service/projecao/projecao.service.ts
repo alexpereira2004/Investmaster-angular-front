@@ -10,13 +10,13 @@ export class ProjecaoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  buscarDados() {
+  buscarDados(anoLista: number []) {
     const url = environment.portalApi.baseUrl + environment.portalApi.recurso.projecao;
     const params: any = {};
 
       params['sort'] = ['ano,asc', 'mes,asc'];
-      params['size'] = 100;
-      params['anoLista'] = [2022,2023,2024];
+      params['size'] = 1000;
+      params['anoLista'] = anoLista;
       params['totalizador'] = 0;
       params['tipoLista'] = 'A';
 

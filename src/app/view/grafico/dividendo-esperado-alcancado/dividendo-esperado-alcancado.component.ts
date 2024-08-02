@@ -15,7 +15,8 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
   value: number[] = [];
 
   ngOnInit(): void {
-    this.createChart();
+    this.createChart([2023]);
+
     this.projecaoService.buscarAnosComProjecao().subscribe({
         next: (result: number[]) => {
           this.listaDeAnosComProjecao = result.map(item => ({
@@ -33,13 +34,8 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
   public lineChart: any;
   public teste: any;
 
-  update(key: string, event: Select2UpdateEvent<any>) {
-    console.log('update', event.component.id, event.value);
-    this[key] = event.value;
-  }
-
-  createChart() {
-    this.projecaoService.buscarDados().subscribe({
+  createChart(anoLista: number []) {
+    this.projecaoService.buscarDados(anoLista).subscribe({
       next: (result) => {
 
         console.log(result.content);
@@ -105,15 +101,6 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
         })
 
 
-        // newVar.data.datasets.push( projetado, alcancadoTotal, totalProjetado, alcancado);
-
-
-
-
-        // result.content.forEach(item => {
-        //
-        // });
-
         this.lineChart = new Chart('lineChart', newVar );
         // this.lineChart2 = new Chart('lineChart');
       },
@@ -127,29 +114,31 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
     let coresFracas: { [key: number]: string };
     let coresFortes: { [key: number]: string };
     coresFortes = {
-      2022: 'rgb(255,200,0)',
-      2023: 'rgb(255,111,0)',
-      2024: 'rgb(68,255,0)',
-      2025: 'rgb(0,64,255)'
-    };
-    coresFracas = {
-      2022: 'rgb(255,255,80)',
-      2023: 'rgb(255,150,80)',
-      2024: 'rgb(112,255,80)',
-      2025: 'rgb(80,89,255)',
-    };
+      2020: 'rgb(255,0,0)',
+      2021: 'rgb(255,102,0)',
+      2022: 'rgb(255,204,0)',
+      2023: 'rgb(204,255,0)',
+      2024: 'rgb(102,255,0)',
+      2025: 'rgb(0,255,102)',
+      2026: 'rgb(0,255,204)',
+      2027: 'rgb(0,204,255)',
+      2028: 'rgb(0,102,255)',
+      2029: 'rgb(102,0,255)',
+      2030: 'rgb(204,0,255)'
+    }
 
-    let corFraca = coresFracas[ano];
     let corForte = coresFortes[ano];
 
     console.log(alcancadoLista);
 
+    let order = ano + 1;
+
     let alcancado :ChartDataset<'bar'> = {
-      label: 'Alcançado '+ano,
+      label: 'Mensal '+ano,
       data: alcancadoLista,
-      borderColor: corFraca,
-      backgroundColor: corFraca,
-      order: 2
+      borderColor: corForte,
+      backgroundColor: corForte,
+      order: ano
     };
 
     let projetado :ChartDataset<'bar'> = {
@@ -161,12 +150,12 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
     };
 
     let totalAlcancado :ChartDataset<'line'> = {
-      label: 'Total Alcançado '+ano,
+      label: 'Total Acumulado '+ano,
       data: totalAlcancadoLista,
-      borderColor: corFraca,
-      backgroundColor: corFraca,
+      borderColor: corForte,
+      backgroundColor: corForte,
       type: 'line',
-      order: 0
+      order: ano  + 1
     };
 
     let totalProjetado :ChartDataset<'line'> = {
@@ -181,6 +170,13 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
 
     newVar.data.datasets.push( totalAlcancado, alcancado);
 
+  }
+
+  update(key: string, event: Select2UpdateEvent<any>) {
+    console.log('update', event.component.id, event.value);
+    this[key] = event.value;
+    this.lineChart.destroy();
+    this.createChart(event.value);
   }
 
   atualiza() {
