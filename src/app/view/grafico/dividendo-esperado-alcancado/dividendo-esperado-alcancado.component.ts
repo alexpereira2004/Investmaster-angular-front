@@ -9,13 +9,20 @@ import { Select2Data, Select2UpdateEvent } from "ng-select2-component";
   styleUrls: ['./dividendo-esperado-alcancado.component.css']
 })
 export class DividendoEsperadoAlcancadoComponent implements OnInit {
+  model = {
+    ano: [],
+    tipoAcao: '',
+    tipoFii: '',
+    tipoBdr: ''
+  };
+
   constructor(private projecaoService: ProjecaoService) {}
 
   listaDeAnosComProjecao: Select2Data = [];
   value: number[] = [];
 
   ngOnInit(): void {
-    this.createChart([2023]);
+    this.createChart([2024], ['A']); //@Config
 
     this.projecaoService.buscarAnosComProjecao().subscribe({
         next: (result: number[]) => {
@@ -34,8 +41,8 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
   public lineChart: any;
   public teste: any;
 
-  createChart(anoLista: number []) {
-    this.projecaoService.buscarDados(anoLista).subscribe({
+  createChart(anoLista: number [], tipoLista: string[]) {
+    this.projecaoService.buscarDados(anoLista, tipoLista).subscribe({
       next: (result) => {
 
         console.log(result.content);
@@ -172,16 +179,29 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
 
   }
 
-  update(key: string, event: Select2UpdateEvent<any>) {
+  update(event: Select2UpdateEvent<any>) {
     console.log('update', event.component.id, event.value);
-    this[key] = event.value;
-    this.lineChart.destroy();
-    this.createChart(event.value);
+    // this[key] = event.value;
+    // this.lineChart.destroy();
+    // this.createChart(event.value);
   }
 
-  atualiza() {
-    console.log('Teste Update');
-    this.lineChart.data.datasets[0].data = [28, 48, 40, 19, 86, 27];
-    this.lineChart.update();
+  atualizarPorTipo(event: Event) {
+    console.log('update', event);
+    // console.log(event.target.checked);
+    // this[key] = event.value;
+    // this.lineChart.destroy();
+    // this.createChart(event.value);
+  }
+
+  atualizar(form: any) {
+    let tipoLista: string[] = [];
+    if (form.value.tipoAcao) { tipoLista.push('A'); }
+    if (form.value.tipoFii) { tipoLista.push('F'); }
+    if (form.value.tipoBdr) { tipoLista.push('B'); }
+
+    // this.lineChart.update();
+    this.lineChart.destroy();
+    this.createChart(form.value.ano, tipoLista);
   }
 }
