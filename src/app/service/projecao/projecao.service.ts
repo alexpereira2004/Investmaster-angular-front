@@ -10,7 +10,7 @@ export class ProjecaoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  buscarDados(anoLista: number []) {
+  buscarDados(anoLista: number [], tipoLista: string[]) {
     const url = environment.portalApi.baseUrl + environment.portalApi.recurso.projecao;
     const params: any = {};
 
@@ -18,7 +18,7 @@ export class ProjecaoService {
       params['size'] = 1000;
       params['anoLista'] = anoLista;
       params['totalizador'] = 0;
-      params['tipoLista'] = 'A';
+      params['tipoLista'] = tipoLista;
 
 
     return this.httpClient.get<PageSpring>(url, {params: params});
