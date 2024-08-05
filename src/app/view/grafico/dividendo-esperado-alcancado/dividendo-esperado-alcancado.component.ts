@@ -75,8 +75,6 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
     this.projecaoService.buscarDados(anoLista, tipoLista).subscribe({
       next: (result) => {
 
-        console.log(result.content);
-
         let newVar: ChartConfiguration<'bar' | 'line'> = {
           type: 'bar',
           data: {
@@ -97,43 +95,54 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
           },
         };
 
-        let alcancadoLista: number[][] = [];
-        let projetadoLista: number[][] = [];
-        let totalAlcancadoLista: number[][] = [];
-        let totalizadorAlcancado: { [key: number]: number } = {};
-        let totalProjetadoLista: number[][] = [];
-        let totalizadorProjetado: { [key: number]: number } = {};
+        let lista: number[][][] = [];
+        let totalAcumuladoLista: number[][][] = [];
+        let totalizador: { [key: number]: { [key: number] : number }  } = {};
+
 
         result.content.forEach(item => {
-          if (!alcancadoLista[item.ano]) {
-            alcancadoLista[item.ano] = [];
-            projetadoLista[item.ano] = [];
-            totalAlcancadoLista[item.ano] = [];
-            totalProjetadoLista[item.ano] = [];
-            totalizadorAlcancado[item.ano] = 0;
-            totalizadorProjetado[item.ano] = 0;
+          if (!lista[item.ano]) {
+            lista[item.ano] = [];
+            lista[item.ano]['A'] = [];
+            lista[item.ano]['F'] = [];
+
+            totalAcumuladoLista[item.ano] = [];
+            totalAcumuladoLista[item.ano]['A'] = [];
+            totalAcumuladoLista[item.ano]['F'] = [];
+
+            totalizador[item.ano] = [];
+            totalizador[item.ano]['A'] = 0;
+            totalizador[item.ano]['F'] = 0;
+
           }
 
-          if (item.tipo == 'A') {
-            alcancadoLista[item.ano].push(item.valorAlcancado);
-            totalizadorAlcancado[item.ano] += item.valorAlcancado;
+            lista[item.ano][item.tipo].push(item.valorAlcancado);
+            totalizador[item.ano][item.tipo] += item.valorAlcancado;
             if (item.valorAlcancado > 0 ) {
-              totalAlcancadoLista[item.ano].push(totalizadorAlcancado[item.ano]);
+              const totalizadorElementElement = totalizador[item.ano][item.tipo];
+
+              console.log(totalizadorElementElement);
+              totalAcumuladoLista[item.ano][item.tipo].push(totalizadorElementElement);
             }
 
-            projetadoLista[item.ano].push(item.valor);
-            totalizadorProjetado[item.ano] += item.valor;
-            totalProjetadoLista[item.ano].push(totalizadorProjetado[item.ano]);
-          }
 
         });
 
-        alcancadoLista.forEach((item, ano) => {
+        lista.forEach((item, ano) => {
           this.montarDados(
             ano,
+            'F',
             newVar,
-            alcancadoLista[ano], projetadoLista[ano],
-            totalAlcancadoLista[ano], totalProjetadoLista[ano]
+            lista[ano]['F'],
+            totalAcumuladoLista[ano]['F']
+          );
+
+          this.montarDados(
+            ano,
+            'A',
+            newVar,
+            lista[ano]['A'],
+            totalAcumuladoLista[ano]['A']
           );
         })
 
@@ -141,68 +150,74 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
         this.lineChart = new Chart('lineChart', newVar );
         // this.lineChart2 = new Chart('lineChart');
       },
-    // this.teste = new Chart('lineChart', {});
     });
 
 
   }
 
-  montarDados(ano, newVar, alcancadoLista: number[], projetadoLista: number[], totalAlcancadoLista: number[], totalProjetadoLista: number[]) {
-    let coresFracas: { [key: number]: string };
-    let coresFortes: { [key: number]: string };
-    coresFortes = {
-      2020: 'rgb(255,0,0)',
-      2021: 'rgb(255,102,0)',
-      2022: 'rgb(255,204,0)',
-      2023: 'rgb(204,255,0)',
-      2024: 'rgb(102,255,0)',
-      2025: 'rgb(0,255,102)',
-      2026: 'rgb(0,255,204)',
-      2027: 'rgb(0,204,255)',
-      2028: 'rgb(0,102,255)',
-      2029: 'rgb(102,0,255)',
-      2030: 'rgb(204,0,255)'
+  montarDados(ano, tipo, newVar, alcancadoLista: number[], totalAlcancadoLista: number[]) {
+
+    let alcancado :ChartDataset<'bar'>;
+    let totalAlcancado :ChartDataset<'line'>;
+
+    let corForte = this.coresFortes[ano];
+    let corFraca = this.coresFracas[ano];
+
+    if (tipo == 'A') {
+
+      alcancado = {
+        label: 'Mensal Ações '+ano,
+        data: alcancadoLista,
+        borderColor: corForte,
+        backgroundColor: corForte,
+        order: ano + 100
+      };
+
+      totalAlcancado = {
+        label: 'Total Acumulado Ações'+ano,
+        data: totalAlcancadoLista,
+        borderColor: corForte,
+        backgroundColor: corForte,
+        type: 'line',
+        order: ano  + 101
+      };
+    } else {
+      alcancado = {
+        label: 'Mensal FII '+ano,
+        data: alcancadoLista,
+        borderColor: corFraca,
+        backgroundColor: corFraca,
+        order: ano + 102
+      };
+
+      totalAlcancado = {
+        label: 'Total Acumulado FII ' + ano,
+        data: totalAlcancadoLista,
+        borderColor: corFraca,
+        backgroundColor: corFraca,
+        type: 'line',
+        order: ano + 103
+      };
     }
 
-    let corForte = coresFortes[ano];
+    // let projetado :ChartDataset<'bar'> = {
+    //   label: 'Projetado',
+    //   data: projetadoLista,
+    //   borderColor: corForte,
+    //   backgroundColor: corForte,
+    //   order: 3
+    // };
 
-    console.log(alcancadoLista);
 
-    let order = ano + 1;
 
-    let alcancado :ChartDataset<'bar'> = {
-      label: 'Mensal '+ano,
-      data: alcancadoLista,
-      borderColor: corForte,
-      backgroundColor: corForte,
-      order: ano
-    };
-
-    let projetado :ChartDataset<'bar'> = {
-      label: 'Projetado',
-      data: projetadoLista,
-      borderColor: corForte,
-      backgroundColor: corForte,
-      order: 3
-    };
-
-    let totalAlcancado :ChartDataset<'line'> = {
-      label: 'Total Acumulado '+ano,
-      data: totalAlcancadoLista,
-      borderColor: corForte,
-      backgroundColor: corForte,
-      type: 'line',
-      order: ano  + 1
-    };
-
-    let totalProjetado :ChartDataset<'line'> = {
-      label: 'Total Projetado',
-      data: totalProjetadoLista,
-      borderColor: corForte,
-      backgroundColor: corForte,
-      type: 'line',
-      order: 1
-    }
+    // let totalProjetado :ChartDataset<'line'> = {
+    //   label: 'Total Projetado',
+    //   data: totalProjetadoLista,
+    //   borderColor: corForte,
+    //   backgroundColor: corForte,
+    //   type: 'line',
+    //   order: 1
+    // }
 
 
     newVar.data.datasets.push( totalAlcancado, alcancado);
