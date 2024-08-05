@@ -16,6 +16,36 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
     tipoBdr: ''
   };
 
+  coresFortes = {
+    2020: 'rgb(139,0,0)',
+    2021: 'rgb(165,42,42)',
+    2022: 'rgb(250,128,114)',
+    2023: 'rgb(240,230,140)',
+    2024: 'rgb(255,255,0)',
+    2025: 'rgb(255,127,80)',
+    2026: 'rgb(255,99,71)',
+    2027: 'rgb(255,0,0)',
+    2028: 'rgb(255,69,0)',
+    2029: 'rgb(255,140,0)',
+    2030: 'rgb(255,165,0)',
+    2031: 'rgb(255,215,0)'
+  }
+  coresFracas = {
+    2020: 'rgb(0,255,255)',
+    2021: 'rgb(0,139,139)',
+    2022: 'rgb(127,255,212)',
+    2023: 'rgb(95,158,160)',
+    2024: 'rgb(0,250,154)',
+    2025: 'rgb(0,100,0)',
+    2026: 'rgb(0,255,0)',
+    2027: 'rgb(173,255,47)',
+    2028: 'rgb(128,128,0)',
+    2029: 'rgb(47,79,79)',
+    2030: 'rgb(152,251,152)',
+    2031: 'rgb(32,178,170)',
+    2032: 'rgb(135,206,250)'
+  };
+
   constructor(private projecaoService: ProjecaoService) {}
 
   listaDeAnosComProjecao: Select2Data = [];
