@@ -170,7 +170,7 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
         data: alcancadoLista,
         borderColor: corForte,
         backgroundColor: corForte,
-        order: ano + 100
+        order: ano
       };
 
       totalAlcancado = {
@@ -179,7 +179,7 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
         borderColor: corForte,
         backgroundColor: corForte,
         type: 'line',
-        order: ano  + 101
+        order: ano + 20
       };
     } else {
       alcancado = {
@@ -196,7 +196,7 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
         borderColor: corFraca,
         backgroundColor: corFraca,
         type: 'line',
-        order: ano + 103
+        order: ano + 1003
       };
     }
 
