@@ -27,4 +27,17 @@ export class DividendoMediaComponent implements OnInit {
     })
   }
 
+  atualizar($event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+    if (selectedValue == 'A') {
+      this.mediaDividendosValor = this.mediaDividendos.acoes;
+    } else if (selectedValue == 'F') {
+      this.mediaDividendosValor = this.mediaDividendos.fundos;
+    } else if (selectedValue == 'B') {
+      this.mediaDividendosValor = this.mediaDividendos.outros;
+    } else if (selectedValue == 'T') {
+      this.mediaDividendosValor = this.mediaDividendos.total;
+    }
+  }
 }

@@ -3,6 +3,17 @@
     <h3 class="portlet-title">Média de Dividendos</h3>
   </div>
   <div class="portlet-body">
+
+    <div class="mb-5">
+      <label for="tipo" class="form-label mt-3">Tipo:</label>
+      <select class="form-select" id="tipo" (change)="atualizar($event)">
+        <option value="T">Total</option>
+        <option value="A">Ação</option>
+        <option value="F">Fundo Imobiliário</option>
+        <option value="B">BDR</option>
+      </select>
+    </div>
+
     <table class="table table-sm mb-0">
       <thead>
       <tr>
