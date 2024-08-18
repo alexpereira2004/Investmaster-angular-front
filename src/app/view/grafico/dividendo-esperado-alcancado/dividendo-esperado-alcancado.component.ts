@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import Chart, { ChartConfiguration, ChartDataset } from 'chart.js/auto';
 import { ProjecaoService } from "../../../service/projecao/projecao.service";
 import { Select2Data, Select2UpdateEvent } from "ng-select2-component";
+import { DividendoService } from "../../../service/dividendo/dividendo.service";
+import { MediaDividendos } from "../../../model/media-dividendos";
 
 @Component({
   selector: 'app-dividendo-esperado-alcancado',
@@ -46,13 +48,23 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
     2032: 'rgb(135,206,250)'
   };
 
-  constructor(private projecaoService: ProjecaoService) {}
+  constructor(private projecaoService: ProjecaoService,
+              private dividendoService: DividendoService) {}
 
   listaDeAnosComProjecao: Select2Data = [];
   value: number[] = [];
 
   ngOnInit(): void {
     this.createChart([2024], ['A']); //@Config
+
+    this.dividendoService.buscarMediaDividendos().subscribe({
+      next: (result: MediaDividendos) => {
+        console.log(result);
+      },
+      error: error => {
+
+      }
+    })
 
     this.projecaoService.buscarAnosComProjecao().subscribe({
         next: (result: number[]) => {
