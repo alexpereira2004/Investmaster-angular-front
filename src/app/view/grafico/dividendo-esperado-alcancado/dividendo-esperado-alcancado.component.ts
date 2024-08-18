@@ -120,12 +120,8 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
             totalizador[item.ano][item.tipo] += item.valorAlcancado;
             if (item.valorAlcancado > 0 ) {
               const totalizadorElementElement = totalizador[item.ano][item.tipo];
-
-              console.log(totalizadorElementElement);
               totalAcumuladoLista[item.ano][item.tipo].push(totalizadorElementElement);
             }
-
-
         });
 
         lista.forEach((item, ano) => {
@@ -225,14 +221,14 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
   }
 
   update(event: Select2UpdateEvent<any>) {
-    console.log('update', event.component.id, event.value);
+    // console.log('update', event.component.id, event.value);
     // this[key] = event.value;
     // this.lineChart.destroy();
     // this.createChart(event.value);
   }
 
   atualizarPorTipo(event: Event) {
-    console.log('update', event);
+    // console.log('update', event);
     // console.log(event.target.checked);
     // this[key] = event.value;
     // this.lineChart.destroy();
