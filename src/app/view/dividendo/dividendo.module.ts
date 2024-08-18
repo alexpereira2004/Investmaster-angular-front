@@ -10,12 +10,14 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { DividendoMediaComponent } from './dividendo-media/dividendo-media.component';
 
 
 @NgModule({
   declarations: [
     DividendoListagemComponent,
-    DividendoCadastroComponent
+    DividendoCadastroComponent,
+    DividendoMediaComponent
   ],
   imports: [
     CommonModule,
