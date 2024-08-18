@@ -17,8 +17,8 @@
         <tr *ngFor="let item of mediaDividendosValor; let i = index">
 
             <th scope="row">{{ item.ano }}</th>
-            <td>{{ item.valorTotal }}</td>
-            <td>{{ item.media }}</td>
+            <td>{{ item.valorTotal | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+            <td>{{ item.media | currency: 'BRL':'symbol':'1.2-2': 'pt-BR'}}</td>
             <td>{{ item.meses }}</td>
         </tr>
 

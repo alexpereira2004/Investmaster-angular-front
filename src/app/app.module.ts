@@ -14,7 +14,10 @@ import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { GraficoRoutingModule } from "./view/grafico/grafico-routing.module";
 import { GraficoModule } from "./view/grafico/grafico.module";
+import { registerLocaleData } from "@angular/common";
+import localePt from '@angular/common/locales/pt';
 
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
