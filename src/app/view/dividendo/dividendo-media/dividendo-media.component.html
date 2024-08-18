@@ -1,0 +1,28 @@
+<div class="portlet">
+  <div class="portlet-header portlet-header-bordered">
+    <h3 class="portlet-title">Média de Dividendos</h3>
+  </div>
+  <div class="portlet-body">
+    <table class="table table-sm mb-0">
+      <thead>
+      <tr>
+        <th scope="col">Ano</th>
+        <th scope="col">Total</th>
+        <th scope="col">Média</th>
+        <th scope="col">Meses</th>
+      </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let item of mediaDividendosValor; let i = index">
+
+            <th scope="row">{{ item.ano }}</th>
+            <td>{{ item.valorTotal }}</td>
+            <td>{{ item.media }}</td>
+            <td>{{ item.meses }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
