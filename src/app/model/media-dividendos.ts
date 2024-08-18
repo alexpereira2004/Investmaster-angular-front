@@ -1,4 +1,4 @@
-class MediaDividendosValor {
+export class MediaDividendosValor {
   ano: string;
   valorTotal: number;
   media: number;
