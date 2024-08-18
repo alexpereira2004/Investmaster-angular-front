@@ -4,7 +4,7 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { AtivoService } from "../../../service/ativo/ativo.service";
 import { Ativo } from "../../../model/ativo";
-import { Pagination } from "../../../model/Pagination";
+import { Pagination } from "../../../model/pagination";
 
 @Component({
   selector: 'app-ativo-listagem',
