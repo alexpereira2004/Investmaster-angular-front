@@ -28,6 +28,9 @@ import { DividendoMediaComponent } from './dividendo-media/dividendo-media.compo
     MatSortModule,
     MatPaginatorModule,
     BrowserAnimationsModule
+  ],
+  exports: [
+    DividendoMediaComponent
   ]
 })
 export class DividendoModule { }
