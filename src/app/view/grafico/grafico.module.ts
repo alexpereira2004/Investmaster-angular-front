@@ -5,6 +5,7 @@ import { GraficoRoutingModule } from './grafico-routing.module';
 import { DividendoEsperadoAlcancadoComponent } from './dividendo-esperado-alcancado/dividendo-esperado-alcancado.component';
 import { Select2Module } from "ng-select2-component";
 import { FormsModule } from "@angular/forms";
+import { DividendoModule } from "../dividendo/dividendo.module";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule } from "@angular/forms";
     CommonModule,
     GraficoRoutingModule,
     FormsModule,
-    Select2Module
+    Select2Module,
+    DividendoModule
   ]
 })
 export class GraficoModule { }
