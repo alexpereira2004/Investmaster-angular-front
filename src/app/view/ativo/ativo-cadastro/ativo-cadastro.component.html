@@ -1,23 +1,77 @@
+<div class="content">
+  <div class="container-fluid g-4">
 
-<form [formGroup]="FRMnovoCadastro" (ngSubmit)="onSubmit()">
-  <label for="codigo">Código:</label>
-  <input id="codigo" formControlName="codigo" maxlength="10" required>
+    <div class="portlet">
 
-  <label for="nome">Nome:</label>
-  <input id="nome" formControlName="nome" maxlength="200" required>
+      <div class="portlet-header portlet-header-bordered">
+        <h3 class="portlet-title">{{titulo}}</h3>
+      </div>
 
-  <label for="cnpj">CNPJ:</label>
-  <input id="cnpj" formControlName="cnpj" required>
+      <div class="portlet-body">
+        <p>Give textual form controls like <code>&lt;input&gt;</code>s and <code>&lt;textarea&gt;</code>s an upgrade with custom styles, sizing, focus states, and more.</p>
+        <hr>
 
-  <label for="tipo">Tipo:</label>
-  <select id="tipo" formControlName="tipo">
-    <option value="A">Ação</option>
-    <option value="F">Fundo Imobiliário</option>
-    <option value="B">BDR</option>
-  </select>
+        <div class="d-grid gap-3">
 
-  <label for="seguindo">Seguindo:</label>
-  <input id="seguindo" type="checkbox" formControlName="seguindo">
+          <form [formGroup]="FRMnovoCadastro" (ngSubmit)="onSubmit()">
 
-  <button type="submit">Enviar</button>
-</form>
+            <div class="row">
+              <div class="col-md-12">
+                <div>
+                  <label for="codigo" class="form-label">Código:</label>
+                  <input class="form-control form-control-lg" id="codigo" formControlName="codigo" maxlength="10" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label for="nome" class="form-label mt-3">Nome:</label>
+                <input class="form-control form-control-lg" id="nome" formControlName="nome" maxlength="200" required>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label for="cnpj" class="form-label mt-3">CNPJ:</label>
+                <input class="form-control form-control-lg" id="cnpj" formControlName="cnpj" required>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="tipo" class="form-label mt-3">Tipo:</label>
+                <select class="form-select form-select-lg" id="tipo" formControlName="tipo">
+                  <option value="A">Ação</option>
+                  <option value="F">Fundo Imobiliário</option>
+                  <option value="B">BDR</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md4">
+                <div class="col-md-4">
+                  <label for="seguindo" class="form-label form-check-label mt-3">Seguindo:</label>
+                  <input id="seguindo" type="checkbox" formControlName="seguindo" class="form-check-input mt-3 ml-">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md4">
+                <button class="btn btn-primary mt-3" type="submit" >Enviar</button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+

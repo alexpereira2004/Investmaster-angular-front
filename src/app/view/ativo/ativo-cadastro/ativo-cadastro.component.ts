@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Ativo } from "../../../model/ativo";
+import { AtivoService } from "../../../service/ativo/ativo.service";
 
 @Component({
   selector: 'app-ativo-cadastro',
@@ -9,10 +10,14 @@ import { Ativo } from "../../../model/ativo";
 })
 export class AtivoCadastroComponent implements OnInit {
 
+  titulo: string;
   FRMnovoCadastro: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.FRMnovoCadastro = this.fb.group({
+  constructor(
+    private formBuilder: FormBuilder,
+    private ativoService: AtivoService
+  ) {
+    this.FRMnovoCadastro = this.formBuilder.group({
       codigo: ['', [Validators.required, Validators.maxLength(10)]],
       nome: ['', [Validators.required, Validators.maxLength(200)]],
       cnpj: ['', [Validators.required]],
@@ -22,15 +27,26 @@ export class AtivoCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titulo = "Cadastrar novo ativo";
   }
 
   onSubmit() {
     const ativo: Ativo = this.FRMnovoCadastro.value;
-    console.log(ativo);
-    // Lógica para lidar com o envio do formulário
-  }
-  // Função para validar o formato do CNPJ
 
+    // if (this.FRMnovoCadastro.invalid) {
+    //   // this.contextService.openGenericDialog('warning', 'user-form.invalid-form');
+    //   return;
+    // }
+
+    this.carregarFormulario()
+
+    this.ativoService.salvar(this.carregarFormulario()).subscribe({
+    //
+    });
+
+  }
+
+  // Função para validar o formato do CNPJ
   cnpjValidator(control) {
     const cnpj = control.value;
 
@@ -43,4 +59,18 @@ export class AtivoCadastroComponent implements OnInit {
     return validCnpj ? null : { invalidCnpj: true };
   }
 
+  private carregarFormulario() {
+    console.log(this.FRMnovoCadastro.value);
+    let ativo = new Ativo();
+    ativo.nome = this.FRMnovoCadastro.get('nome')?.value;
+    ativo.nomeCompleto = this.FRMnovoCadastro.get('nomeCompleto')?.value;
+    ativo.codigo = this.FRMnovoCadastro.get('codigo')?.value;
+    ativo.cnpj = this.FRMnovoCadastro.get('cnpj')?.value;
+    ativo.tipo = this.FRMnovoCadastro.get('tipo')?.value;
+    ativo.seguindo = this.FRMnovoCadastro.get('seguindo')?.value ? 'A' : 'I';
+    ativo.pais = this.FRMnovoCadastro.get('pais')?.value;
+    ativo.caminho = this.FRMnovoCadastro.get('caminho')?.value;
+    return ativo;
+
+  }
 }

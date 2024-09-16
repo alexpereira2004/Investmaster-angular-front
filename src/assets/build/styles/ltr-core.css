@@ -1910,7 +1910,7 @@ body:not(.fullscreen-active) .fullscreen-icon-compress {
 .form-label {
   margin-bottom: 0.5rem;
   font-size: 400;
-  font-weight: 400;
+  font-weight: bold;
   color: var(--bs-text-level-3);
 }
 
@@ -3154,7 +3154,7 @@ body.preload-hide .preload {
 .portlet-title {
   flex: 1;
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: bold;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;

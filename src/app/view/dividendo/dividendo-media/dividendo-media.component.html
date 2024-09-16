@@ -1,0 +1,39 @@
+<div class="portlet">
+  <div class="portlet-header portlet-header-bordered">
+    <h3 class="portlet-title">Média de Dividendos</h3>
+  </div>
+  <div class="portlet-body">
+
+    <div class="mb-5">
+      <label for="tipo" class="form-label mt-3">Tipo:</label>
+      <select class="form-select" id="tipo" (change)="atualizar($event)">
+        <option value="T">Total</option>
+        <option value="A">Ação</option>
+        <option value="F">Fundo Imobiliário</option>
+        <option value="B">BDR</option>
+      </select>
+    </div>
+
+    <table class="table table-sm mb-0">
+      <thead>
+      <tr>
+        <th scope="col">Ano</th>
+        <th scope="col">Total</th>
+        <th scope="col">Média</th>
+        <th scope="col">Meses</th>
+      </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let item of mediaDividendosValor; let i = index">
+
+            <th scope="row">{{ item.ano }}</th>
+            <td>{{ item.valorTotal | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+            <td>{{ item.media | currency: 'BRL':'symbol':'1.2-2': 'pt-BR'}}</td>
+            <td>{{ item.meses }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
