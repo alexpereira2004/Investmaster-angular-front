@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { DividendoRoutingModule } from './dividendo-routing.module';
 import { DividendoListagemComponent } from './dividendo-listagem/dividendo-listagem.component';
 import { DividendoCadastroComponent } from './dividendo-cadastro/dividendo-cadastro.component';
+import { ImportarComponent } from './importar/importar.component';
 
 
 @NgModule({
   declarations: [
     DividendoListagemComponent,
-    DividendoCadastroComponent
+    DividendoCadastroComponent,
+    ImportarComponent
   ],
   imports: [
     CommonModule,
