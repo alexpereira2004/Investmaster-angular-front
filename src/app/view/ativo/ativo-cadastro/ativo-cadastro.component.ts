@@ -31,14 +31,10 @@ export class AtivoCadastroComponent implements OnInit {
   }
 
   onSubmit() {
-    const ativo: Ativo = this.FRMnovoCadastro.value;
-
     // if (this.FRMnovoCadastro.invalid) {
     //   // this.contextService.openGenericDialog('warning', 'user-form.invalid-form');
     //   return;
     // }
-
-    this.carregarFormulario()
 
     this.ativoService.salvar(this.carregarFormulario()).subscribe({
     //

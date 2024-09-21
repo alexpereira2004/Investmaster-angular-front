@@ -12,6 +12,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { DividendoMediaComponent } from './dividendo-media/dividendo-media.component';
 import { ImportarComponent } from './importar/importar.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ImportarComponent } from './importar/importar.component';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   exports: [
     DividendoMediaComponent

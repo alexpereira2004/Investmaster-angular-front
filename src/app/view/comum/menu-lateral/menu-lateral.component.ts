@@ -51,6 +51,9 @@ export class MenuLateralComponent implements OnInit {
     let subItemDividendoAdicionar = new MenuItem();
     subItemDividendoAdicionar.titulo  = 'Adicionar';
     subItemDividendoAdicionar.link    = '/dividendo/cadastro';
+    let subItemDividendoGrafico = new MenuItem();
+    subItemDividendoGrafico.titulo  = 'Gráficos';
+    subItemDividendoGrafico.link    = '/dividendo/grafico';
     let subItemDividendoImportar = new MenuItem();
     subItemDividendoImportar.titulo  = 'Importar';
     subItemDividendoImportar.link    = '/dividendo/importar';
@@ -58,6 +61,7 @@ export class MenuLateralComponent implements OnInit {
     this.dividendo.classeIcone = 'fa fa-dollar-sign';
     this.dividendo.titulo = 'Dividendo';
     this.dividendo.itens = [subItemDividendoListar, subItemDividendoAdicionar,
+      subItemDividendoGrafico,
       subItemDividendoImportar];
   }
 
