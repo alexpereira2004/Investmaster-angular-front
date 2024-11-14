@@ -8322,7 +8322,7 @@ body.preload-hide .preload {
 [data-theme=dark] .menu-item-link:hover {
   background: rgba(117, 117, 117, 0.5);
 }
-.menu-item-link.active, .menu-item-link:not(.menu-item-toggle):focus {
+.menu-item-link:not(.menu-item-toggle):focus {
   color: #fff !important;
   background: #2196f3 !important;
 }
