@@ -40,10 +40,13 @@
               "src/assets/build/scripts/mandatory.js",
               "src/assets/build/scripts/core.js",
               "src/assets/build/scripts/vendor.js",
+              "src/assets/app/utilities/sticky-header.js",
               "src/assets/app/utilities/copyright-year.js",
               "src/assets/app/utilities/theme-switcher.js",
               "src/assets/app/utilities/tooltip-popover.js",
-              "src/assets/app/utilities/dropdown-scrollbar.js"
+              "src/assets/app/utilities/dropdown-scrollbar.js",
+              "src/assets/app/utilities/fullscreen-trigger.js",
+              "src/assets/app/pages/portlet/tool.js"
             ]
           },
           "configurations": {
