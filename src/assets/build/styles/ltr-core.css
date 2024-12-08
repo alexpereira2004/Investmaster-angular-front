@@ -3153,8 +3153,8 @@ body.preload-hide .preload {
 
 .portlet-title {
   flex: 1;
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-size: 1.45rem !important;
+  font-weight: bold !important;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
