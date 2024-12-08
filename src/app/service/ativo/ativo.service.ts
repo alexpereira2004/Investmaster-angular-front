@@ -10,7 +10,13 @@ import { Observable } from "rxjs";
 })
 export class AtivoService {
 
-  constructor(private httpClient: HttpClient) { }
+  private baseUrl;
+  private recursos;
+
+  constructor(private httpClient: HttpClient) {
+    this.baseUrl = environment.portalApi.baseUrl;
+    this.recursos = environment.portalApi.recurso;
+  }
 
   salvar(ativo: Ativo) {
     if (ativo.id) {
@@ -62,5 +68,10 @@ export class AtivoService {
   remover() {
     const url = environment.portalApi.baseUrl
     return this.httpClient.delete<Ativo[]>(url);
+  }
+
+  pesquisarAtivosComDividendos() {
+    const url = this.baseUrl + this.recursos.ativosComDividendos;
+    return this.httpClient.get<Ativo[]>(url);
   }
 }
