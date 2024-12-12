@@ -74,7 +74,6 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
   }
 
   public lineChart: any;
-  public teste: any;
 
   createChart(anoLista: number [], tipoLista: string[]) {
     this.projecaoService.buscarDados(anoLista, tipoLista).subscribe({
