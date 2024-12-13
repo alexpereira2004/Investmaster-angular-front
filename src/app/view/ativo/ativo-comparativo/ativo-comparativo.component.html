@@ -3,7 +3,7 @@
     <div class="row">
 
       <div class="col-md-9">
-        <form #formPesquisaAtivo="ngForm">
+        <form #formPesquisaAtivo="ngForm" (ngSubmit)="pesquisar(formPesquisaAtivo)">
           <div class="portlet">
           <div class="portlet-header portlet-header-bordered">
             <h3 class="portlet-title">Filtro de Pesquisa</h3>
@@ -14,7 +14,7 @@
                 <label for="ativos-disponiveis" class="form-label">Ativos Disponíveis:</label>
                 <select2
                   id="ativos-disponiveis"
-                  name="ano"
+                  name="ativosSelecionados"
                   [(ngModel)]="model.ativos"
                   [data]="listaDeAtivosExistentes"
                   [value]="value"
@@ -25,15 +25,15 @@
             <div class="row">
               <div class="col-md-3">
                 <label for="periodicidade" class="form-label mt-3">Periodicidade:</label>
-                <select class="form-select" id="periodicidade" >
-                  <option value="A">Anual</option>
-                  <option value="M">Mensal</option>
+                <select class="form-select" id="periodicidade" name="periodicidade" [(ngModel)]="model.periodicidadeTeste"  >
+                  <option value="anual">Anual</option>
+                  <option value="mensal" selected="selected" >Mensal</option>
                 </select>
               </div>
             </div>
           </div>
           <div class="portlet-footer portlet-footer-bordered">
-            <button class="btn btn-primary">Pesquisar</button>
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
           </div>
         </div>
         </form>

@@ -16,41 +16,20 @@ import { CoresAleatoriasService } from "../../../service/util/cores-aleatorias.s
 export class AtivoComparativoComponent implements OnInit {
   model = {
     ativos: [],
-    periodicidade: ''
+    periodicidadeTeste: '',
+    ativosSelecionados: []
   };
   listaDeAtivosExistentes: Select2Data = [];
   value: number[] = [];
 
   public barChart: any;
-  private cores = [
-    'rgb(135,255,71)',
-    'rgb(66,109,9)',
-    'rgb(255,212,0)',
-    'rgb(46,77,95)',
-    'rgb(255,69,0)',
-    'rgb(50,8,8)',
-    'rgb(255,140,0)',
-    'rgb(49,204,255)',
-    'rgb(255,20,147)',
-    'rgb(64,224,208)'
-  ];
+
 
   constructor(private ativoService: AtivoService,
               private dividendoService: DividendoService,
               private corAleatoriaService: CoresAleatoriasService ) {}
 
   ngOnInit(): void {
-
-    this.dividendoService
-      .pesquisarExtrato('MXRF11,BBAS3', 'mensal')
-      .subscribe({
-      next: (result: AtivoDividendoWrapper) => {
-        const valoresTotais: number[] = result
-          .dividendos
-          .map(fundo => fundo.valorTotal);
-        this.createChart(valoresTotais, result.label, result);
-      }
-    });
 
     this.ativoService.pesquisarAtivosComDividendos().subscribe({
       next: (result: Ativo[]) => {
@@ -66,7 +45,25 @@ export class AtivoComparativoComponent implements OnInit {
     });
   }
 
+  pesquisar(form: any) {
+    console.log('oooi', form.value);
+    this.dividendoService
+      .pesquisarExtrato(form.value.ativosSelecionados, form.value.periodicidade)
+      .subscribe({
+        next: (result: AtivoDividendoWrapper) => {
+          const valoresTotais: number[] = result
+            .dividendos
+            .map(fundo => fundo.valorTotal);
+          this.createChart(valoresTotais, result.label, result);
+        }
+      });
+  }
+
   createChart(valoresTotais: number[], label: string[], wrapper: AtivoDividendoWrapper ) {
+
+    if (this.barChart) {
+      this.destroyChart(); // Destrói o gráfico anterior, se existir
+    }
 
     let newVar: ChartConfiguration<'bar'> = {
       type: 'bar',
@@ -91,6 +88,7 @@ export class AtivoComparativoComponent implements OnInit {
 
     const resultado = this.processarAtivos(wrapper);
 
+    console.log(resultado);
 
     let cor: { [key: string]: any } = {};
 
@@ -111,6 +109,13 @@ export class AtivoComparativoComponent implements OnInit {
 
 
     this.barChart = new Chart("barChart", newVar);
+  }
+
+  destroyChart(): void {
+    if (this.barChart) {
+      this.barChart.destroy();
+      this.barChart = undefined;
+    }
   }
 
   processarAtivos(wrapper: AtivoDividendoWrapper) {

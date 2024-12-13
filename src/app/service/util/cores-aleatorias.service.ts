@@ -19,7 +19,17 @@ export class CoresAleatoriasService {
       'rgb(255,140,0)',  // Laranja Escuro
       'rgb(173,216,230)', // Azul Pálido
       'rgb(255,20,147)', // Rosa Forte
-      'rgb(64,224,208)'  // Turquesa
+      'rgb(64,224,208)',  // Turquesa,
+      'rgb(135,255,71)',
+      'rgb(66,109,9)',
+      'rgb(255,212,0)',
+      'rgb(46,77,95)',
+      'rgb(255,69,0)',
+      'rgb(50,8,8)',
+      'rgb(255,140,0)',
+      'rgb(49,204,255)',
+      'rgb(255,20,147)',
+      'rgb(64,224,208)'
     ];
 
     return cores[Math.floor(Math.random() * cores.length)];
