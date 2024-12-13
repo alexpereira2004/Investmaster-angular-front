@@ -4,6 +4,9 @@ import { AtivoService } from "../../../service/ativo/ativo.service";
 import { Ativo } from "../../../model/ativo";
 import { Chart } from "chart.js";
 import { ChartConfiguration } from "chart.js/auto";
+import { DividendoService } from "../../../service/dividendo/dividendo.service";
+import { AtivoDividendoWrapper } from "../../../model/ativo-dividendo-wrapper";
+import { CoresAleatoriasService } from "../../../service/util/cores-aleatorias.service";
 
 @Component({
   selector: 'app-ativo-comparativo',
@@ -19,8 +22,22 @@ export class AtivoComparativoComponent implements OnInit {
   value: number[] = [];
 
   public barChart: any;
+  private cores = [
+    'rgb(135,255,71)',
+    'rgb(66,109,9)',
+    'rgb(255,212,0)',
+    'rgb(46,77,95)',
+    'rgb(255,69,0)',
+    'rgb(50,8,8)',
+    'rgb(255,140,0)',
+    'rgb(49,204,255)',
+    'rgb(255,20,147)',
+    'rgb(64,224,208)'
+  ];
 
-  constructor(private ativoService: AtivoService) {}
+  constructor(private ativoService: AtivoService,
+              private dividendoService: DividendoService,
+              private corAleatoriaService: CoresAleatoriasService ) {}
 
   ngOnInit(): void {
 
@@ -49,25 +66,13 @@ export class AtivoComparativoComponent implements OnInit {
     });
   }
 
-  createChart() {
+  createChart(valoresTotais: number[], label: string[], wrapper: AtivoDividendoWrapper ) {
 
     let newVar: ChartConfiguration<'bar'> = {
       type: 'bar',
       data: {
-        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set'],
-        datasets: [{
-          label: 'BBAS3',
-          data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 20, 25],
-          backgroundColor: 'green',
-          maxBarThickness: 40
-        },{
-          label: 'MXRF11',
-          backgroundColor: 'yellow',
-          borderWidth: 1,
-          borderColor: 'black',
-          maxBarThickness: 40,
-          data: [10, 20, 30, 40, 50, 60, 70]
-        }]
+        labels: label,
+        datasets: []
       },
       options: {
         responsive: true,
@@ -83,16 +88,58 @@ export class AtivoComparativoComponent implements OnInit {
       }
     };
 
-    let ativoNovo = {
-      label: 'VALE3',
-      data: [0, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 20, 25],
-      backgroundColor: 'rgb(0,255,215)',
-      maxBarThickness: 40
-    };
 
-    newVar.data.datasets.push( ativoNovo );
+    const resultado = this.processarAtivos(wrapper);
+
+
+    let cor: { [key: string]: any } = {};
+
+    resultado.map((item : any) => {
+      if (!(item.codigo in cor)) {
+        cor[item.codigo] = this.corAleatoriaService.get();
+      }
+      let ativoNovo = {
+        label: item.codigo,
+        data: item.valores,
+        backgroundColor: cor[item.codigo],
+        maxBarThickness: 40
+      };
+      newVar.data.datasets.push( ativoNovo );
+    })
+
+    // newVar.data.datasets.push( ativoNovo );
+
 
     this.barChart = new Chart("barChart", newVar);
+  }
+
+  processarAtivos(wrapper: AtivoDividendoWrapper) {
+    const { dividendos, label } = wrapper;
+
+    // 1. Identificar códigos distintos
+    const ativos = Array.from(new Set(dividendos.map((d) => d.codigo)));
+
+    // 2. Processar dados
+    const resultado = ativos.map((codigo) => {
+      const valores = label.map((data) => {
+        const dividendo = dividendos.find((d) => {
+          if (d.codigo === codigo && d.primeiroDividendo) {
+            const [ano, mes, dia] = d.primeiroDividendo;
+            const dataFormatada = `${ano}-${mes.toString().padStart(2, '0')}-${dia.toString().padStart(2, '0')}`;
+            return dataFormatada.startsWith(data);
+          }
+          return false;
+        });
+        return dividendo ? dividendo.valorTotal : 0;
+      });
+
+      return {
+        codigo,
+        valores, // Lista de valores para cada mês
+      };
+    });
+
+    return resultado;
   }
 
 }
