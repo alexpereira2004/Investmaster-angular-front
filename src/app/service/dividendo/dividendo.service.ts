@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { routes } from "../../constant/routes";
 import { Dividendo } from "../../model/dividendo";
 import { MediaDividendos } from "../../model/media-dividendos";
+import { AtivoDividendoWrapper } from "../../model/ativo-dividendo-wrapper";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { MediaDividendos } from "../../model/media-dividendos";
 export class DividendoService {
 
   private baseUrl = environment.portalApi.baseUrl;
+  private recursos = environment.portalApi.recurso;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -31,5 +33,13 @@ export class DividendoService {
       'Content-Type': 'text/plain',
     });
     return this.httpClient.post(url, html, { headers });
+  }
+
+  pesquisarExtrato(codigos: string, periodicidade: string) {
+    const url = this.baseUrl
+      + this.recursos.extratoDividendos
+        .replace('{codigos}', codigos)
+        .replace('{periodicidade}', periodicidade);
+    return this.httpClient.get<AtivoDividendoWrapper>(url);
   }
 }

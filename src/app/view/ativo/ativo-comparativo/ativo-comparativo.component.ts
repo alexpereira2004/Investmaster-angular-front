@@ -24,7 +24,16 @@ export class AtivoComparativoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.createChart();
+    this.dividendoService
+      .pesquisarExtrato('MXRF11,BBAS3', 'mensal')
+      .subscribe({
+      next: (result: AtivoDividendoWrapper) => {
+        const valoresTotais: number[] = result
+          .dividendos
+          .map(fundo => fundo.valorTotal);
+        this.createChart(valoresTotais, result.label, result);
+      }
+    });
 
     this.ativoService.pesquisarAtivosComDividendos().subscribe({
       next: (result: Ativo[]) => {

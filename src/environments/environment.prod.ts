@@ -9,6 +9,7 @@ export const environment = {
       projecao: "v2/projecao/listagem-paginado",
       projecaoAnos: "v2/projecao/anos",
       ativosComDividendos: "v2/ativo/com-dividendos",
+      extratoDividendos: "/v2/dividendo/extrato-dividendos?codigos={codigos}&periodicidade={periodicidade}",
     }
   }
 };
