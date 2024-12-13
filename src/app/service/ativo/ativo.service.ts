@@ -28,7 +28,6 @@ export class AtivoService {
 
   criar(ativo: Ativo) {
     const url = environment.portalApi.baseUrl + environment.portalApi.recurso.ativo;
-    console.log(url);
     return this.httpClient.post(url, ativo);
   }
 
