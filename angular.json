@@ -46,7 +46,8 @@
               "src/assets/app/utilities/tooltip-popover.js",
               "src/assets/app/utilities/dropdown-scrollbar.js",
               "src/assets/app/utilities/fullscreen-trigger.js",
-              "src/assets/app/pages/portlet/tool.js"
+              "src/assets/app/pages/portlet/tool.js",
+              "src/assets/app/pages/form/datetimepicker.js"
             ]
           },
           "configurations": {
