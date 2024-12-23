@@ -13,6 +13,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AtivoComparativoComponent } from "./ativo-comparativo/ativo-comparativo.component";
 import { Select2Module } from "ng-select2-component";
+import { NgxMaskDirective, provideEnvironmentNgxMask } from "ngx-mask";
 
 
 @NgModule({
@@ -32,7 +33,9 @@ import { Select2Module } from "ng-select2-component";
     MatPaginatorModule,
     BrowserAnimationsModule,
     FormsModule,
+    NgxMaskDirective,
     Select2Module
-  ]
+  ],
+  providers: [provideEnvironmentNgxMask()]
 })
 export class AtivoModule { }

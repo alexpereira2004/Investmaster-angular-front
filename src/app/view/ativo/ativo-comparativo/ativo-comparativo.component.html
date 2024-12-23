@@ -25,18 +25,18 @@
             <div class="row">
               <div class="col-md-3">
                 <label for="periodicidade" class="form-label mt-3">Periodicidade:</label>
-                <select class="form-select" id="periodicidade" name="periodicidade" [(ngModel)]="model.periodicidadeTeste"  >
+                <select class="form-select" id="periodicidade" name="periodicidade" [(ngModel)]="model.periodicidade"  >
                   <option value="anual">Anual</option>
                   <option value="mensal" selected="selected" >Mensal</option>
                 </select>
               </div>
               <div class="col-md-3">
-                <label for="datetimepicker-1" class="form-label mt-3">Data Início:</label>
-                  <input id="datetimepicker-1" type="text" class="form-control dateOnly" placeholder="Opcional">
+                <label for="dataInicio" class="form-label mt-3">Data Início:</label>
+                  <input id="dataInicio" name="dataInicio" [(ngModel)]="model.dataInicio" type="text" class="form-control" placeholder="Opcional" mask="99/9999" />
               </div>
               <div class="col-md-3">
                 <label for="dataFim" class="form-label mt-3">Data Fim:</label>
-                  <input id="dataFim" type="text" class="form-control dateOnly" placeholder="Opcional" >
+                  <input id="dataFim" name="dataFim" [(ngModel)]="model.dataFim" type="text" class="form-control" placeholder="Opcional" mask="99/9999" />
               </div>
             </div>
           </div>

@@ -16,8 +16,10 @@ import { CoresAleatoriasService } from "../../../service/util/cores-aleatorias.s
 export class AtivoComparativoComponent implements OnInit {
   model = {
     ativos: [],
-    periodicidadeTeste: '',
-    ativosSelecionados: []
+    periodicidade: '',
+    ativosSelecionados: [],
+    dataInicio: '',
+    dataFim: ''
   };
   listaDeAtivosExistentes: Select2Data = [];
   value: number[] = [];
