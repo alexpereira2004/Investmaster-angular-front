@@ -36,7 +36,6 @@ export class DividendoService {
   }
 
   pesquisarExtrato(valores: any) {
-
     var url = this.baseUrl
       + this.recursos.extratoDividendos
         .replace('{codigos}', valores.ativosSelecionados)
@@ -46,10 +45,11 @@ export class DividendoService {
       url += '&dataInicio='+this.formatarData(valores.dataInicio, '01');
     }
     if (valores?.dataFim) {
-      url += '&dataFim='+this.formatarData(valores.dataFim, '31');
+      const mes = valores.dataFim.substring(0,2);
+      const ano = valores.dataFim.substring(2);
+      const dia = new Date(ano, mes, 0).getDate();
+      url += '&dataFim='+this.formatarData(valores.dataFim, dia.toString());
     }
-
-
     return this.httpClient.get<AtivoDividendoWrapper>(url);
   }
 
@@ -57,13 +57,9 @@ export class DividendoService {
     if (!data) {
       return '';
     }
-
-    // Adiciona o prefixo (01 ou 31)
     const dia = prefixo;
-    const mes = data.substring(0,2); // Extrai o mês
-    const ano = data.substring(2);   // Extrai o ano
-
-    // Retorna no formato yyyy-mm-dd
+    const mes = data.substring(0,2);
+    const ano = data.substring(2);
     return `${ano}-${mes}-${dia}`;
   }
 }
