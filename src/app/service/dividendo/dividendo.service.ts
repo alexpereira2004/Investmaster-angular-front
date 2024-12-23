@@ -35,11 +35,35 @@ export class DividendoService {
     return this.httpClient.post(url, html, { headers });
   }
 
-  pesquisarExtrato(codigos: string, periodicidade: string) {
-    const url = this.baseUrl
+  pesquisarExtrato(valores: any) {
+
+    var url = this.baseUrl
       + this.recursos.extratoDividendos
-        .replace('{codigos}', codigos)
-        .replace('{periodicidade}', periodicidade);
+        .replace('{codigos}', valores.ativosSelecionados)
+        .replace('{periodicidade}', valores.periodicidade);
+
+    if (valores?.dataInicio) {
+      url += '&dataInicio='+this.formatarData(valores.dataInicio, '01');
+    }
+    if (valores?.dataFim) {
+      url += '&dataFim='+this.formatarData(valores.dataFim, '31');
+    }
+
+
     return this.httpClient.get<AtivoDividendoWrapper>(url);
+  }
+
+  formatarData(data: string, prefixo: string): string {
+    if (!data) {
+      return '';
+    }
+
+    // Adiciona o prefixo (01 ou 31)
+    const dia = prefixo;
+    const mes = data.substring(0,2); // Extrai o mês
+    const ano = data.substring(2);   // Extrai o ano
+
+    // Retorna no formato yyyy-mm-dd
+    return `${ano}-${mes}-${dia}`;
   }
 }

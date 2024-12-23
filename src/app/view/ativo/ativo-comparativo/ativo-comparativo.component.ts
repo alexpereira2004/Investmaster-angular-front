@@ -50,7 +50,7 @@ export class AtivoComparativoComponent implements OnInit {
   pesquisar(form: any) {
     console.log('oooi', form.value);
     this.dividendoService
-      .pesquisarExtrato(form.value.ativosSelecionados, form.value.periodicidade)
+      .pesquisarExtrato(form.value)
       .subscribe({
         next: (result: AtivoDividendoWrapper) => {
           const valoresTotais: number[] = result
