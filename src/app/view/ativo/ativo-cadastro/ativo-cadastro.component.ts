@@ -56,7 +56,6 @@ export class AtivoCadastroComponent implements OnInit {
   }
 
   private carregarFormulario() {
-    console.log(this.FRMnovoCadastro.value);
     let ativo = new Ativo();
     ativo.nome = this.FRMnovoCadastro.get('nome')?.value;
     ativo.nomeCompleto = this.FRMnovoCadastro.get('nomeCompleto')?.value;

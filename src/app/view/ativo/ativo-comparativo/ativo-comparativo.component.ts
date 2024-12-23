@@ -48,7 +48,6 @@ export class AtivoComparativoComponent implements OnInit {
   }
 
   pesquisar(form: any) {
-    console.log('oooi', form.value);
     this.dividendoService
       .pesquisarExtrato(form.value)
       .subscribe({
@@ -89,8 +88,6 @@ export class AtivoComparativoComponent implements OnInit {
 
 
     const resultado = this.processarAtivos(wrapper);
-
-    console.log(resultado);
 
     let cor: { [key: string]: any } = {};
 

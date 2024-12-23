@@ -17,7 +17,6 @@ export class DividendoMediaComponent implements OnInit {
   ngOnInit(): void {
     this.dividendoService.buscarMediaDividendos().subscribe({
       next: (result: MediaDividendos) => {
-        console.log(result.total);
         this.mediaDividendos = result;
         this.mediaDividendosValor = this.mediaDividendos.total;
       },
