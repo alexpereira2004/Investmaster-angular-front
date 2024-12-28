@@ -31,7 +31,11 @@ export class ImportarComponent implements OnInit {
 
     this.dividendoService.importarHtml(html).subscribe({
       next: () => {
-        Swal.fire("Sucesso ao importar dados dos dividendos");
+        Swal.fire({
+          title: "Sucesso ao importar dados dos dividendos",
+          icon: "success"
+        }
+      );
       },
       error: error => {
         console.error('Erro ao buscar dados dos Ativos com dividendo', error);
