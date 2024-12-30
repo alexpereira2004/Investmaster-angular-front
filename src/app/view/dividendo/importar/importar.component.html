@@ -12,7 +12,41 @@
         <div class="d-grid gap-3">
           <form [formGroup]="FRMnovoCadastro" (ngSubmit)="onSubmit()">
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <div class="portlet">
+                        <div class="portlet-body">
+                          <div class="widget8">
+                            <div class="widget8-content">
+                              <div class="avatar avatar-label-info avatar-circle widget8-avatar">
+                                <div class="avatar-display">
+                                  <i class="fa fa-newspaper"></i>
+                                </div>
+                              </div>
+                              <h2 class="widget8-highlight">{{info?.totalDividendosImportados}}</h2>
+                              <h6 class="widget8-title">Dividendos já importados</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">Último Dividendo importado</h5>
+                        <p class="card-text">
+                          {{ info?.ativoCodigo }} ({{ info?.ativoNome }}) em {{ info?.dataRecebimento | date: 'dd/MM/yyyy' }}</p>
+                        <p class="card-text">
+                          Dividendo de {{ info?.dividendo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}} por {{ info?.quantidade }}
+                          cotas totalizando {{ info?.valorTotal | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
                 <div>
                   <label for="html" class="form-label">Código HTML com os dividendos:</label>
                   <textarea class="form-control form-control-lg" rows="15" id="html" formControlName="html" required> </textarea>
@@ -21,7 +55,7 @@
             </div>
 
             <div class="row">
-              <div class="col-md4">
+              <div class="col-md4 text-end">
                 <button class="btn btn-primary mt-3" type="submit" >Enviar</button>
               </div>
             </div>

@@ -6,6 +6,7 @@ import { routes } from "../../constant/routes";
 import { Dividendo } from "../../model/dividendo";
 import { MediaDividendos } from "../../model/media-dividendos";
 import { AtivoDividendoWrapper } from "../../model/ativo-dividendo-wrapper";
+import { InformacoesDividendosImportados } from "../../model/informacoes-dividendos-importados";
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,12 @@ export class DividendoService {
       url += '&dataFim='+this.formatarData(valores.dataFim, dia.toString());
     }
     return this.httpClient.get<AtivoDividendoWrapper>(url);
+  }
+
+  buscarInformacoesDividendosImportados() {
+    var url = this.baseUrl
+      + this.recursos.informacoesDividendosImportados;
+    return this.httpClient.get<InformacoesDividendosImportados>(url);
   }
 
   formatarData(data: string, prefixo: string): string {

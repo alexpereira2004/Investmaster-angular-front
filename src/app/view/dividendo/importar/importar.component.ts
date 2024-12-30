@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DividendoService } from "../../../service/dividendo/dividendo.service";
 import Swal from 'sweetalert2';
+import { InformacoesDividendosImportados } from "../../../model/informacoes-dividendos-importados";
 
 @Component({
   selector: 'app-importar',
@@ -12,6 +13,7 @@ export class ImportarComponent implements OnInit {
 
   titulo: string;
   FRMnovoCadastro: FormGroup;
+  info: InformacoesDividendosImportados;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,6 +26,11 @@ export class ImportarComponent implements OnInit {
 
   ngOnInit(): void {
     this.titulo = "Importação de Dividendos por HTML";
+    this.dividendoService.buscarInformacoesDividendosImportados().subscribe({
+      next: (result: InformacoesDividendosImportados) => {
+        this.info = result;
+      }
+    });
   }
 
   onSubmit() {
