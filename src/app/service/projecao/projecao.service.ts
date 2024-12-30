@@ -29,4 +29,9 @@ export class ProjecaoService {
     const url = environment.portalApi.baseUrl + environment.portalApi.recurso.projecaoAnos;
     return this.httpClient.get<number[]>(url);
   }
+
+  atualizarIndices() {
+    const url = environment.portalApi.baseUrl + environment.portalApi.recurso.atualizarIndices;
+    return this.httpClient.post(url, null);
+  }
 }

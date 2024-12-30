@@ -11,6 +11,7 @@ export const environment = {
       ativosComDividendos: "v2/ativo/com-dividendos",
       extratoDividendos: "/v2/dividendo/extrato-dividendos?codigos={codigos}&periodicidade={periodicidade}",
       informacoesDividendosImportados: "/v2/dividendo/informacoes-dividendos-importados",
+      atualizarIndices: "/v2/projecao/atualizar-indices",
     }
   }
 };

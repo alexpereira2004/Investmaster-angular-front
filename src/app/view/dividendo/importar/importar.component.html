@@ -40,10 +40,10 @@
                           <span class="text-primary fs-4">{{ info?.dataRecebimento | date: 'dd/MM/yyyy' }}</span>
                         </p>
                         <p class="card-text">
-                          Dividendo de
+                          Total de <span class="text-primary fs-4">{{ info?.quantidade }}</span> cotas com
+                          rendimentos unitário de
                           <span class="text-primary fs-4">{{ info?.dividendo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</span>
-                          por <span class="text-primary fs-4">{{ info?.quantidade }}</span>
-                          cotas totalizando <span class="text-primary fs-4">{{ info?.valorTotal | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</span>
+                          totalizando <span class="text-primary fs-4">{{ info?.valorTotal | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</span>
                         </p>
                       </div>
                     </div>
@@ -60,7 +60,8 @@
 
             <div class="row">
               <div class="col-md4 text-end">
-                <button class="btn btn-primary mt-3" type="submit" >Enviar</button>
+                <button class="btn btn-primary mt-3 me-2" type="submit" >Enviar</button>
+                <button class="btn btn-primary mt-3" (click)="atualizarIndices()" type="button" >Atualizar Indices</button>
               </div>
             </div>
 
