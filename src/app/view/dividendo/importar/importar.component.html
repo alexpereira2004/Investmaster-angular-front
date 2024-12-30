@@ -36,10 +36,14 @@
                       <div class="card-body">
                         <h5 class="card-title">Último Dividendo importado</h5>
                         <p class="card-text">
-                          {{ info?.ativoCodigo }} ({{ info?.ativoNome }}) em {{ info?.dataRecebimento | date: 'dd/MM/yyyy' }}</p>
+                          <span class="text-primary fs-4">{{ info?.ativoCodigo }}</span> ({{ info?.ativoNome }}) em
+                          <span class="text-primary fs-4">{{ info?.dataRecebimento | date: 'dd/MM/yyyy' }}</span>
+                        </p>
                         <p class="card-text">
-                          Dividendo de {{ info?.dividendo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}} por {{ info?.quantidade }}
-                          cotas totalizando {{ info?.valorTotal | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}
+                          Dividendo de
+                          <span class="text-primary fs-4">{{ info?.dividendo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</span>
+                          por <span class="text-primary fs-4">{{ info?.quantidade }}</span>
+                          cotas totalizando <span class="text-primary fs-4">{{ info?.valorTotal | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</span>
                         </p>
                       </div>
                     </div>
