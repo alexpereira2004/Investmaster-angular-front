@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PrincipalComponent } from "./principal/principal.component";
 import { DividendosDiariosComponent } from "./dividendos-diarios/dividendos-diarios.component";
+import { DataTablesModule } from "angular-datatables";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { DividendosDiariosComponent } from "./dividendos-diarios/dividendos-diar
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    DataTablesModule
   ]
 })
 export class DashboardModule { }

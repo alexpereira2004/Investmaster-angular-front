@@ -25,18 +25,15 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-
               "src/styles.css",
               "src/assets/build/styles/ltr-core.css",
-              "src/assets/build/styles/ltr-vendor.css"
+              "src/assets/build/styles/ltr-vendor.css",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
-
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-
-
               "src/assets/build/scripts/mandatory.js",
               "src/assets/build/scripts/core.js",
               "src/assets/build/scripts/vendor.js",
@@ -47,7 +44,9 @@
               "src/assets/app/utilities/dropdown-scrollbar.js",
               "src/assets/app/utilities/fullscreen-trigger.js",
               "src/assets/app/pages/portlet/tool.js",
-              "src/assets/app/pages/form/datetimepicker.js"
+              "src/assets/app/pages/form/datetimepicker.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/datatables.net/js/dataTables.min.js"
             ]
           },
           "configurations": {
@@ -123,7 +122,6 @@
               "src/assets/build/scripts/core.js",
               "src/assets/build/scripts/mandatory.js",
               "src/assets/build/scripts/vendor.js",
-
               "src/assets/app/utilities/copyright-year.js",
               "src/assets/app/utilities/theme-switcher.js",
               "src/assets/app/utilities/tooltip-popover.js",
