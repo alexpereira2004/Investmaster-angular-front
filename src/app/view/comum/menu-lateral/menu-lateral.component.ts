@@ -25,7 +25,7 @@ export class MenuLateralComponent implements OnInit {
   }
 
   private montarMenuDashboard() {
-    this.dashboard.link = '';
+    this.dashboard.link = '/dashboard';
     this.dashboard.titulo = 'Dashboard';
     this.dashboard.classeIcone = 'fa fa-desktop';
 

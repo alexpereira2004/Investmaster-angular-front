@@ -16,6 +16,7 @@ import { GraficoRoutingModule } from "./view/grafico/grafico-routing.module";
 import { GraficoModule } from "./view/grafico/grafico.module";
 import { registerLocaleData } from "@angular/common";
 import localePt from '@angular/common/locales/pt';
+import { DashboardModule } from "./view/dashboard/dashboard.module";
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -37,6 +38,7 @@ registerLocaleData(localePt, 'pt-BR');
     GraficoRoutingModule,
     MatSortModule,
     MatTableModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

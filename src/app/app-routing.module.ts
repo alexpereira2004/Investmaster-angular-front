@@ -1,8 +1,17 @@
 import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
+import { PrincipalComponent } from "./view/dashboard/principal/principal.component";
 
-export const routes: Routes = [
-
+const routes: Routes = [
+  {
+    path: 'dashboard',
+    children: [
+      {
+        path: '',
+        component: PrincipalComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
