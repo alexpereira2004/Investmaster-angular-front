@@ -6,7 +6,7 @@
     <p>In this example you can see Datatable doing both horizontal and vertical scrolling at the same time. To enable y-scrolling or x-scrolling simply set the <code>scrollY|scrollX</code> parameter to be whatever you want the container wrapper's height or width.</p>
     <hr>
     <!-- BEGIN Datatable -->
-    <table datatable class="table table-bordered table-striped table-hover nowrap">
+    <table datatable [dtOptions]="dtOptions" class="table table-bordered table-striped table-hover nowrap">
       <thead>
       <tr>
         <th>ID</th>
