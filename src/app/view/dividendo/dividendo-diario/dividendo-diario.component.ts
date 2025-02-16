@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Config } from "datatables.net";
 
 @Component({
-  selector: 'app-dividendos-diarios',
-  templateUrl: './dividendos-diarios.component.html',
-  styleUrl: './dividendos-diarios.component.css'
+  selector: 'app-dividendo-diario',
+  templateUrl: './dividendo-diario.component.html',
+  styleUrl: './dividendo-diario.component.css'
 })
-export class DividendosDiariosComponent implements OnInit {
+export class DividendoDiarioComponent implements OnInit {
   dtOptions: Config = {};
 
   ngOnInit(): void {
