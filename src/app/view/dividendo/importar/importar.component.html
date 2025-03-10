@@ -52,17 +52,24 @@
               </div>
               <div class="col-md-6">
                 <div>
+                  Paginacao
+
+
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div>
                   <label for="html" class="form-label">Código HTML com os dividendos:</label>
                   <textarea class="form-control form-control-lg" rows="15" id="html" formControlName="html" required> </textarea>
                 </div>
+                <button class="btn btn-primary mt-3 me-2" type="submit" >Enviar</button>
+                <button class="btn btn-primary mt-3" (click)="atualizarIndices()" type="button" >Atualizar Indices</button>
               </div>
             </div>
 
             <div class="row">
-              <div class="col-md4 text-end">
-                <button class="btn btn-primary mt-3 me-2" type="submit" >Enviar</button>
-                <button class="btn btn-primary mt-3" (click)="atualizarIndices()" type="button" >Atualizar Indices</button>
-              </div>
+
             </div>
 
           </form>
