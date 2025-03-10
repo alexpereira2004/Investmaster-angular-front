@@ -2,3 +2,17 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-mdc-table {
+  font-size: 5px !important;
+}
+.mat-mdc-row, .mat-mdc-header-row {
+  height: 10px !important;
+  font-size: 12px !important;
+}
+.mat-mdc-table .mat-mdc-header-cell {
+  font-size: 14px;
+  font-weight: bold;
+  background: #9c27b0;
+}
