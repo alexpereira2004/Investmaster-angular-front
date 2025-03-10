@@ -13,7 +13,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { DividendoMediaComponent } from './dividendo-media/dividendo-media.component';
 import { ImportarComponent } from './importar/importar.component';
 import { ReactiveFormsModule } from "@angular/forms";
-import { DataTablesModule } from "angular-datatables";
 
 
 @NgModule({
@@ -32,8 +31,7 @@ import { DataTablesModule } from "angular-datatables";
     MatSortModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    DataTablesModule
+    ReactiveFormsModule
   ],
   exports: [
     DividendoMediaComponent
