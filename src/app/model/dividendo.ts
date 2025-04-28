@@ -9,4 +9,5 @@ export class Dividendo {
   dividendo: string;
   valorTotal: string;
   ativoCodigo: string;
+  ativoNome: string;
 }

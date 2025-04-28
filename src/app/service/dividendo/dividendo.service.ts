@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { Observable } from "rxjs";
 import { routes } from "../../constant/routes";
-import { Dividendo } from "../../model/dividendo";
 import { MediaDividendos } from "../../model/media-dividendos";
 import { AtivoDividendoWrapper } from "../../model/ativo-dividendo-wrapper";
 import { InformacoesDividendosImportados } from "../../model/informacoes-dividendos-importados";
+import { PageSpring } from "../../model/page-spring";
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +18,26 @@ export class DividendoService {
 
   constructor(private httpClient: HttpClient) {}
 
-  buscarDividendos(): Observable<Dividendo[]> {
-    let url = this.baseUrl + routes.dividendo.listar;
-    return this.httpClient.get<Dividendo[]>(url);
+  // pesquisarTodos(): Observable<Dividendo[]> {
+  //   let url = this.baseUrl + routes.dividendo.listar;
+  //   return this.httpClient.get<Dividendo[]>(url);
+  // }
+
+  pesquisarPaginado(page: number, size: number): Observable<PageSpring> {
+    const url = environment.portalApi.baseUrl
+      + environment.portalApi.recurso.dividendoPaginado;
+    const params: any = {};
+
+    if (page) {
+      params['page'] = page;
+    }
+
+    if (size) {
+      params['size'] = size;
+    }
+    params['sort'] = 'id,desc';
+
+    return this.httpClient.get<PageSpring>(url, {params: params});
   }
 
   buscarMediaDividendos(): Observable<MediaDividendos> {

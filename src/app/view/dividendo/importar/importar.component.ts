@@ -4,6 +4,9 @@ import { DividendoService } from "../../../service/dividendo/dividendo.service";
 import Swal from 'sweetalert2';
 import { InformacoesDividendosImportados } from "../../../model/informacoes-dividendos-importados";
 import { ProjecaoService } from "../../../service/projecao/projecao.service";
+import { MatTableDataSource } from "@angular/material/table";
+import { Pagination } from "../../../model/pagination";
+import { Dividendo } from "../../../model/dividendo";
 
 @Component({
   selector: 'app-importar',
@@ -11,6 +14,10 @@ import { ProjecaoService } from "../../../service/projecao/projecao.service";
   styleUrls: ['./importar.component.css']
 })
 export class ImportarComponent implements OnInit {
+  displayedColumns = ['id', 'dataRecebimento', 'codigo', 'nome', 'tipo', 'quantidade', 'dividendo', 'valorTotal'
+    ];
+  dataSource: MatTableDataSource<Dividendo>;
+  public pagination: Pagination = new Pagination(0, 5, 0);
 
   titulo: string;
   FRMnovoCadastro: FormGroup;
@@ -29,6 +36,7 @@ export class ImportarComponent implements OnInit {
   ngOnInit(): void {
     this.titulo = "Importação de Dividendos por HTML";
     this.atualizarInformacoesDividendos();
+    this.montarDataTable();
   }
 
   onSubmit() {
@@ -85,6 +93,27 @@ export class ImportarComponent implements OnInit {
         Swal.fire('Erro!', 'Não foi possível atualizar os índices.', 'error');
       }
     })
+  }
+
+  private montarDataTable(page: number = 0, size: number = 100) {
+    this.dividendoService.pesquisarPaginado(page,size).subscribe({
+      next: (result) => {
+        this.dataSource = new MatTableDataSource(result.content);
+        this.pagination.totalElements = result.totalElements;
+        this.pagination.pageSize = result.size;
+        this.pagination.page = result.number;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {}
+    });
+  }
+
+  onPageChange(event: any) {
+    this.pagination.page = event.pageIndex++;
+    this.pagination.pageSize = event.pageSize;
+    this.montarDataTable(this.pagination.page, this.pagination.pageSize);
   }
 
 }
