@@ -63,72 +63,12 @@
 
             <div class="row">
               <div class="col-md-12">
-                    <div>
-                      <label for="listagem-dividendos" class="form-label">Dividendos</label>
-                      <div id="listagem-dividendos">
+                <app-comum-dividendo-listagem
+                  [quantidadeItensListados]="200"
+                >
+                </app-comum-dividendo-listagem>
 
-                          <table mat-table [dataSource]="dataSource" matSort class="table table-striped table-hover">
-
-                            <ng-container matColumnDef="id">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> ID </th>
-                              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="dataRecebimento">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Recebimento </th>
-                              <td mat-cell *matCellDef="let row"> {{row.dataRecebimento | date: 'dd/MM/yyyy'}} </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="nome">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Nome </th>
-                              <td mat-cell *matCellDef="let row"> {{row.ativoNome}} </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="codigo">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Código </th>
-                              <td mat-cell *matCellDef="let row"> {{row.ativoCodigo}} </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="tipo">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Tipo </th>
-                              <td mat-cell *matCellDef="let row"> {{row.tipo}} </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="quantidade">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Quantidade </th>
-                              <td mat-cell *matCellDef="let row"> {{row.quantidade}} </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="dividendo">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Dividendo </th>
-                              <td mat-cell *matCellDef="let row"> {{row.dividendo | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }} </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="valorTotal">
-                              <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> Total </th>
-                              <td mat-cell *matCellDef="let row"> {{row.valorTotal | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }} </td>
-                            </ng-container>
-
-                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-                            <!-- Row shown when there is no matching data. -->
-                            <tr *matNoDataRow>
-                              <td colspan="4">No data matching the filter </td>
-                            </tr>
-                          </table>
-
-                          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
-                                         [length]="pagination.totalElements"
-                                         [pageSize]="pagination.pageSize"
-                                         [pageIndex]="pagination.page"
-                                         (page)="onPageChange($event)"
-                                         aria-label="Select page of users">
-                          </mat-paginator>
-
-                      </div>
-                    </div>
-                  </div>
+              </div>
             </div>
 
           </form>

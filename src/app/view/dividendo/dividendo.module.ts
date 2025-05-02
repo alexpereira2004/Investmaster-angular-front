@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { DividendoMediaComponent } from './dividendo-media/dividendo-media.component';
 import { ImportarComponent } from './importar/importar.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { ComumDividendoListagemComponent } from "../comum/comum-dividendo-listagem/comum-dividendo-listagem.component";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     DividendoListagemComponent,
     DividendoCadastroComponent,
     DividendoMediaComponent,
-    ImportarComponent
+    ImportarComponent,
+    ComumDividendoListagemComponent
   ],
   imports: [
     CommonModule,
