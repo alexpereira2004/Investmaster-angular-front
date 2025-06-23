@@ -19,34 +19,51 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
 
 
 
-  coresFortes = {
-    2020: 'rgb(139,0,0)',
-    2021: 'rgb(165,42,42)',
-    2022: 'rgb(250,128,114)',
-    2023: 'rgb(240,230,140)',
-    2024: 'rgb(255,255,0)',
-    2025: 'rgb(255,127,80)',
-    2026: 'rgb(255,99,71)',
-    2027: 'rgb(255,0,0)',
-    2028: 'rgb(255,69,0)',
-    2029: 'rgb(255,140,0)',
-    2030: 'rgb(255,165,0)',
-    2031: 'rgb(255,215,0)'
+  coresAcao = {
+    2020: 'rgb(255, 200, 200)',
+    2021: 'rgb(255, 255, 120)',
+    2022: 'rgb(255, 120, 120)',
+    2023: 'rgb(255, 255, 0)',
+    2024: 'rgb(255, 40, 40)',
+    2025: 'rgb(255, 190, 0)',
+    2026: 'rgb(220, 0, 0)',
+    2027: 'rgb(255, 100, 0)',
+    2028: 'rgb(150, 0, 0)',
+    2029: 'rgb(120, 0, 0)',
+    2030: 'rgb(90, 0, 0)',
+    2031: 'rgb(60, 0, 0)'
+
   }
-  coresFracas = {
-    2020: 'rgb(0,255,255)',
-    2021: 'rgb(0,139,139)',
-    2022: 'rgb(127,255,212)',
-    2023: 'rgb(95,158,160)',
-    2024: 'rgb(0,250,154)',
-    2025: 'rgb(0,100,0)',
-    2026: 'rgb(0,255,0)',
-    2027: 'rgb(173,255,47)',
-    2028: 'rgb(128,128,0)',
-    2029: 'rgb(47,79,79)',
-    2030: 'rgb(152,251,152)',
-    2031: 'rgb(32,178,170)',
-    2032: 'rgb(135,206,250)'
+  coresFii = {
+    2020: 'rgb(200, 200, 255)', // azul bem claro
+    2021: 'rgb(160, 160, 255)',
+    2022: 'rgb(120, 120, 255)',
+    2023: 'rgb(80, 80, 255)',
+    2024: 'rgb(40, 40, 255)',
+    2025: 'rgb(0, 0, 255)',     // azul puro
+    2026: 'rgb(0, 0, 220)',
+    2027: 'rgb(0, 0, 180)',
+    2028: 'rgb(0, 0, 150)',
+    2029: 'rgb(0, 0, 120)',
+    2030: 'rgb(0, 0, 90)',
+    2031: 'rgb(0, 0, 60)',      // azul bem escuro
+    2032: 'rgb(0, 0, 30)'       // quase preto azulado
+  };
+
+  coresBdr = {
+    2020: 'rgb(200, 255, 200)', // verde bem claro
+    2021: 'rgb(160, 255, 160)',
+    2022: 'rgb(120, 255, 120)',
+    2023: 'rgb(80, 255, 80)',
+    2024: 'rgb(40, 255, 40)',
+    2025: 'rgb(0, 255, 0)',     // verde puro
+    2026: 'rgb(0, 220, 0)',
+    2027: 'rgb(0, 180, 0)',
+    2028: 'rgb(0, 150, 0)',
+    2029: 'rgb(0, 120, 0)',
+    2030: 'rgb(0, 90, 0)',
+    2031: 'rgb(0, 70, 0)',      // verde bem escuro
+    2032: 'rgb(0, 50, 0)'       // quase preto esverdeado
   };
 
   constructor(private projecaoService: ProjecaoService) {}
@@ -109,14 +126,17 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
             lista[item.ano] = [];
             lista[item.ano]['A'] = [];
             lista[item.ano]['F'] = [];
+            lista[item.ano]['B'] = [];
 
             totalAcumuladoLista[item.ano] = [];
             totalAcumuladoLista[item.ano]['A'] = [];
             totalAcumuladoLista[item.ano]['F'] = [];
+            totalAcumuladoLista[item.ano]['B'] = [];
 
             totalizador[item.ano] = [];
             totalizador[item.ano]['A'] = 0;
             totalizador[item.ano]['F'] = 0;
+            totalizador[item.ano]['B'] = 0;
 
           }
 
@@ -144,6 +164,15 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
             lista[ano]['A'],
             totalAcumuladoLista[ano]['A']
           );
+
+          this.montarDados(
+            ano,
+            'B',
+            newVar,
+            lista[ano]['B'],
+            totalAcumuladoLista[ano]['B']
+          );
+
         })
 
 
@@ -160,65 +189,63 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
     let alcancado :ChartDataset<'bar'>;
     let totalAlcancado :ChartDataset<'line'>;
 
-    let corForte = this.coresFortes[ano];
-    let corFraca = this.coresFracas[ano];
+    let corAcao = this.coresAcao[ano];
+    let corFii = this.coresFii[ano];
+    let corBdr = this.coresBdr[ano];
 
     if (tipo == 'A') {
 
       alcancado = {
         label: 'Mensal Ações '+ano,
         data: alcancadoLista,
-        borderColor: corForte,
-        backgroundColor: corForte,
+        borderColor: corAcao,
+        backgroundColor: corAcao,
         order: ano
       };
 
       totalAlcancado = {
         label: 'Total Acumulado Ações'+ano,
         data: totalAlcancadoLista,
-        borderColor: corForte,
-        backgroundColor: corForte,
+        borderColor: corAcao,
+        backgroundColor: corAcao,
         type: 'line',
         order: ano + 20
       };
-    } else {
+    } else if (tipo == 'F') {
       alcancado = {
         label: 'Mensal FII '+ano,
         data: alcancadoLista,
-        borderColor: corFraca,
-        backgroundColor: corFraca,
+        borderColor: corFii,
+        backgroundColor: corFii,
         order: ano + 102
       };
 
       totalAlcancado = {
         label: 'Total Acumulado FII ' + ano,
         data: totalAlcancadoLista,
-        borderColor: corFraca,
-        backgroundColor: corFraca,
+        borderColor: corFii,
+        backgroundColor: corFii,
         type: 'line',
         order: ano + 1003
       };
+    } else if (tipo == 'B') {
+      alcancado = {
+        label: 'Mensal BDR ' + ano,
+        data: alcancadoLista,
+        borderColor: corBdr,
+        backgroundColor: corBdr,
+        order: ano + 203
+      };
+
+      totalAlcancado = {
+        label: 'Total Acumulado BDR ' + ano,
+        data: totalAlcancadoLista,
+        borderColor: corBdr,
+        backgroundColor: corBdr,
+        type: 'line',
+        order: ano + 2004
+      };
     }
-
-    // let projetado :ChartDataset<'bar'> = {
-    //   label: 'Projetado',
-    //   data: projetadoLista,
-    //   borderColor: corForte,
-    //   backgroundColor: corForte,
-    //   order: 3
-    // };
-
-
-
-    // let totalProjetado :ChartDataset<'line'> = {
-    //   label: 'Total Projetado',
-    //   data: totalProjetadoLista,
-    //   borderColor: corForte,
-    //   backgroundColor: corForte,
-    //   type: 'line',
-    //   order: 1
-    // }
-
 
     newVar.data.datasets.push( totalAlcancado, alcancado);
 
