@@ -142,10 +142,8 @@ export class DividendoEsperadoAlcancadoComponent implements OnInit {
 
             lista[item.ano][item.tipo].push(item.valorAlcancado);
             totalizador[item.ano][item.tipo] += item.valorAlcancado;
-            if (item.valorAlcancado > 0 ) {
-              const totalizadorElementElement = totalizador[item.ano][item.tipo];
-              totalAcumuladoLista[item.ano][item.tipo].push(totalizadorElementElement);
-            }
+            const totalizadorElementElement = totalizador[item.ano][item.tipo];
+            totalAcumuladoLista[item.ano][item.tipo].push(totalizadorElementElement);
         });
 
         lista.forEach((item, ano) => {
