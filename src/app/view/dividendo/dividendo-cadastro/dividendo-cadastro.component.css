@@ -1,0 +1,14 @@
+.demo-chart {
+  height: 300px;
+  width: 600px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+}
+
+.treemap-chart {
+  height: 500px; /* Altura para o gráfico */
+  width: 80%;    /* Largura para o gráfico */
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  background-color: #fcfcfc;
+}
