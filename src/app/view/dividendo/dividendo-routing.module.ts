@@ -18,6 +18,8 @@ const DividendoRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(DividendoRoutes)],
+  imports: [
+    RouterModule.forChild(DividendoRoutes)
+  ],
 })
 export class DividendoRoutingModule { }

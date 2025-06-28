@@ -17,6 +17,7 @@ import { GraficoModule } from "./view/grafico/grafico.module";
 import { registerLocaleData } from "@angular/common";
 import localePt from '@angular/common/locales/pt';
 import { DashboardModule } from "./view/dashboard/dashboard.module";
+import { NgxEchartsModule } from "ngx-echarts";
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -38,7 +39,10 @@ registerLocaleData(localePt, 'pt-BR');
     GraficoRoutingModule,
     MatSortModule,
     MatTableModule,
-    DashboardModule
+    DashboardModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

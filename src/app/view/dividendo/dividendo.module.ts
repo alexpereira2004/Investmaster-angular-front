@@ -14,6 +14,7 @@ import { DividendoMediaComponent } from './dividendo-media/dividendo-media.compo
 import { ImportarComponent } from './importar/importar.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { ComumDividendoListagemComponent } from "../comum/comum-dividendo-listagem/comum-dividendo-listagem.component";
+import { NgxEchartsModule } from "ngx-echarts";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ComumDividendoListagemComponent } from "../comum/comum-dividendo-listag
     MatSortModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxEchartsModule
   ],
   exports: [
     DividendoMediaComponent
