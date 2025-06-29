@@ -1,27 +1,37 @@
-# InvestMasterFE
+# InvestMaster-FE
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
+Este é o frontend da aplicação InvestMaster, construído com **Angular 18** para oferecer uma interface de usuário moderna e reativa. O projeto é projetado para fornecer uma experiência rica e interativa para gerenciamento e visualização de dados, utilizando um conjunto robusto de bibliotecas para componentes de UI, visualização de dados e manipulação de formulários.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Principais Tecnologias e Funcionalidades
 
-## Code scaffolding
+* **Angular 18**: A base da aplicação, garantindo uma estrutura escalável e de alta performance.
+* **Angular Material & CDK**: Componentes de interface de usuário prontos para uso e ferramentas de desenvolvimento de UI, proporcionando um design coeso e responsivo.
+* **DataTables (com `angular-datatables`)**: Para a exibição e manipulação avançada de dados tabulares, incluindo funcionalidades como paginação, ordenação e busca em tempo real.
+* **Visualização de Dados (Apache ECharts)**: Integração com **ECharts** (via `ngx-echarts`) para a criação de gráficos interativos e diversos, como treemaps, barras, linhas e mais, permitindo a análise visual de informações.
+* **Bootstrap 5**: Um framework CSS popular para um layout responsivo e estilização de componentes básicos.
+* **Manipulação de Formulários**: Utiliza **Angular Forms** para gerenciamento robusto de formulários, complementado por **`ngx-mask`** para formatação de inputs e **`ng-select2-component`** para caixas de seleção avançadas.
+* **Alertas e Notificações**: Integração com **SweetAlert2** para alertas e pop-ups personalizáveis, melhorando a experiência do usuário.
+* **jQuery**: Utilizado como uma dependência de suporte para algumas bibliotecas, como o DataTables.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## Como Iniciar o Projeto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Para configurar e rodar o projeto localmente, siga estes passos:
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1.  **Clone o repositório:**
+    ```bash
+    git clone [URL_DO_SEU_REPOSITORIO]
+    cd invest-master-fe
+    ```
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+3.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    ng serve
+    ```
+    O aplicativo estará disponível em `http://localhost:4200/`.
