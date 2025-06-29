@@ -1,6 +1,6 @@
 # InvestMaster-FE
 
-Este é o frontend da aplicação InvestMaster, construído com **Angular 18** para oferecer uma interface de usuário moderna e reativa. O projeto é projetado para fornecer uma experiência rica e interativa para gerenciamento e visualização de dados, utilizando um conjunto robusto de bibliotecas para componentes de UI, visualização de dados e manipulação de formulários.
+Este é o frontend da aplicação InvestMaster, construído com **Angular 18** para oferecer uma interface de usuário moderna e reativa. O sistema é projetado para fornecer uma experiência rica e interativa para gerenciamento e visualização de dados, utilizando um conjunto robusto de bibliotecas para componentes de UI, visualização de dados e manipulação de formulários.
 
 ---
 
