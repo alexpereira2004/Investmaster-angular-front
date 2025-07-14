@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AtivoComparativoComponent } from "./ativo-comparativo/ativo-comparativo.component";
 import { Select2Module } from "ng-select2-component";
 import { NgxMaskDirective, provideEnvironmentNgxMask } from "ngx-mask";
+import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { NgxMaskDirective, provideEnvironmentNgxMask } from "ngx-mask";
     BrowserAnimationsModule,
     FormsModule,
     NgxMaskDirective,
-    Select2Module
+    Select2Module,
+    SharedModule
   ],
   providers: [provideEnvironmentNgxMask()]
 })
