@@ -7,6 +7,7 @@ import { MediaDividendos } from "../../model/media-dividendos";
 import { AtivoDividendoWrapper } from "../../model/ativo-dividendo-wrapper";
 import { InformacoesDividendosImportados } from "../../model/informacoes-dividendos-importados";
 import { PageSpring } from "../../model/page-spring";
+import { ResultadoGeral } from "../../model/resultado-geral";
 
 @Injectable({
   providedIn: 'root'
@@ -85,5 +86,14 @@ export class DividendoService {
     const mes = data.substring(0,2);
     const ano = data.substring(2);
     return `${ano}-${mes}-${dia}`;
+  }
+
+
+  pesquisarResultadoGeral(ativo: string) {
+    var url = this.baseUrl
+      + this.recursos.resultadoGeral
+        .replace('{ativo}', ativo);
+
+    return this.httpClient.get<ResultadoGeral>(url);
   }
 }

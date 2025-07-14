@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   portalApi: {
-    baseUrl: 'http://localhost:12001/',
+    baseUrl: 'http://localhost:12002/',
     recurso: {
       ativo: "v2/ativo",
       ativoId: "v2/ativo/{id}",
@@ -13,6 +13,7 @@ export const environment = {
       informacoesDividendosImportados: "/v2/dividendo/informacoes-dividendos-importados",
       atualizarIndices: "/v2/projecao/atualizar-indices",
       dividendoPaginado: "v2/dividendo/listagem-paginado",
+      resultadoGeral: "v2/dividendo/{ativo}/resultado-geral",
     }
   }
 };
