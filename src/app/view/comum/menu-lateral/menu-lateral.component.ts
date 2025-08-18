@@ -41,10 +41,13 @@ export class MenuLateralComponent implements OnInit {
     let subItemAtivoComparar = new MenuItem();
     subItemAtivoComparar.titulo  = 'Comparativo';
     subItemAtivoComparar.link    = '/ativo/comparativo';
+    let subItemAtivoMonitor = new MenuItem();
+    subItemAtivoMonitor.titulo  = 'Monitor';
+    subItemAtivoMonitor.link    = '/ativo/monitor';
 
     this.ativo.classeIcone = 'fa fa fa-book';
     this.ativo.titulo = 'Ativo';
-    this.ativo.itens = [subItemAtivoListar, subItemAtivoAdicionar, subItemAtivoComparar];
+    this.ativo.itens = [subItemAtivoListar, subItemAtivoAdicionar, subItemAtivoComparar, subItemAtivoMonitor];
   }
 
   private montarMenuDividendo() {
