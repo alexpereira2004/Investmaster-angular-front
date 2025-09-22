@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   portalApi: {
-    baseUrl: 'http://localhost:8501',
+    baseUrl: 'http://localhost:8501/',
     recurso: {
       ativo: "v2/ativo",
       ativoId: "v2/ativo/{id}",
