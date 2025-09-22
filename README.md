@@ -39,7 +39,8 @@ Para configurar e rodar o projeto localmente, siga estes passos:
 ## Para rodar o projeto com Docker 
 
 ### Build da imagem
-$ docker build -t fe_investmaster:2025_09 -f ./infra/local/Dockerfile .
+
+    $ docker build -t fe_investmaster:2025_09 -f ./infra/local/Dockerfile .
                      [repository] [tag]	     [caminho do dockerfile]
 
 ### Rodar o container
