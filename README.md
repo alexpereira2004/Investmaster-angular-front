@@ -35,3 +35,26 @@ Para configurar e rodar o projeto localmente, siga estes passos:
     ng serve
     ```
     O aplicativo estará disponível em `http://localhost:4200/`.
+
+## Para rodar o projeto com Docker 
+
+### Build da imagem
+$ docker build -t fe_investmaster:2025_09 -f ./infra/local/Dockerfile .
+                     [repository] [tag]	     [caminho do dockerfile]
+
+### Rodar o container
+
+    $ docker run -d -p 15001:80 --name fe_investmaster fe_investmaster:2025_09
+                                    [nome do container]    [imagem criada]
+ou se estiver usando o docker-compose:
+
+    $ docker-compose up --build
+
+### Rollback
+Caso precise ser refeita a imagem:
+
+	$ docker stop fe_investmaster
+	
+	$ docker rm fe_investmaster
+
+	$ docker rmi -f fe_investmaster:2025_09
