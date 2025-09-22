@@ -1,1 +1,118 @@
-<p>ativo-monitor works!</p>
+<!-- Tabela de Ativos -->
+<div class="container my-4">
+  <h2>Monitoramento de Ativos</h2>
+  <table class="table table-hover align-middle">
+    <thead class="table-light">
+    <tr>
+      <th>Código</th>
+      <th>Preço Atual</th>
+      <th>Preço Alvo</th>
+      <th>Valorização</th>
+      <th>DY</th>
+      <th>Recomendação</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Exemplo BBAS3 -->
+    <tr>
+      <td>BBAS3</td>
+      <td>R$ 28,00</td>
+      <td>R$ 30,00</td>
+      <td>+7,14%</td>
+      <td>7,5%</td>
+      <td><span class="badge bg-success">Compra</span></td>
+      <td>
+        <button class="btn btn-sm btn-primary"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasBBAS3">
+          Detalhes
+        </button>
+      </td>
+    </tr>
+
+    <!-- Exemplo MTRE3 -->
+    <tr>
+      <td>MTRE3</td>
+      <td>R$ 3,22</td>
+      <td>R$ 4,50</td>
+      <td>+39,75%</td>
+      <td>0%</td>
+      <td><span class="badge bg-danger">Venda</span></td>
+      <td>
+        <button class="btn btn-sm btn-primary"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasMTRE3">
+          Detalhes
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Offcanvas BBAS3 -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasBBAS3">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Detalhes – BBAS3</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <dl class="row">
+      <dt class="col-sm-6">Ativo</dt><dd class="col-sm-6">Banco do Brasil</dd>
+      <dt class="col-sm-6">Código</dt><dd class="col-sm-6">BBAS3</dd>
+      <dt class="col-sm-6">Período</dt><dd class="col-sm-6">6 meses</dd>
+      <dt class="col-sm-6">Primeiro preço</dt><dd class="col-sm-6">R$ 25,00</dd>
+      <dt class="col-sm-6">Último preço</dt><dd class="col-sm-6">R$ 28,00</dd>
+      <dt class="col-sm-6">Variação (%)</dt><dd class="col-sm-6">+7,14%</dd>
+      <dt class="col-sm-6">Preço médio</dt><dd class="col-sm-6">R$ 26,90</dd>
+      <dt class="col-sm-6">UP/PM</dt><dd class="col-sm-6">1,04</dd>
+      <dt class="col-sm-6">Referência início</dt><dd class="col-sm-6">02/01/2025</dd>
+      <dt class="col-sm-6">Referência final</dt><dd class="col-sm-6">19/08/2025</dd>
+      <dt class="col-sm-6">Quantidade de leituras</dt><dd class="col-sm-6">128</dd>
+      <dt class="col-sm-6">Mínima no período</dt><dd class="col-sm-6">R$ 25,00</dd>
+      <dt class="col-sm-6">Máxima no período</dt><dd class="col-sm-6">R$ 31,00</dd>
+      <dt class="col-sm-6">Preço Alvo</dt><dd class="col-sm-6">R$ 30,00</dd>
+      <dt class="col-sm-6">Preço Atual</dt><dd class="col-sm-6">R$ 28,00</dd>
+      <dt class="col-sm-6">Valorização esperada</dt><dd class="col-sm-6">+7,14%</dd>
+      <dt class="col-sm-6">Dividendo Ano anterior</dt><dd class="col-sm-6">R$ 2,10</dd>
+      <dt class="col-sm-6">D/Y (Preço atual)</dt><dd class="col-sm-6">7,5%</dd>
+      <dt class="col-sm-6">Quantidade</dt><dd class="col-sm-6">100</dd>
+      <dt class="col-sm-6">Investimento</dt><dd class="col-sm-6">R$ 2.800,00</dd>
+      <dt class="col-sm-6">Estimativa de dividendo</dt><dd class="col-sm-6">R$ 210,00</dd>
+    </dl>
+  </div>
+</div>
+
+<!-- Offcanvas MTRE3 (outro exemplo) -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMTRE3">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Detalhes – MTRE3</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <dl class="row">
+      <dt class="col-sm-6">Ativo</dt><dd class="col-sm-6">Mitre Realty</dd>
+      <dt class="col-sm-6">Código</dt><dd class="col-sm-6">MTRE3</dd>
+      <dt class="col-sm-6">Período</dt><dd class="col-sm-6">6 meses</dd>
+      <dt class="col-sm-6">Primeiro preço</dt><dd class="col-sm-6">R$ 2,80</dd>
+      <dt class="col-sm-6">Último preço</dt><dd class="col-sm-6">R$ 3,22</dd>
+      <dt class="col-sm-6">Variação (%)</dt><dd class="col-sm-6">+15,0%</dd>
+      <dt class="col-sm-6">Preço médio</dt><dd class="col-sm-6">R$ 3,05</dd>
+      <dt class="col-sm-6">UP/PM</dt><dd class="col-sm-6">1,06</dd>
+      <dt class="col-sm-6">Referência início</dt><dd class="col-sm-6">02/01/2025</dd>
+      <dt class="col-sm-6">Referência final</dt><dd class="col-sm-6">19/08/2025</dd>
+      <dt class="col-sm-6">Quantidade de leituras</dt><dd class="col-sm-6">128</dd>
+      <dt class="col-sm-6">Mínima no período</dt><dd class="col-sm-6">R$ 2,80</dd>
+      <dt class="col-sm-6">Máxima no período</dt><dd class="col-sm-6">R$ 4,39</dd>
+      <dt class="col-sm-6">Preço Alvo</dt><dd class="col-sm-6">R$ 4,50</dd>
+      <dt class="col-sm-6">Preço Atual</dt><dd class="col-sm-6">R$ 3,22</dd>
+      <dt class="col-sm-6">Valorização esperada</dt><dd class="col-sm-6">+39,75%</dd>
+      <dt class="col-sm-6">Dividendo Ano anterior</dt><dd class="col-sm-6">R$ 0,00</dd>
+      <dt class="col-sm-6">D/Y (Preço atual)</dt><dd class="col-sm-6">0%</dd>
+      <dt class="col-sm-6">Quantidade</dt><dd class="col-sm-6">500</dd>
+      <dt class="col-sm-6">Investimento</dt><dd class="col-sm-6">R$ 1.610,00</dd>
+      <dt class="col-sm-6">Estimativa de dividendo</dt><dd class="col-sm-6">R$ 0,00</dd>
+    </dl>
+  </div>
+</div>
