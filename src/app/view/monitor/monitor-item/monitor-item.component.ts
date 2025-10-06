@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-monitor-item',
@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class MonitorItemComponent {
 
+  @Input() codigo!: string;
+  @Input() nome!: string;
+  @Input() situacao!: string;
+
+  @Output() nomeMudou = new EventEmitter<string>();
 }
