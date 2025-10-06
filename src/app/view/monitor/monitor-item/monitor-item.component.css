@@ -1,6 +1,11 @@
 .portlet {
   margin: 0;
 }
+
+.portlet-header {
+  padding: 10px 10px 0 0;
+}
+
 .situacao-1 {
   background-color: #ff0000; /* vermelho intenso */
 }
