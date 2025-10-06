@@ -31,7 +31,7 @@
               "node_modules/datatables.net-dt/css/dataTables.dataTables.min.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/build/scripts/mandatory.js",
@@ -45,7 +45,6 @@
               "src/assets/app/utilities/fullscreen-trigger.js",
               "src/assets/app/pages/portlet/tool.js",
               "src/assets/app/pages/form/datetimepicker.js",
-              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/datatables.net/js/dataTables.min.js"
             ]
           },
@@ -126,6 +125,8 @@
               "src/assets/app/utilities/theme-switcher.js",
               "src/assets/app/utilities/tooltip-popover.js",
               "src/assets/app/utilities/dropdown-scrollbar.js"
+
+
             ]
           }
         }
