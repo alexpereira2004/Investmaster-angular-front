@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { MonitorRoutingModule } from './monitor-routing.module';
 import { MonitorListagemComponent } from "./monitor-listagem/monitor-listagem.component";
 import { MonitorItemComponent } from "./monitor-item/monitor-item.component";
+import { MonitorHistoricoComponent } from "./monitor-historico/monitor-historico.component";
 
 
 @NgModule({
   declarations: [
     MonitorListagemComponent,
-    MonitorItemComponent
+    MonitorItemComponent,
+    MonitorHistoricoComponent
   ],
   imports: [
     CommonModule,
