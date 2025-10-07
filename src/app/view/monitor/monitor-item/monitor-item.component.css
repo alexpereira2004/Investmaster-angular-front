@@ -3,7 +3,20 @@
 }
 
 .portlet-header {
-  padding: 10px 10px 0 0;
+  padding: 0 10px 0 0;
+  min-height: 3rem;
+}
+
+.portlet-title {
+  flex: 1;
+  /* font-size: 1.45rem !important; */
+  font-weight: bold !important;
+  margin: 0 0 0 10px;
+  /* margin: 0; */
+  /* white-space: nowrap; */
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
+  /* color: var(--bs-text-level-3); */
 }
 
 .situacao-1 {
