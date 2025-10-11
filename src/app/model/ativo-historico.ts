@@ -6,7 +6,7 @@ export class AtivoHistorico {
   ultimoPreco: string;
   variacao: string;
   precoMedio: string;
-  relacaoUltimoPrecoPrecoMedio: string;
+  relacaoUltimoPrecoPrecoMedio: number;
   referenciaInicio: string;
   referenciaFinal: string;
   quantidadeLeituras: string;

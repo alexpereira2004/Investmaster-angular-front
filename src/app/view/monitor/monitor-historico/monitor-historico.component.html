@@ -39,7 +39,7 @@
               <tr>
                 <td><strong>Primeiro Preço:</strong> {{historico.primeiroPreco | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
                 <td><strong>Último Preço:</strong> {{historico.ultimoPreco | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
-                <td><strong>Relação Último Preço e Preço Médio:</strong> {{historico.relacaoUltimoPrecoPrecoMedio}}</td>
+                <td><strong>Relação Último Preço e Preço Médio:</strong> {{historico.relacaoUltimoPrecoPrecoMedio/100 | percent:'1.2-2':'pt-BR'}}</td>
               </tr>
               </tbody>
             </table>
