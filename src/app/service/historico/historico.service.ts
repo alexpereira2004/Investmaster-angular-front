@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AtivoDividendoWrapper } from "../../model/ativo-dividendo-wrapper";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
+import { AtivoHistorico } from "../../model/ativo-historico";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,6 @@ export class HistoricoService {
       params = params.set('dataFim', valores.dataFim);
     }
 
-    return this.httpClient.get<AtivoDividendoWrapper>(url, { params });
+    return this.httpClient.get<AtivoHistorico>(url, { params });
   }
 }

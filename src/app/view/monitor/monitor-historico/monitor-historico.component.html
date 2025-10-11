@@ -23,23 +23,23 @@
         </div>
 
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-9">
             <table class="table table-sm mb-0">
               <tbody>
               <tr>
-                <td>Preço Atual:</td>
-                <td>D/Y (Preço Atual):</td>
-                <td>Total de dividendos ano anterior:</td>
+                <td><strong>Preço Atual:</strong> {{historico.ultimoPreco | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+                <td><strong>D/Y (Preço Atual):</strong> Não disponível</td>
+                <td><strong>Total de dividendos ano anterior:</strong> Não disponível</td>
               </tr>
               <tr>
-                <td>Mínima no Período:</td>
-                <td>Preço Médio:</td>
-                <td>Máxima no Período</td>
+                <td><strong>Mínima no Período:</strong> {{historico.minimaPeriodo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+                <td><strong>Preço Médio:</strong> {{historico.precoMedio | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}} </td>
+                <td><strong>Máxima no Período:</strong> {{historico.minimaPeriodo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
               </tr>
               <tr>
-                <td>Primeiro Preço:</td>
-                <td>Último Preço:</td>
-                <td>Relação Último Preço e Preço Médio:</td>
+                <td><strong>Primeiro Preço:</strong> {{historico.primeiroPreco | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+                <td><strong>Último Preço:</strong> {{historico.ultimoPreco | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+                <td><strong>Relação Último Preço e Preço Médio:</strong> {{historico.relacaoUltimoPrecoPrecoMedio}}</td>
               </tr>
               </tbody>
             </table>

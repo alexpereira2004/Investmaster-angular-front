@@ -23,6 +23,9 @@
     </div>
   </div>
   <div class="portlet-body">
-    <app-monitor-historico></app-monitor-historico>
+    <app-monitor-historico
+      *ngIf="ativoHistorico"
+      [historico]="ativoHistorico">
+    </app-monitor-historico>
   </div>
 </div>

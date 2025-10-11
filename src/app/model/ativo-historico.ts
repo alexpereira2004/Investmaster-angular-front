@@ -1,4 +1,4 @@
-export class Historico {
+export class AtivoHistorico {
   id: string;
   ativo: string;
   codigo: string;
@@ -6,7 +6,7 @@ export class Historico {
   ultimoPreco: string;
   variacao: string;
   precoMedio: string;
-  ultimoPrecoPrecoMedio: string;
+  relacaoUltimoPrecoPrecoMedio: string;
   referenciaInicio: string;
   referenciaFinal: string;
   quantidadeLeituras: string;

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HistoricoService } from "../../../service/historico/historico.service";
+import { AtivoHistorico } from "../../../model/ativo-historico";
 
 @Component({
   selector: 'app-monitor-item',
@@ -15,6 +16,8 @@ export class MonitorItemComponent {
   @Output() nomeMudou = new EventEmitter<string>();
 
   primeiroClique = true;
+  ativoHistorico: AtivoHistorico;
+
 
   constructor(private historicoService: HistoricoService) {
   }
@@ -22,13 +25,16 @@ export class MonitorItemComponent {
   atualizaDados() {
     if (this.primeiroClique) {
       this.historicoService.pesquisar({
-        ativos: ['BBAS3'],
+        ativos: [this.codigo],
         dataInicio: '2025-01-01',
         dataFim: '2025-12-31'
-      }).subscribe(dados => {
-        console.log(dados);
+      }).subscribe({
+        next: (dados) => {
+          this.ativoHistorico = dados[0];
+          console.log(this.ativoHistorico);
+        },
+        error: (err) => console.error('Erro ao buscar histórico', err)
       });
-
       this.primeiroClique = false;
     }
   }
