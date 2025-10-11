@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { HistoricoService } from "../../../service/historico/historico.service";
 
 @Component({
   selector: 'app-monitor-item',
@@ -15,8 +16,18 @@ export class MonitorItemComponent {
 
   primeiroClique = true;
 
+  constructor(private historicoService: HistoricoService) {
+  }
+
   atualizaDados() {
     if (this.primeiroClique) {
+      this.historicoService.pesquisar({
+        ativos: ['BBAS3'],
+        dataInicio: '2025-01-01',
+        dataFim: '2025-12-31'
+      }).subscribe(dados => {
+        console.log(dados);
+      });
 
       this.primeiroClique = false;
     }

@@ -14,6 +14,7 @@ export const environment = {
       atualizarIndices: "/v2/projecao/atualizar-indices",
       dividendoPaginado: "v2/dividendo/listagem-paginado",
       resultadoGeral: "v2/dividendo/{ativo}/resultado-geral",
+      cotacaoHistorico: "v1/cotacao/historico",
     }
   }
 };
