@@ -12,4 +12,13 @@ export class MonitorItemComponent {
   @Input() situacao!: string;
 
   @Output() nomeMudou = new EventEmitter<string>();
+
+  primeiroClique = true;
+
+  atualizaDados() {
+    if (this.primeiroClique) {
+
+      this.primeiroClique = false;
+    }
+  }
 }
