@@ -1,1 +1,57 @@
-<p>monitor-historico works!</p>
+<div class="content">
+  <div class="container-fluid g-4">
+
+    <div class="portlet">
+      <div class="portlet-header portlet-header-bordered">
+        <h3 class="portlet-title">Histórico</h3>
+      </div>
+      <div class="portlet-body">
+
+        <div class="row">
+          <div class="col-md-6">
+            <label for="numeroLeiturasRange" class="form-label">Período</label>
+            <input type="range" class="form-range"
+                   min="0" max="200" step="1" id="numeroLeiturasRange"
+                   (change)="teste($event)">
+          </div>
+        </div>
+
+        <div class="row mb-5">
+          <div class="col-md-6">
+            Selecionado:
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-sm mb-0">
+              <tbody>
+              <tr>
+                <td>Preço Atual:</td>
+                <td>D/Y (Preço Atual):</td>
+                <td>Total de dividendos ano anterior:</td>
+              </tr>
+              <tr>
+                <td>Mínima no Período:</td>
+                <td>Preço Médio:</td>
+                <td>Máxima no Período</td>
+              </tr>
+              <tr>
+                <td>Primeiro Preço:</td>
+                <td>Último Preço:</td>
+                <td>Relação Último Preço e Preço Médio:</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+

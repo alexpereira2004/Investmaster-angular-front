@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class MonitorHistoricoComponent {
 
+  teste($event: Event) {
+    const input = $event.target as HTMLInputElement;
+    console.log('Valor selecionado:', input.value);
+  }
 }
