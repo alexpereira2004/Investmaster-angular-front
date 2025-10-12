@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { AtivoHistorico } from "../../model/ativo-historico";
+import { DataMinimaMaxima } from "../../model/dto/data-minima-maxima";
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,13 @@ export class HistoricoService {
     }
 
     return this.httpClient.get<AtivoHistorico>(url, { params });
+  }
+
+  dataMinimaMaxima(codigo: string) {
+    var url = this.baseUrl
+      + this.recursos.primeiraE_Ultima;
+    let params = new HttpParams();
+    params = params.set('codigo', codigo);
+    return this.httpClient.get<DataMinimaMaxima>(url, { params });
   }
 }

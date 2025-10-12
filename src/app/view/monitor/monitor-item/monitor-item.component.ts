@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HistoricoService } from "../../../service/historico/historico.service";
 import { AtivoHistorico } from "../../../model/ativo-historico";
+import { DataMinimaMaxima } from "../../../model/dto/data-minima-maxima";
 
 @Component({
   selector: 'app-monitor-item',
@@ -17,6 +18,7 @@ export class MonitorItemComponent {
 
   primeiroClique = true;
   ativoHistorico: AtivoHistorico;
+  dataMinimaMaxima: DataMinimaMaxima;
 
 
   constructor(private historicoService: HistoricoService) {
@@ -31,9 +33,16 @@ export class MonitorItemComponent {
       }).subscribe({
         next: (dados) => {
           this.ativoHistorico = dados[0];
-          console.log(this.ativoHistorico);
         },
         error: (err) => console.error('Erro ao buscar histórico', err)
+      });
+
+      this.historicoService.dataMinimaMaxima(this.codigo).subscribe({
+        next: (dados) => {
+          this.dataMinimaMaxima = dados;
+          console.log(this.dataMinimaMaxima);
+        },
+        error: (err) => console.error('Erro ao buscar Data Mínima e Máxima', err)
       });
       this.primeiroClique = false;
     }

@@ -15,6 +15,7 @@ export const environment = {
       dividendoPaginado: "v2/dividendo/listagem-paginado",
       resultadoGeral: "v2/dividendo/{ativo}/resultado-geral",
       cotacaoHistorico: "v1/cotacao/historico",
+      primeiraE_Ultima: "v1/cotacao/primeira-e-ultima",
     }
   }
 };

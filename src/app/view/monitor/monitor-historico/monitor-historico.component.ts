@@ -33,6 +33,7 @@ export class MonitorHistoricoComponent implements OnInit {
 
   pesquisarHistorico($event: Event) {
     // @TODO
+    //ngx-slider com datas
     const input = $event.target as HTMLInputElement;
     console.log('Valor selecionado:', input.value);
   }
