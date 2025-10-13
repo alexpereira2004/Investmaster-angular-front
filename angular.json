@@ -18,6 +18,9 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "sweetalert2"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -43,8 +46,7 @@
               "src/assets/app/utilities/dropdown-scrollbar.js",
               "src/assets/app/utilities/fullscreen-trigger.js",
               "src/assets/app/pages/portlet/tool.js",
-              "src/assets/app/pages/form/datetimepicker.js",
-              "node_modules/datatables.net/js/dataTables.min.js"
+              "src/assets/app/pages/form/datetimepicker.js"
             ]
           },
           "configurations": {
