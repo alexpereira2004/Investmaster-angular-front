@@ -3,6 +3,7 @@ import { DividendoService } from "../../../service/dividendo/dividendo.service";
 import { ResultadoGeral } from "../../../model/resultado-geral";
 
 @Component({
+  standalone: false,
   selector: 'app-resultado-geral',
   templateUrl: './resultado-geral.component.html',
   styleUrl: './resultado-geral.component.css'

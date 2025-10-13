@@ -27,8 +27,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "src/assets/build/styles/ltr-core.css",
-              "src/assets/build/styles/ltr-vendor.css",
-              "node_modules/datatables.net-dt/css/dataTables.dataTables.min.css"
+              "src/assets/build/styles/ltr-vendor.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

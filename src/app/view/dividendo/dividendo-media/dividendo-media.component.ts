@@ -3,6 +3,7 @@ import { DividendoService } from "../../../service/dividendo/dividendo.service";
 import { MediaDividendos, MediaDividendosValor } from "../../../model/media-dividendos";
 
 @Component({
+  standalone: false,
   selector: 'app-dividendo-media',
   templateUrl: './dividendo-media.component.html',
   styleUrls: ['./dividendo-media.component.css']

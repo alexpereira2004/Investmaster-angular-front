@@ -3,6 +3,7 @@ import { MonitorListagem } from "../../../model/monitor-listagem";
 import { MonitorService } from "../../../service/monitor/monitor.service";
 
 @Component({
+  standalone: false,
   selector: 'app-monitor-listagem',
   templateUrl: './monitor-listagem.component.html',
   styleUrl: './monitor-listagem.component.css'

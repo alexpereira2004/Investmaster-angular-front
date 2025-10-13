@@ -4,6 +4,7 @@ import { AtivoHistorico } from "../../../model/ativo-historico";
 import { DataMinimaMaxima } from "../../../model/dto/data-minima-maxima";
 
 @Component({
+  standalone: false,
   selector: 'app-monitor-item',
   templateUrl: './monitor-item.component.html',
   styleUrl: './monitor-item.component.css'

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from "echarts/types/dist/echarts";
 
 @Component({
+  standalone: false,
   selector: 'app-dividendo-cadastro',
   templateUrl: './dividendo-cadastro.component.html',
   styleUrls: ['./dividendo-cadastro.component.css']

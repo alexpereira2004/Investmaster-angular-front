@@ -4,6 +4,7 @@ import { ProjecaoService } from "../../../service/projecao/projecao.service";
 import { Select2Data, Select2UpdateEvent } from "ng-select2-component";
 
 @Component({
+  standalone: false,
   selector: 'app-dividendo-esperado-alcancado',
   templateUrl: './dividendo-esperado-alcancado.component.html',
   styleUrls: ['./dividendo-esperado-alcancado.component.css']

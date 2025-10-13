@@ -3,6 +3,7 @@ import { AtivoHistorico } from "../../../model/ativo-historico";
 import { HistoricoService } from "../../../service/historico/historico.service";
 
 @Component({
+  standalone: false,
   selector: 'app-monitor-historico',
   templateUrl: './monitor-historico.component.html',
   styleUrl: './monitor-historico.component.css'

@@ -7,6 +7,7 @@ import { Ativo } from "../../../model/ativo";
 import { Pagination } from "../../../model/pagination";
 
 @Component({
+  standalone: false,
   selector: 'app-ativo-listagem',
   templateUrl: './ativo-listagem.component.html',
   styleUrls: ['./ativo-listagem.component.css']

@@ -9,6 +9,7 @@ import { AtivoDividendoWrapper } from "../../../model/ativo-dividendo-wrapper";
 import { CoresAleatoriasService } from "../../../service/util/cores-aleatorias.service";
 
 @Component({
+  standalone: false,
   selector: 'app-ativo-comparativo',
   templateUrl: './ativo-comparativo.component.html',
   styleUrl: './ativo-comparativo.component.css'
