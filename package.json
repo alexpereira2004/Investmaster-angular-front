@@ -20,7 +20,6 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
-    "angular-datatables": "^18.0.0",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.2.1",
     "datatables.net": "^2.3.2",
@@ -31,8 +30,7 @@
     "ngx-mask": "^18.0.4",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.15.3",
-    "tslib": "^2.5.0",
-    "zone.js": "~0.15.1"
+    "tslib": "^2.5.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.0.0",
