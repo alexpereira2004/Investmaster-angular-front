@@ -38,13 +38,7 @@ export class MonitorItemComponent {
         error: (err) => console.error('Erro ao buscar histórico', err)
       });
 
-      this.historicoService.dataMinimaMaxima(this.codigo).subscribe({
-        next: (dados) => {
-          this.dataMinimaMaxima = dados;
-          console.log(this.dataMinimaMaxima);
-        },
-        error: (err) => console.error('Erro ao buscar Data Mínima e Máxima', err)
-      });
+
       this.primeiroClique = false;
     }
   }

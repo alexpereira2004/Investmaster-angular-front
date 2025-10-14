@@ -5,6 +5,8 @@ import { MonitorRoutingModule } from './monitor-routing.module';
 import { MonitorListagemComponent } from "./monitor-listagem/monitor-listagem.component";
 import { MonitorItemComponent } from "./monitor-item/monitor-item.component";
 import { MonitorHistoricoComponent } from "./monitor-historico/monitor-historico.component";
+import { NgxSliderModule } from "@angular-slider/ngx-slider";
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { MonitorHistoricoComponent } from "./monitor-historico/monitor-historico
   ],
   imports: [
     CommonModule,
-    MonitorRoutingModule
+    MonitorRoutingModule,
+    NgxSliderModule,
+    FormsModule
   ]
 })
 export class MonitorModule { }

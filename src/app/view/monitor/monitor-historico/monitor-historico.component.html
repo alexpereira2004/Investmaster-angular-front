@@ -7,18 +7,15 @@
       </div>
       <div class="portlet-body">
 
-        <div class="row">
-          <div class="col-md-6">
-            <label for="numeroLeiturasRange" class="form-label">Período</label>
-            <input type="range" class="form-range"
-                   min="0" max="200" step="1" id="numeroLeiturasRange"
-                   (change)="pesquisarHistorico($event)">
-          </div>
-        </div>
-
         <div class="row mb-5">
           <div class="col-md-6">
-            Selecionado:
+            <ngx-slider
+              [(value)]="inicioTimestamp"
+              [(highValue)]="fimTimestamp"
+              [options]="opcoes"
+              (userChangeEnd)="pesquisarHistorico()"
+            >
+            </ngx-slider>
           </div>
         </div>
 
@@ -34,7 +31,7 @@
               <tr>
                 <td><strong>Mínima no Período:</strong> {{historico.minimaPeriodo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
                 <td><strong>Preço Médio:</strong> {{historico.precoMedio | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}} </td>
-                <td><strong>Máxima no Período:</strong> {{historico.minimaPeriodo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+                <td><strong>Máxima no Período:</strong> {{historico.maximaPeriodo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
               </tr>
               <tr>
                 <td><strong>Primeiro Preço:</strong> {{historico.primeiroPreco | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
@@ -49,6 +46,25 @@
       </div>
     </div>
 
+    <div class="portlet">
+      <div class="portlet-header">
+        <h3 class="portlet-title">Regra de monitoramento</h3>
+      </div>
+      <div class="portlet-body">
+        <select [(ngModel)]="componenteSelecionado">
+          <option value="grafico">Gráfico</option>
+          <option value="tabela">Tabela</option>
+          <option value="cards">Cards</option>
+        </select>
+
+        <div [ngSwitch]="componenteSelecionado">
+          <div *ngSwitchDefault>Selecione uma opção</div>
+<!--          <app-grafico *ngSwitchCase="'grafico'"></app-grafico>-->
+<!--          <app-tabela *ngSwitchCase="'tabela'"></app-tabela>-->
+<!--          <app-cards *ngSwitchCase="'cards'"></app-cards>-->
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
