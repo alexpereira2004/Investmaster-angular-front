@@ -51,18 +51,26 @@
         <h3 class="portlet-title">Regra de monitoramento</h3>
       </div>
       <div class="portlet-body">
-        <select [(ngModel)]="componenteSelecionado">
-          <option value="grafico">Gráfico</option>
-          <option value="tabela">Tabela</option>
-          <option value="cards">Cards</option>
-        </select>
 
-        <div [ngSwitch]="componenteSelecionado">
-          <div *ngSwitchDefault>Selecione uma opção</div>
-<!--          <app-grafico *ngSwitchCase="'grafico'"></app-grafico>-->
-<!--          <app-tabela *ngSwitchCase="'tabela'"></app-tabela>-->
-<!--          <app-cards *ngSwitchCase="'cards'"></app-cards>-->
+        <div class="col-md-6 mb-5">
+          <select class="form-select form-select-lg"
+                  [(ngModel)]="componenteSelecionado" >
+            <option value="padrao">Escolher uma opção</option>
+            <option value="vender">Comprar com base em Histórico de Vendas</option>
+            <option value="tabela">Tabela</option>
+            <option value="cards">Cards</option>
+          </select>
         </div>
+
+        <div class="col-md-6">
+          <div [ngSwitch]="componenteSelecionado">
+            <div *ngSwitchDefault>Selecione uma regra</div>
+            <app-monitor-regra-vender *ngSwitchCase="'vender'"></app-monitor-regra-vender>
+            <!--          <app-tabela *ngSwitchCase="'tabela'"></app-tabela>-->
+          </div>
+        </div>
+
+        <!--          <app-cards *ngSwitchCase="'cards'"></app-cards>-->
       </div>
     </div>
   </div>

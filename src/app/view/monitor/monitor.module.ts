@@ -7,13 +7,15 @@ import { MonitorItemComponent } from "./monitor-item/monitor-item.component";
 import { MonitorHistoricoComponent } from "./monitor-historico/monitor-historico.component";
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { FormsModule } from "@angular/forms";
+import { MonitorRegraVenderComponent } from "./monitor-regra-vender/monitor-regra-vender.component";
 
 
 @NgModule({
   declarations: [
     MonitorListagemComponent,
     MonitorItemComponent,
-    MonitorHistoricoComponent
+    MonitorHistoricoComponent,
+    MonitorRegraVenderComponent
   ],
   imports: [
     CommonModule,

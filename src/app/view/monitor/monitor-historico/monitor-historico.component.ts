@@ -29,6 +29,7 @@ export class MonitorHistoricoComponent implements OnInit {
   constructor(private historicoService: HistoricoService) {}
 
   ngOnInit(): void {
+    this.componenteSelecionado = 'padrao';
     this.historicoService.dataMinimaMaxima(this.historico.codigo).subscribe({
       next: (dados) => {
         this.atualizarRange(dados);
