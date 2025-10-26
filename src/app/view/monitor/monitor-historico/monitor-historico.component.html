@@ -56,7 +56,7 @@
           <select class="form-select form-select-lg"
                   [(ngModel)]="componenteSelecionado" >
             <option value="padrao">Escolher uma opção</option>
-            <option value="vender">Comprar com base em Histórico de Vendas</option>
+            <option value="comprar-historico-vendas">Comprar com base em Histórico de Vendas</option>
             <option value="tabela">Tabela</option>
             <option value="cards">Cards</option>
           </select>
@@ -65,7 +65,7 @@
         <div class="col-md-6">
           <div [ngSwitch]="componenteSelecionado">
             <div *ngSwitchDefault>Selecione uma regra</div>
-            <app-monitor-regra-vender *ngSwitchCase="'vender'"></app-monitor-regra-vender>
+            <app-monitor-regra-vender *ngSwitchCase="'comprar-historico-vendas'"></app-monitor-regra-vender>
             <!--          <app-tabela *ngSwitchCase="'tabela'"></app-tabela>-->
           </div>
         </div>
