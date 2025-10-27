@@ -6,7 +6,7 @@ import { MonitorListagemComponent } from "./monitor-listagem/monitor-listagem.co
 import { MonitorItemComponent } from "./monitor-item/monitor-item.component";
 import { MonitorHistoricoComponent } from "./monitor-historico/monitor-historico.component";
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MonitorRegraComprarHistoricoComponent } from "./monitor-regra-comprar-historico/monitor-regra-comprar-historico.component";
 
 
@@ -21,7 +21,8 @@ import { MonitorRegraComprarHistoricoComponent } from "./monitor-regra-comprar-h
     CommonModule,
     MonitorRoutingModule,
     NgxSliderModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class MonitorModule { }

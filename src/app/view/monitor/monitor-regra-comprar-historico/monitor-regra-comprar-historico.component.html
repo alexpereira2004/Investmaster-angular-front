@@ -1,47 +1,77 @@
 <div class="portlet">
   <div class="portlet-body">
-    <div class="col-md-6 mb-5">
-      <select class="form-select form-select-lg">
-        <option value="padrao">Escolher uma opção</option>
-        <option value="ultima-compra">Última compra</option>
-        <option value="ultimos-12-meses">Últimos 12 meses</option>
-        <option value="todo-historico">Todo histórico</option>
-        <option value="venda-especifica">Escolher uma venda específica</option>
-      </select>
-    </div>
+    <form [formGroup]="FRMregraComprarHistorico" (ngSubmit)="onSubmit()">
 
-    <div class="col-md-12 mb-5">
-      <table *ngIf="dados" class="table table-bordered tabela-dividendos text-center mt-3">
-        <thead class="table-light">
-        <tr>
-          <th>&nbsp;</th>
-          <th>Data Compra</th>
-          <th>Preço Pago</th>
-          <th>Data Venda</th>
-          <th>Preço Venda</th>
-          <th>Quantidade</th>
-          <th>Total Investido</th>
-          <th>Total Final</th>
-          <th>Rendimento</th>
-          <th>Lucratividade</th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let d of dados">
-            <td><input type="checkbox" /></td>
-            <td>{{ d.dataAquisicao | date: 'dd/MM/yyyy' }}</td>
-            <td>{{ d.precoPago | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
-            <td>{{ d.dataVenda | date: 'dd/MM/yyyy' }}</td>
-            <td>{{ d.precoVenda | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
-            <td>{{ d.quantidade }}</td>
-            <td>{{ d.totalInvestido | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
-            <td>{{ d.totalFinal | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
-            <td>{{ d.rendimento | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
-            <td>{{ (d.totalFinal / d.totalInvestido) - 1| percent:'1.2-2':'pt-BR' }}</td>
+      <div class="row">
+        <div class="col-md-6 mb-5">
+          <label for="periodo" class="form-label mt-3">Periodicidade:</label>
+          <select id="periodo" name="periodicidade" formControlName="periodo"
+                  class="form-select form-select-lg">
+            <option value="padrao">Escolher uma opção</option>
+            <option value="ultima-compra">Última compra</option>
+            <option value="ultimos-12-meses">Últimos 12 meses</option>
+            <option value="todo-historico">Todo histórico</option>
+            <option value="venda-especifica">Escolher uma venda específica</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 mb-5 d-flex align-items-center">
+          <label for="excluir-prejuizo"
+                 class="form-label mt-3">Excluir vendas com prejuízo:
+          </label>
+          <input type="checkbox" id="excluir-prejuizo"
+                 class="form-check-input ms-4"
+                 formControlName="excluirPrejuizo" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 mb-5">
+        <table *ngIf="dados" class="table table-bordered tabela-dividendos text-center mt-3">
+          <thead class="table-light">
+          <tr>
+            <th>&nbsp;</th>
+            <th>Data Compra</th>
+            <th>Preço Pago</th>
+            <th>Data Venda</th>
+            <th>Preço Venda</th>
+            <th>Quantidade</th>
+            <th>Total Investido</th>
+            <th>Total Final</th>
+            <th>Rendimento</th>
+            <th>Lucratividade</th>
           </tr>
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            <tr *ngFor="let d of dados">
+              <td><input type="radio"
+                         formControlName="codigoVenda" [value]="d.id"
+                         class="form-check-input"
+              /></td>
+              <td>{{ d.dataAquisicao | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ d.precoPago | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              <td>{{ d.dataVenda | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ d.precoVenda | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              <td>{{ d.quantidade }}</td>
+              <td>{{ d.totalInvestido | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              <td>{{ d.totalFinal | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              <td>{{ d.rendimento | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              <td>{{ (d.totalFinal / d.totalInvestido) - 1| percent:'1.2-2':'pt-BR' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
 
+      <div class="row">
+        <div class="col-md-6 mb-5">
+          <button type="submit"
+                  class="btn btn-primary mt-3">Salvar</button>
+        </div>
+      </div>
+
+    </form>
   </div>
 </div>
