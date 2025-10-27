@@ -9,5 +9,39 @@
         <option value="venda-especifica">Escolher uma venda específica</option>
       </select>
     </div>
+
+    <div class="col-md-12 mb-5">
+      <table *ngIf="dados" class="table table-bordered tabela-dividendos text-center mt-3">
+        <thead class="table-light">
+        <tr>
+          <th>&nbsp;</th>
+          <th>Data Compra</th>
+          <th>Preço Pago</th>
+          <th>Data Venda</th>
+          <th>Preço Venda</th>
+          <th>Quantidade</th>
+          <th>Total Investido</th>
+          <th>Total Final</th>
+          <th>Rendimento</th>
+          <th>Lucratividade</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of dados">
+            <td><input type="checkbox" /></td>
+            <td>{{ d.dataAquisicao | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ d.precoPago | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+            <td>{{ d.dataVenda | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ d.precoVenda | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+            <td>{{ d.quantidade }}</td>
+            <td>{{ d.totalInvestido | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+            <td>{{ d.totalFinal | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+            <td>{{ d.rendimento | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+            <td>{{ (d.totalFinal / d.totalInvestido) - 1| percent:'1.2-2':'pt-BR' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </div>

@@ -13,6 +13,8 @@ import { MovimentoVenda } from "../../../model/motimento-venda";
 export class MonitorRegraComprarHistoricoComponent implements OnInit {
 
   @Input() codigo: string;
+  public dados: MovimentoVenda[];
+
 
   constructor(private movimentoVendaService: MovimentoVendaService) {
   }
@@ -22,7 +24,7 @@ export class MonitorRegraComprarHistoricoComponent implements OnInit {
     filter.ativoCodigo = this.codigo;
     this.movimentoVendaService.pesquisarComFiltroPaginado(filter).subscribe({
       next: (result: PageSpring<MovimentoVenda>) => {
-        const content = result.content;
+        this.dados = result.content;
       },
       error: error => {
         console.error('Erro ao buscar dados do histórico de vendas', error);

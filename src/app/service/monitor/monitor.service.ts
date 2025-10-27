@@ -15,7 +15,7 @@ export class MonitorService {
     { codigo: 'BRAP4', nome: 'Bradespar', situacao: 'situacao-5'},
     { codigo: 'VLID3', nome: 'Vallid', situacao: 'situacao-5'},
     { codigo: 'CXSE3', nome: 'Caixa Seguridade', situacao: 'situacao-6'},
-    { codigo: 'MFII11', nome: 'MFII11', situacao: 'situacao-7'},
+    { codigo: 'AGRO3', nome: 'MFII11', situacao: 'situacao-7'},
     { codigo: 'MTRE3', nome: 'MFII11', situacao: 'situacao-7'},
     { codigo: 'DCRA11', nome: 'DCRA11', situacao: 'situacao-8'},
     { codigo: 'GARE11', nome: 'GARE11', situacao: 'situacao-9'},
