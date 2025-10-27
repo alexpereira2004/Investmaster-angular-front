@@ -1,0 +1,31 @@
+<div class="portlet portlet-collapsed">
+  <div class="portlet-header portlet-header-bordered {{situacao}}">
+    <h3 class="portlet-title">{{codigo}} {{nome}}</h3>
+    <div class="portlet-addon">
+
+      <div class="btn-group">
+        <button class="btn btn-flat-primary btn-icon"
+                data-toggle="portlet"
+                data-target="parent"
+                data-behavior="toggleCollapse"
+                (click)="atualizaDados()"
+        >
+          <i class="fa fa-angle-down"></i>
+        </button>
+        <button class="btn btn-flat-primary btn-icon"
+                data-toggle="portlet"
+                data-target="parent"
+                data-behavior="destroy">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <div class="portlet-body">
+    <app-monitor-historico
+      *ngIf="ativoHistorico"
+      [historico]="ativoHistorico">
+    </app-monitor-historico>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from "../../../model/menu-item";
 
 @Component({
+  standalone: false,
   selector: 'app-menu-lateral',
   templateUrl: './menu-lateral.component.html',
   styleUrls: ['./menu-lateral.component.css']
@@ -41,10 +42,13 @@ export class MenuLateralComponent implements OnInit {
     let subItemAtivoComparar = new MenuItem();
     subItemAtivoComparar.titulo  = 'Comparativo';
     subItemAtivoComparar.link    = '/ativo/comparativo';
+    let subItemAtivoMonitor = new MenuItem();
+    subItemAtivoMonitor.titulo  = 'Monitor';
+    subItemAtivoMonitor.link    = '/ativo/monitor';
 
     this.ativo.classeIcone = 'fa fa fa-book';
     this.ativo.titulo = 'Ativo';
-    this.ativo.itens = [subItemAtivoListar, subItemAtivoAdicionar, subItemAtivoComparar];
+    this.ativo.itens = [subItemAtivoListar, subItemAtivoAdicionar, subItemAtivoComparar, subItemAtivoMonitor];
   }
 
   private montarMenuDividendo() {

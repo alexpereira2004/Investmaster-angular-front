@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { GraficoRoutingModule } from './grafico-routing.module';
 import { DividendoEsperadoAlcancadoComponent } from './dividendo-esperado-alcancado/dividendo-esperado-alcancado.component';
-import { Select2Module } from "ng-select2-component";
+import { Select2 } from "ng-select2-component";
 import { FormsModule } from "@angular/forms";
 import { DividendoModule } from "../dividendo/dividendo.module";
 
@@ -16,7 +16,7 @@ import { DividendoModule } from "../dividendo/dividendo.module";
     CommonModule,
     GraficoRoutingModule,
     FormsModule,
-    Select2Module,
+    Select2,
     DividendoModule
   ]
 })

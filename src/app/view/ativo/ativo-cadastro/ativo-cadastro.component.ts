@@ -4,6 +4,7 @@ import { Ativo } from "../../../model/ativo";
 import { AtivoService } from "../../../service/ativo/ativo.service";
 
 @Component({
+  standalone: false,
   selector: 'app-ativo-cadastro',
   templateUrl: './ativo-cadastro.component.html',
   styleUrls: ['./ativo-cadastro.component.css']

@@ -9,6 +9,7 @@ import { AtivoDividendoWrapper } from "../../../model/ativo-dividendo-wrapper";
 import { CoresAleatoriasService } from "../../../service/util/cores-aleatorias.service";
 
 @Component({
+  standalone: false,
   selector: 'app-ativo-comparativo',
   templateUrl: './ativo-comparativo.component.html',
   styleUrl: './ativo-comparativo.component.css'
@@ -23,6 +24,7 @@ export class AtivoComparativoComponent implements OnInit {
   };
   listaDeAtivosExistentes: Select2Data = [];
   value: number[] = [];
+  ativosSelecionados: string[] = [];
 
   public barChart: any;
 
@@ -56,6 +58,7 @@ export class AtivoComparativoComponent implements OnInit {
             .dividendos
             .map(fundo => fundo.valorTotal);
           this.createChart(valoresTotais, result.label, result);
+          this.criarResultadoGeral(form.value);
         }
       });
   }
@@ -146,4 +149,8 @@ export class AtivoComparativoComponent implements OnInit {
     return resultado;
   }
 
+  private criarResultadoGeral(form) {
+
+    this.ativosSelecionados = form.ativosSelecionados;
+  }
 }

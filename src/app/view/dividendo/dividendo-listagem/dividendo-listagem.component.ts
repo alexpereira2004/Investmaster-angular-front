@@ -24,6 +24,7 @@ const myArr: Cricketer[] = [
 
 
 @Component({
+  standalone: false,
   selector: 'app-listagem-dividendo',
   templateUrl: './dividendo-listagem.component.html',
   styleUrls: ['./dividendo-listagem.component.css']

@@ -1,0 +1,85 @@
+<div class="content">
+  <div class="container-fluid g-4">
+
+    <div class="portlet">
+      <div class="portlet-header portlet-header-bordered">
+        <h3 class="portlet-title">Histórico</h3>
+      </div>
+      <div class="portlet-body">
+
+        <div class="row mb-5">
+          <div class="col-md-6">
+            <ngx-slider
+              [(value)]="inicioTimestamp"
+              [(highValue)]="fimTimestamp"
+              [options]="opcoes"
+              (userChangeEnd)="pesquisarHistorico()"
+            >
+            </ngx-slider>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <table class="table table-sm mb-0">
+              <tbody>
+              <tr>
+                <td><strong>Preço Atual:</strong> {{historico.ultimoPreco | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+                <td><strong>D/Y (Preço Atual):</strong> Não disponível</td>
+                <td><strong>Total de dividendos ano anterior:</strong> Não disponível</td>
+              </tr>
+              <tr>
+                <td><strong>Mínima no Período:</strong> {{historico.minimaPeriodo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+                <td><strong>Preço Médio:</strong> {{historico.precoMedio | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}} </td>
+                <td><strong>Máxima no Período:</strong> {{historico.maximaPeriodo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+              </tr>
+              <tr>
+                <td><strong>Primeiro Preço:</strong> {{historico.primeiroPreco | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+                <td><strong>Último Preço:</strong> {{historico.ultimoPreco | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</td>
+                <td><strong>Relação Último Preço e Preço Médio:</strong> {{historico.relacaoUltimoPrecoPrecoMedio/100 | percent:'1.2-2':'pt-BR'}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="portlet">
+      <div class="portlet-header">
+        <h3 class="portlet-title">Regra de monitoramento</h3>
+      </div>
+      <div class="portlet-body">
+
+        <div class="col-md-6 mb-5">
+          <select class="form-select form-select-lg"
+                  [(ngModel)]="componenteSelecionado" >
+            <option value="padrao">Escolher uma opção</option>
+            <option value="comprar-historico-vendas">Comprar com base em Histórico de Vendas</option>
+            <option value="tabela">Tabela</option>
+            <option value="cards">Cards</option>
+          </select>
+        </div>
+
+        <div class="col-md-12">
+          <div [ngSwitch]="componenteSelecionado">
+            <div *ngSwitchDefault>Selecione uma regra</div>
+
+            <app-monitor-regra-comprar-historico
+              [codigo]="historico.codigo"
+              *ngSwitchCase="'comprar-historico-vendas'">
+            </app-monitor-regra-comprar-historico>
+            <!--          <app-tabela *ngSwitchCase="'tabela'"></app-tabela>-->
+          </div>
+        </div>
+
+        <!--          <app-cards *ngSwitchCase="'cards'"></app-cards>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

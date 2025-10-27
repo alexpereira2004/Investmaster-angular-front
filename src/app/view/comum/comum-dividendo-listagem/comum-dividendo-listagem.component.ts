@@ -5,6 +5,7 @@ import { Pagination } from "../../../model/pagination";
 import { DividendoService } from "../../../service/dividendo/dividendo.service";
 
 @Component({
+  standalone: false,
   selector: 'app-comum-dividendo-listagem',
   templateUrl: './comum-dividendo-listagem.component.html',
   styleUrl: './comum-dividendo-listagem.component.css'

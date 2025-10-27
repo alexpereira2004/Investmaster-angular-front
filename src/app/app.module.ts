@@ -18,6 +18,8 @@ import { registerLocaleData } from "@angular/common";
 import localePt from '@angular/common/locales/pt';
 import { DashboardModule } from "./view/dashboard/dashboard.module";
 import { NgxEchartsModule } from "ngx-echarts";
+import { MonitorModule } from "./view/monitor/monitor.module";
+import { MonitorRoutingModule } from "./view/monitor/monitor-routing.module";
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -37,6 +39,8 @@ registerLocaleData(localePt, 'pt-BR');
     DividendoRoutingModule,
     GraficoModule,
     GraficoRoutingModule,
+    MonitorModule,
+    MonitorRoutingModule,
     MatSortModule,
     MatTableModule,
     DashboardModule,

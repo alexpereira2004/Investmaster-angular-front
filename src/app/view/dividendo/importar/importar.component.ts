@@ -6,6 +6,7 @@ import { InformacoesDividendosImportados } from "../../../model/informacoes-divi
 import { ProjecaoService } from "../../../service/projecao/projecao.service";
 
 @Component({
+  standalone: false,
   selector: 'app-importar',
   templateUrl: './importar.component.html',
   styleUrls: ['./importar.component.css']

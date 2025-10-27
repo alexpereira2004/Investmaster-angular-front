@@ -1,0 +1,60 @@
+.portlet {
+  margin: 0;
+}
+
+.portlet-header {
+  padding: 0 10px 0 0;
+  min-height: 3rem;
+}
+
+.portlet-title {
+  flex: 1;
+  /* font-size: 1.45rem !important; */
+  font-weight: bold !important;
+  margin: 0 0 0 10px;
+  /* margin: 0; */
+  /* white-space: nowrap; */
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
+  /* color: var(--bs-text-level-3); */
+}
+
+.situacao-1 {
+  background-color: #ff0000; /* vermelho intenso */
+}
+
+.situacao-2 {
+  background-color: #ff3300; /* vermelho-alaranjado */
+}
+
+.situacao-3 {
+  background-color: #ff6600; /* laranja escuro */
+}
+
+.situacao-4 {
+  background-color: #ff9900; /* laranja médio */
+}
+
+.situacao-5 {
+  background-color: #ffcc00; /* amarelo-alaranjado */
+}
+
+.situacao-6 {
+  background-color: #ffff00; /* amarelo */
+}
+
+.situacao-7 {
+  background-color: #ccff00; /* amarelo-esverdeado */
+}
+
+.situacao-8 {
+  background-color: #99ff00; /* verde-limão */
+}
+
+.situacao-9 {
+  background-color: #66ff00; /* verde médio */
+}
+
+.situacao-10 {
+  background-color: #00ff00; /* verde intenso */
+}

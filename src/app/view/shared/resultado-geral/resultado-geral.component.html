@@ -1,0 +1,77 @@
+<div class="ativo-card shadow-sm">
+  <div class="d-flex justify-content-between align-items-start mb-2">
+    <div class="titulo-card">{{ dados?.codigoAtivo }}</div>
+    <input class="form-check-input" type="checkbox">
+  </div>
+
+  <div class="row gx-4 mb-3">
+    <div class="col pe-3">
+      <div class="mb-3"><strong class="titulo-destaque">Preço Médio:</strong> <span class="valor-azul"> {{dados.precoMedio | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</span></div>
+      <div class="mb-3"><strong class="titulo-destaque">Total de cotas:</strong> <span class="valor-azul"> {{ dados.quantidadeCotas }}</span></div>
+      <div class="mb-3"><strong class="titulo-destaque">Cotação Atual:</strong> <span class="valor-azul"> {{dados.cotacaoAtual | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</span></div>
+    </div>
+    <div class="col ps-3">
+      <div class="mb-3"><strong class="titulo-destaque">Proporção do investimento total:</strong> <span class="dy-percentual"> {{ dados.proporcaoTotalInvestido /100 | percent:'1.2-2':'pt-BR' }}</span></div>
+      <div class="mb-3"><strong class="titulo-destaque">Proporção do investimento por tipo:</strong> <span class="dy-percentual"> {{ dados.proporcaoTipoAtivoInvestido /100 | percent:'1.2-2':'pt-BR' }}</span></div>
+    </div>
+  </div>
+
+  <div class="row text-center resumo-investimento mb-3">
+    <div class="col border-end">
+      <div>&nbsp;</div>
+      <div class="titulo-destaque">Investimento</div>
+      <div class="titulo-destaque">Com dividendos</div>
+    </div>
+    <div class="col border-end">
+      <div class="cabecalho">Realizado</div>
+      <div>{{dados.investimentoTotal | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</div>
+      <div> - </div>
+    </div>
+    <div class="col border-end">
+      <div class="cabecalho">Atualização</div>
+      <div>{{dados.investimentoTotalAtualizado | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</div>
+      <div>{{dados.investimentoTotalAtualizadoComDividendos | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</div>
+    </div>
+    <div class="col">
+      <div class="cabecalho">Resultado</div>
+      <div>{{dados.resultado | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</div>
+      <div>{{dados.resultadoComDividendo | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</div>
+    </div>
+    <div class="col">
+      <div>&nbsp;</div>
+      <div>{{ dados.resultadoPercentual /100 | percent:'1.2-2':'pt-BR' }}</div>
+      <div>{{ dados.resultadoComDividendoPercentual /100 | percent:'1.2-2':'pt-BR' }}</div>
+    </div>
+  </div>
+
+
+  <table *ngIf="dados.dividendos && dados.dividendos.length > 0"
+         class="table table-bordered tabela-dividendos text-center mt-3">
+    <thead class="table-light">
+    <tr>
+      <th>Ano</th>
+      <th>Valor</th>
+      <th>Qt.</th>
+      <th>DY</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let d of dados.dividendos">
+      <td>{{ d.ano }}</td>
+      <td>{{ d.valor | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+      <td>{{ d.quantidade }}</td>
+      <td>{{ d.dividendYeldAtualizado / 100 | percent:'1.2-2':'pt-BR' }}</td>
+    </tr>
+
+    <tr class="fw-bold">
+      <td>&nbsp;</td>
+      <td>Total:
+       {{dados.totalDividendos | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+      <td colspan="2">
+        <span class="fw-normal">D/Y: </span>
+        <span class="dy-percentual">{{ dados.dividendYeld /100 | percent:'1.2-2':'pt-BR' }}</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
