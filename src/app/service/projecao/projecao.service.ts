@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from "../../../environments/environment";
 import { PageSpring } from "../../model/page-spring";
 import { HttpClient } from "@angular/common/http";
+import { ProjecaoResponse } from "../../model/dto/ProjecaoResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class ProjecaoService {
       params['tipoLista'] = tipoLista;
 
 
-    return this.httpClient.get<PageSpring>(url, {params: params});
+    return this.httpClient.get<PageSpring<ProjecaoResponse>>(url, {params: params});
 
   }
 

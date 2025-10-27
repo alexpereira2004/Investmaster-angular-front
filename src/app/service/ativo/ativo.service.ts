@@ -42,7 +42,7 @@ export class AtivoService {
     return this.httpClient.get<Ativo[]>(url);
   }
 
-  pesquisarPaginado(page: number, size: number): Observable<PageSpring> {
+  pesquisarPaginado(page: number, size: number): Observable<PageSpring<Ativo>> {
     const url = environment.portalApi.baseUrl
       + environment.portalApi.recurso.ativoPaginado;
     const params: any = {};
@@ -55,7 +55,7 @@ export class AtivoService {
       params['size'] = size;
     }
 
-    return this.httpClient.get<PageSpring>(url, {params: params});
+    return this.httpClient.get<PageSpring<Ativo>>(url, {params: params});
   }
 
   pesquisarPorId(id: string) {

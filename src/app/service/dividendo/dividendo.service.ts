@@ -8,6 +8,7 @@ import { AtivoDividendoWrapper } from "../../model/ativo-dividendo-wrapper";
 import { InformacoesDividendosImportados } from "../../model/informacoes-dividendos-importados";
 import { PageSpring } from "../../model/page-spring";
 import { ResultadoGeral } from "../../model/resultado-geral";
+import { Dividendo } from "../../model/dividendo";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class DividendoService {
   //   return this.httpClient.get<Dividendo[]>(url);
   // }
 
-  pesquisarPaginado(page: number, size: number): Observable<PageSpring> {
+  pesquisarPaginado(page: number, size: number): Observable<PageSpring<Dividendo>> {
     const url = environment.portalApi.baseUrl
       + environment.portalApi.recurso.dividendoPaginado;
     const params: any = {};
@@ -38,7 +39,7 @@ export class DividendoService {
     }
     params['sort'] = 'id,desc';
 
-    return this.httpClient.get<PageSpring>(url, {params: params});
+    return this.httpClient.get<PageSpring<Dividendo>>(url, {params: params});
   }
 
   buscarMediaDividendos(): Observable<MediaDividendos> {

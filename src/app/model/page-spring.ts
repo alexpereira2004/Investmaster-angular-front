@@ -1,8 +1,8 @@
 import { Sort } from "./sort";
 import { Pageable } from "./pageable";
 
-export class PageSpring {
-  content!: any[];
+export class PageSpring<T> {
+  content!: T[];
   pageable: Pageable;
   totalPages: number;
   totalElements: number;
