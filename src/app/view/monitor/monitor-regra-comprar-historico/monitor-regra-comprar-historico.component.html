@@ -37,6 +37,7 @@
             <th>Preço Pago</th>
             <th>Data Venda</th>
             <th>Preço Venda</th>
+            <th>Dias</th>
             <th>Quantidade</th>
             <th>Total Investido</th>
             <th>Total Final</th>
@@ -54,6 +55,7 @@
               <td>{{ d.precoPago | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
               <td>{{ d.dataVenda | date: 'dd/MM/yyyy' }}</td>
               <td>{{ d.precoVenda | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              <td>{{ d.diferencaDiasCompraVenda }}</td>
               <td>{{ d.quantidade }}</td>
               <td>{{ d.totalInvestido | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
               <td>{{ d.totalFinal | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</td>

@@ -8,8 +8,7 @@ export class DataUtilService {
 
   diferencaEmDias(
     dataInicio: any,
-    dataFim: any,
-    formato = 'dd/MM/yyyy'
+    dataFim: any
   ): number {
     if (!dataInicio || !dataFim) return 0;
 

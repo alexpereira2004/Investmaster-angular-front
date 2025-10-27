@@ -4,6 +4,7 @@ import { MovimentoVendaFilter } from "../../../model/filter/movimento-venda-filt
 import { PageSpring } from "../../../model/page-spring";
 import { MovimentoVenda } from "../../../model/motimento-venda";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { DataUtilService } from "../../../service/util/data-util";
 
 @Component({
   standalone: false,
@@ -19,7 +20,8 @@ export class MonitorRegraComprarHistoricoComponent implements OnInit {
 
 
   constructor(private movimentoVendaService: MovimentoVendaService,
-              private formBuilder: FormBuilder
+              private formBuilder: FormBuilder,
+              private dataUtilService: DataUtilService
   ) {
     this.FRMregraComprarHistorico = this.formBuilder.group({
       periodo: ['padrao'],
@@ -40,6 +42,11 @@ export class MonitorRegraComprarHistoricoComponent implements OnInit {
     this.movimentoVendaService.pesquisarComFiltroPaginado(filter).subscribe({
       next: (result: PageSpring<MovimentoVenda>) => {
         this.dados = result.content;
+        this.dados = result.content.map(d => ({
+          ...d,
+          diferencaDiasCompraVenda: this.dataUtilService.diferencaEmDias(d.dataAquisicao!, d.dataVenda!)
+        }));
+
       },
       error: error => {
         console.error('Erro ao buscar dados do histórico de vendas', error);

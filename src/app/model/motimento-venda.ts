@@ -6,6 +6,7 @@ export class MovimentoVenda {
   precoPago?: number;
   quantidade?: number;
   totalInvestido?: number;
+  diferencaDiasCompraVenda?: number;
   dataVenda?: string;         // LocalDate → string
   precoVenda?: number;
   totalFinal?: number;
