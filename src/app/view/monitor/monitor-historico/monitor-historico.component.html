@@ -65,7 +65,11 @@
         <div class="col-md-6">
           <div [ngSwitch]="componenteSelecionado">
             <div *ngSwitchDefault>Selecione uma regra</div>
-            <app-monitor-regra-vender *ngSwitchCase="'comprar-historico-vendas'"></app-monitor-regra-vender>
+
+            <app-monitor-regra-comprar-historico
+              [codigo]="historico.codigo"
+              *ngSwitchCase="'comprar-historico-vendas'">
+            </app-monitor-regra-comprar-historico>
             <!--          <app-tabela *ngSwitchCase="'tabela'"></app-tabela>-->
           </div>
         </div>

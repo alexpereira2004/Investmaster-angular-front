@@ -16,6 +16,7 @@ export const environment = {
       resultadoGeral: "v2/dividendo/{ativo}/resultado-geral",
       cotacaoHistorico: "v1/cotacao/historico",
       primeiraE_Ultima: "v1/cotacao/primeira-e-ultima",
+      movimentoVendaListagemPaginado: "v1/movimento-venda/listagem-paginado",
     }
   }
 };
