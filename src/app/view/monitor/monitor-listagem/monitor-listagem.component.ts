@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MonitorListagem } from "../../../model/monitor-listagem";
+import { Monitor } from "../../../model/monitor";
 import { MonitorService } from "../../../service/monitor/monitor.service";
+import { MonitorFilter } from "../../../model/filter/monitor-filter";
+import { PageSpring } from "../../../model/page-spring";
 
 @Component({
   standalone: false,
@@ -10,13 +12,22 @@ import { MonitorService } from "../../../service/monitor/monitor.service";
 })
 export class MonitorListagemComponent implements OnInit {
 
-  ativosMonitorados: MonitorListagem[];
+  public ativosMonitorados: Monitor[];
+
 
   constructor(private monitorService: MonitorService) {}
 
   ngOnInit(): void {
-    this.monitorService.getAtivosMonitorados().subscribe(dados => {
-      this.ativosMonitorados = dados;
+    let filter: MonitorFilter = {} as MonitorFilter;
+    filter.status = "ATIVO";
+    filter.sort = 'id,desc';
+    this.monitorService.pesquisarComFiltroPaginado(filter).subscribe({
+      next: (result: PageSpring<Monitor>) => {
+        this.ativosMonitorados = result.content;
+      },
+      error: error => {
+        console.error('Erro ao buscar dados dos ativos monitorados', error);
+      }
     });
   }
 
