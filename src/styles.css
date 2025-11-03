@@ -16,3 +16,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-weight: bold;
   background: #9c27b0;
 }
+
+.custom-invalid-feedback {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.975rem;
+  color: #f44336;
+  display: block;
+}
