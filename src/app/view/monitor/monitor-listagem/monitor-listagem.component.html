@@ -1,10 +1,11 @@
 <div class="container my-4">
   <h2>Monitoramento de Ativos</h2>
-  <div *ngFor="let ativo of ativosMonitorados">
+  <div *ngFor="let monitor of ativosMonitorados">
     <app-monitor-item
-      [codigo]="ativo.codigo"
-      [nome]="ativo.nome"
-      [situacao]="ativo.situacao"
+      [monitorId]="monitor.id"
+      [codigo]="monitor.codigoAtivo"
+      [nome]="monitor.nome"
+      [situacao]="monitor.situacao"
     ></app-monitor-item>
   </div>
 </div>

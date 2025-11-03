@@ -11,6 +11,7 @@ import { DataMinimaMaxima } from "../../../model/dto/data-minima-maxima";
 })
 export class MonitorItemComponent {
 
+  @Input() monitorId!: number;
   @Input() codigo!: string;
   @Input() nome!: string;
   @Input() situacao!: string;
