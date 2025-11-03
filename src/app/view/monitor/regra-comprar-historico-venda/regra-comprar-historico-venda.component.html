@@ -7,12 +7,18 @@
           <label for="periodo" class="form-label mt-3">Periodicidade:</label>
           <select id="periodo" name="periodicidade" formControlName="periodo"
                   class="form-select form-select-lg">
-            <option value="padrao">Escolher uma opção</option>
-            <option value="ultima-compra">Última compra</option>
-            <option value="ultimos-12-meses">Últimos 12 meses</option>
-            <option value="todo-historico">Todo histórico</option>
-            <option value="venda-especifica">Escolher uma venda específica</option>
+            <option value="">Escolher uma opção</option>
+            <option value="VENDA_ESPECIFICA">Escolher uma venda específica</option>
+            <option value="ULTIMA_VENDA">Última venda</option>
+            <option value="ANO_ATUAL">Ano Atual</option>
+            <option value="ULTIMOS_12_MESES">Últimos 12 meses</option>
+            <option value="TODO_HISTORICO">Todo histórico</option>
           </select>
+
+          <div *ngIf="FRMregraComprarHistorico.get('periodo')?.hasError('required')"
+               class="invalid-feedback">
+            A periodicidade é obrigatória.
+          </div>
         </div>
       </div>
 
@@ -68,7 +74,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6 mb-5">
+        <div class="col-md-12 mb-5 text-end">
           <button type="submit"
                   class="btn btn-primary mt-3">Salvar</button>
         </div>

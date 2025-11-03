@@ -3,28 +3,30 @@ import { MovimentoVendaService } from "../../../service/movimento-venda/moviment
 import { MovimentoVendaFilter } from "../../../model/filter/movimento-venda-filter";
 import { PageSpring } from "../../../model/page-spring";
 import { MovimentoVenda } from "../../../model/motimento-venda";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DataUtilService } from "../../../service/util/data-util";
+import { RegraCompraPorHistoricoVendaService } from "../../../service/monitor/regra-compra-por-historico-venda.service";
 
 @Component({
   standalone: false,
   selector: 'app-monitor-regra-comprar-historico',
-  templateUrl: './monitor-regra-comprar-historico.component.html',
-  styleUrl: './monitor-regra-comprar-historico.component.css'
+  templateUrl: './regra-comprar-historico-venda.component.html',
+  styleUrl: './regra-comprar-historico-venda.component.css'
 })
-export class MonitorRegraComprarHistoricoComponent implements OnInit {
+export class RegraComprarHistoricoVendaComponent implements OnInit {
 
   @Input() codigo: string;
   public dados: MovimentoVenda[];
-  FRMregraComprarHistorico!: FormGroup;
+  public FRMregraComprarHistorico!: FormGroup;
 
 
   constructor(private movimentoVendaService: MovimentoVendaService,
               private formBuilder: FormBuilder,
-              private dataUtilService: DataUtilService
+              private dataUtilService: DataUtilService,
+              private service : RegraCompraPorHistoricoVendaService
   ) {
     this.FRMregraComprarHistorico = this.formBuilder.group({
-      periodo: ['padrao'],
+      periodo: ['', Validators.required],
       codigoVenda: [{ value: null, disabled: true }],
       excluirPrejuizo: [{ value: 'S' }],
 
@@ -39,6 +41,7 @@ export class MonitorRegraComprarHistoricoComponent implements OnInit {
   ngOnInit(): void {
     let filter: MovimentoVendaFilter = {} as MovimentoVendaFilter;
     filter.ativoCodigo = this.codigo;
+    filter.sort = 'dataVenda,desc';
     this.movimentoVendaService.pesquisarComFiltroPaginado(filter).subscribe({
       next: (result: PageSpring<MovimentoVenda>) => {
         this.dados = result.content;
@@ -68,8 +71,19 @@ export class MonitorRegraComprarHistoricoComponent implements OnInit {
 
 
   onSubmit() {
+    console.log(this.FRMregraComprarHistorico.valid);
     console.log(this.FRMregraComprarHistorico.value);
     console.log(this.codigo);
 
+    const payload = this.montarPayload();
+    this.service.salvar(payload).subscribe();
+
+  }
+
+  private montarPayload() {
+    return {
+      codigo: this.codigo, // Adiciona o código ao objeto
+      ...this.FRMregraComprarHistorico.value // Desestrutura os dados do formulário
+    };
   }
 }

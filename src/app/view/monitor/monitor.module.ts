@@ -7,7 +7,7 @@ import { MonitorItemComponent } from "./monitor-item/monitor-item.component";
 import { MonitorHistoricoComponent } from "./monitor-historico/monitor-historico.component";
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MonitorRegraComprarHistoricoComponent } from "./monitor-regra-comprar-historico/monitor-regra-comprar-historico.component";
+import { RegraComprarHistoricoVendaComponent } from "./regra-comprar-historico-venda/regra-comprar-historico-venda.component";
 
 
 @NgModule({
@@ -15,7 +15,7 @@ import { MonitorRegraComprarHistoricoComponent } from "./monitor-regra-comprar-h
     MonitorListagemComponent,
     MonitorItemComponent,
     MonitorHistoricoComponent,
-    MonitorRegraComprarHistoricoComponent
+    RegraComprarHistoricoVendaComponent
   ],
   imports: [
     CommonModule,
