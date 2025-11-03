@@ -6,6 +6,7 @@ import { MovimentoVenda } from "../../../model/motimento-venda";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DataUtilService } from "../../../service/util/data-util";
 import { RegraCompraPorHistoricoVendaService } from "../../../service/monitor/regra-compra-por-historico-venda.service";
+import Swal from "sweetalert2";
 
 @Component({
   standalone: false,
@@ -47,7 +48,9 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
 
       },
       error: error => {
-        console.error('Erro ao buscar dados do histórico de vendas', error);
+        let msgErro = 'Erro ao buscar dados do histórico de vendas';
+        Swal.fire('Erro!', msgErro, 'error');
+        console.error(msgErro, error);
       }
     });
 
@@ -66,7 +69,19 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
 
   onSubmit() {
     const payload = this.montarPayload();
-    this.service.salvar(payload).subscribe();
+    this.service.salvar(payload).subscribe({
+      next: () => {
+        Swal.close();
+        Swal.fire({
+          title: "Atualização de indices realizada com sucesso",
+          icon: "success"
+        });
+      },
+      error:(err) => {
+        Swal.close();
+        Swal.fire('Erro!', err.error.mensagem, 'error');
+      }
+    });
   }
 
   private montarPayload() {
