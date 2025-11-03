@@ -16,6 +16,7 @@ import { RegraCompraPorHistoricoVendaService } from "../../../service/monitor/re
 export class RegraComprarHistoricoVendaComponent implements OnInit {
 
   @Input() codigo: string;
+  @Input() monitorId: number;
   public dados: MovimentoVenda[];
   public FRMregraComprarHistorico!: FormGroup;
 
@@ -28,13 +29,7 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
     this.FRMregraComprarHistorico = this.formBuilder.group({
       periodo: ['', Validators.required],
       codigoVenda: [{ value: null, disabled: true }],
-      excluirPrejuizo: [{ value: 'S' }],
-
-      // codigo: ['padrao', [Validators.required, Validators.maxLength(10)]],
-      // nome: ['', [Validators.required, Validators.maxLength(200)]],
-      // cnpj: ['', [Validators.required]],
-      // tipo: ['A', Validators.required],
-      // seguindo: [false, Validators.required]
+      excluirPrejuizos: [false],
     });
   }
 
@@ -69,21 +64,18 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
 
   }
 
-
   onSubmit() {
-    console.log(this.FRMregraComprarHistorico.valid);
-    console.log(this.FRMregraComprarHistorico.value);
-    console.log(this.codigo);
-
     const payload = this.montarPayload();
     this.service.salvar(payload).subscribe();
-
   }
 
   private montarPayload() {
+    const formValue = this.FRMregraComprarHistorico.getRawValue();
     return {
-      codigo: this.codigo, // Adiciona o código ao objeto
-      ...this.FRMregraComprarHistorico.value // Desestrutura os dados do formulário
+      monitorId: this.monitorId,
+      excluirPrejuizos: formValue.excluirPrejuizos ? "SIM" : "NAO",
+      periodo: formValue.periodo,
+      movimentoVendaId: formValue.movimentoVendaId
     };
   }
 }
