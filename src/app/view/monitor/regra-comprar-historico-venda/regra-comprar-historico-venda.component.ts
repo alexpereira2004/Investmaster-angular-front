@@ -28,7 +28,7 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
               private service : RegraCompraPorHistoricoVendaService
   ) {
     this.FRMregraComprarHistorico = this.formBuilder.group({
-      periodo: ['', Validators.required],
+      periodo: [null, Validators.required],
       codigoVenda: [{ value: null, disabled: true }],
       excluirPrejuizos: [false],
     });
@@ -68,6 +68,12 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
   }
 
   onSubmit() {
+
+    if (this.FRMregraComprarHistorico.invalid) {
+      this.FRMregraComprarHistorico.markAllAsTouched();
+      return;
+    }
+
     const payload = this.montarPayload();
     this.service.salvar(payload).subscribe({
       next: () => {

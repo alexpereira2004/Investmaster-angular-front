@@ -5,9 +5,13 @@
       <div class="row">
         <div class="col-md-6 mb-5">
           <label for="periodo" class="form-label mt-3">Periodicidade:</label>
-          <select id="periodo" name="periodicidade" formControlName="periodo"
-                  class="form-select form-select-lg">
-            <option value="">Escolher uma opção</option>
+          <select id="periodo" name="periodo" formControlName="periodo"
+                  class="form-select form-select-lg"
+                  required
+                  [ngClass]="{'is-invalid': FRMregraComprarHistorico.get('periodo')?.touched
+                                         && FRMregraComprarHistorico.get('periodo')?.invalid}"
+          >
+            <option [ngValue]="null">Escolher uma opção</option>
             <option value="VENDA_ESPECIFICA">Escolher uma venda específica</option>
             <option value="ULTIMA_VENDA">Última venda</option>
             <option value="ANO_ATUAL">Ano Atual</option>
@@ -15,8 +19,9 @@
             <option value="TODO_HISTORICO">Todo histórico</option>
           </select>
 
-          <div *ngIf="FRMregraComprarHistorico.get('periodo')?.hasError('required')"
-               class="invalid-feedback">
+          <div *ngIf="FRMregraComprarHistorico.get('periodo')?.touched
+                      && FRMregraComprarHistorico.get('periodo').hasError('required')"
+               class="custom-invalid-feedback">
             A periodicidade é obrigatória.
           </div>
         </div>
