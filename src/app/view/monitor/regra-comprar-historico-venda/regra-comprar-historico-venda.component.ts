@@ -54,11 +54,11 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
     this.FRMregraComprarHistorico.get('periodo')!.valueChanges.subscribe(value => {
       const vendaControl = this.FRMregraComprarHistorico.get('codigoVenda')!;
 
-      if (value === 'venda-especifica') {
-        vendaControl.enable();  // ✅ habilita os radios
+      if (value === 'VENDA_ESPECIFICA') {
+        vendaControl.enable();
       } else {
-        vendaControl.disable(); // 🚫 desabilita os radios
-        vendaControl.reset();   // limpa a seleção anterior
+        vendaControl.disable();
+        vendaControl.reset();
       }
     });
 
@@ -75,7 +75,7 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
       monitorId: this.monitorId,
       excluirPrejuizos: formValue.excluirPrejuizos ? "SIM" : "NAO",
       periodo: formValue.periodo,
-      movimentoVendaId: formValue.movimentoVendaId
+      movimentoVendaId: formValue.codigoVenda
     };
   }
 }

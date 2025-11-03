@@ -24,7 +24,6 @@ export class RegraCompraPorHistoricoVendaService {
   salvar(payload: any): Observable<any> {
     const url = environment.portalApi.baseUrl
       + environment.portalApi.recurso.regraCompraPorHistoricoVenda;
-    console.log(payload);
     return this.httpClient.post(url, payload);
   }
 
