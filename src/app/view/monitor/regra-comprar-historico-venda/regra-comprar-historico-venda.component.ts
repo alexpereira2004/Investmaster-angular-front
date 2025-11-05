@@ -18,7 +18,7 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
 
   @Input() codigo: string;
   @Input() monitorId: number;
-  public dados: MovimentoVenda[];
+  public movimentoVendaLista: MovimentoVenda[];
   public FRMregraComprarHistorico!: FormGroup;
 
 
@@ -29,7 +29,7 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
   ) {
     this.FRMregraComprarHistorico = this.formBuilder.group({
       periodo: [null, Validators.required],
-      codigoVenda: [{ value: null, disabled: true }],
+      codigoVenda: [{ value: null, disabled: true }, Validators.required],
       excluirPrejuizos: [false],
     });
   }
@@ -40,8 +40,8 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
     filter.sort = 'dataVenda,desc';
     this.movimentoVendaService.pesquisarComFiltroPaginado(filter).subscribe({
       next: (result: PageSpring<MovimentoVenda>) => {
-        this.dados = result.content;
-        this.dados = result.content.map(d => ({
+        this.movimentoVendaLista = result.content;
+        this.movimentoVendaLista = result.content.map(d => ({
           ...d,
           diferencaDiasCompraVenda: this.dataUtilService.diferencaEmDias(d.dataAquisicao!, d.dataVenda!)
         }));
@@ -58,10 +58,12 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
       const vendaControl = this.FRMregraComprarHistorico.get('codigoVenda')!;
 
       if (value === 'VENDA_ESPECIFICA') {
+        vendaControl.setValidators(Validators.required);
         vendaControl.enable();
       } else {
         vendaControl.disable();
         vendaControl.reset();
+        vendaControl.clearValidators();
       }
     });
 
