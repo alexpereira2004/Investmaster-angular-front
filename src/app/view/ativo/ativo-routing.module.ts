@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AtivoCadastroComponent } from "./ativo-cadastro/ativo-cadastro.component";
 import { AtivoListagemComponent } from "./ativo-listagem/ativo-listagem.component";
 import { AtivoComparativoComponent } from "./ativo-comparativo/ativo-comparativo.component";
-import { MonitorListagemComponent } from "../monitor/monitor-listagem/monitor-listagem.component";
+import { MonitorCadastroComponent } from "../monitor/monitor-cadastro/monitor-cadastro.component";
 
 
 const AtivoRoutes: Routes = [
@@ -28,7 +28,7 @@ const AtivoRoutes: Routes = [
       },
       {
         path: 'monitor',
-        component: MonitorListagemComponent
+        component: MonitorCadastroComponent
       },
     ]
   }

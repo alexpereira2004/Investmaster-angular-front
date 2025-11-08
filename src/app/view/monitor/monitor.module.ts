@@ -8,6 +8,7 @@ import { MonitorHistoricoComponent } from "./monitor-historico/monitor-historico
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RegraComprarHistoricoVendaComponent } from "./regra-comprar-historico-venda/regra-comprar-historico-venda.component";
+import { MonitorCadastroComponent } from "./monitor-cadastro/monitor-cadastro.component";
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { RegraComprarHistoricoVendaComponent } from "./regra-comprar-historico-v
     MonitorListagemComponent,
     MonitorItemComponent,
     MonitorHistoricoComponent,
+    MonitorCadastroComponent,
     RegraComprarHistoricoVendaComponent
   ],
   imports: [
