@@ -1,1 +1,29 @@
-<p>monitor-cadastro works!</p>
+<div class="content">
+  <div class="container-fluid g-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="portlet">
+          <div class="portlet">
+            <div class="portlet-header portlet-header-bordered">
+              <h3 class="portlet-title">Cadastro de Regras para Monitoramento de Ações</h3>
+            </div>
+            <div class="portlet-body">
+              <form [formGroup]="FRMregraMonitoramento" (ngSubmit)="onSubmit()">
+
+                <select id="ativo" name="ativo" formControlName="ativo"
+                        class="form-select form-select-lg">
+                  <option value="" disabled>Selecione um Ativo</option>
+
+                  <option *ngFor="let ativo of ativoLista "
+                          [value]="ativo.id"> {{ ativo.codigo }} - {{ ativo.nome }}
+                  </option>
+                </select>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
