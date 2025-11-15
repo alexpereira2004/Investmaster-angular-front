@@ -39,9 +39,9 @@
                 </app-monitor-historico>
 
                 <app-regra-cadastro
-                  *ngIf="codigoAtivoSelecionado"
+                  *ngIf="monitor"
                   [ativoCodigo]="codigoAtivoSelecionado"
-                  [monitorId]="1"
+                  [monitorId]="monitor.id"
                 >
                 </app-regra-cadastro>
 

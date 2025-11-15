@@ -16,19 +16,19 @@ export class MonitorService {
   private recursos;
 
   private ativosMonitorados: Monitor[] = [
-    { codigoAtivo: 'BBAS3', nome: 'Banco do Brasil', situacao: 'situacao-1' },
-    { codigoAtivo: 'BBSE3', nome: 'BB Seguridade', situacao: 'situacao-2'},
-    { codigoAtivo: 'VALE3', nome: 'Vale', situacao: 'situacao-3'},
-    { codigoAtivo: 'PETR4', nome: 'Petrobrás', situacao: 'situacao-4'},
-    { codigoAtivo: 'BRAP4', nome: 'Bradespar', situacao: 'situacao-5'},
-    { codigoAtivo: 'VLID3', nome: 'Vallid', situacao: 'situacao-5'},
-    { codigoAtivo: 'AGRO3', nome: 'MFII11', situacao: 'situacao-7'},
-    { codigoAtivo: 'MTRE3', nome: 'MFII11', situacao: 'situacao-7'},
-    { codigoAtivo: 'DCRA11', nome: 'DCRA11', situacao: 'situacao-8'},
-    { codigoAtivo: 'GARE11', nome: 'GARE11', situacao: 'situacao-9'},
-    { codigoAtivo: 'MXRF11', nome: 'FII MXRF11', situacao: 'situacao-10' },
-    { codigoAtivo: 'VLID3', nome: 'VLID3', situacao: 'situacao-10' },
-    { codigoAtivo: 'CXSE3', nome: 'Caixa Seguridade', situacao: 'situacao-6'}
+    { ativoCodigo: 'BBAS3', nome: 'Banco do Brasil', situacao: 'situacao-1' },
+    { ativoCodigo: 'BBSE3', nome: 'BB Seguridade', situacao: 'situacao-2'},
+    { ativoCodigo: 'VALE3', nome: 'Vale', situacao: 'situacao-3'},
+    { ativoCodigo: 'PETR4', nome: 'Petrobrás', situacao: 'situacao-4'},
+    { ativoCodigo: 'BRAP4', nome: 'Bradespar', situacao: 'situacao-5'},
+    { ativoCodigo: 'VLID3', nome: 'Vallid', situacao: 'situacao-5'},
+    { ativoCodigo: 'AGRO3', nome: 'MFII11', situacao: 'situacao-7'},
+    { ativoCodigo: 'MTRE3', nome: 'MFII11', situacao: 'situacao-7'},
+    { ativoCodigo: 'DCRA11', nome: 'DCRA11', situacao: 'situacao-8'},
+    { ativoCodigo: 'GARE11', nome: 'GARE11', situacao: 'situacao-9'},
+    { ativoCodigo: 'MXRF11', nome: 'FII MXRF11', situacao: 'situacao-10' },
+    { ativoCodigo: 'VLID3', nome: 'VLID3', situacao: 'situacao-10' },
+    { ativoCodigo: 'CXSE3', nome: 'Caixa Seguridade', situacao: 'situacao-6'}
   ];
 
   constructor(
@@ -37,6 +37,12 @@ export class MonitorService {
   ) {
     this.baseUrl = environment.portalApi.baseUrl;
     this.recursos = environment.portalApi.recurso;
+  }
+
+  criar(monitor: Monitor) {
+    const url = environment.portalApi.baseUrl +
+      environment.portalApi.recurso.monitor;
+    return this.httpClient.post(url, monitor);
   }
 
   getAtivosMonitorados(): Observable<Monitor[]> {

@@ -16,6 +16,7 @@ export const environment = {
       resultadoGeral: "v2/dividendo/{ativo}/resultado-geral",
       cotacaoHistorico: "v1/cotacao/historico",
       primeiraE_Ultima: "v1/cotacao/primeira-e-ultima",
+      monitor: "v2/monitor",
       monitorListagemPaginado: "v2/monitor/listagem-paginado",
       movimentoVendaListagemPaginado: "v1/movimento-venda/listagem-paginado",
       regraCompraPorHistoricoVenda: "v1/monitor/regras/compra-por-historico-venda",
