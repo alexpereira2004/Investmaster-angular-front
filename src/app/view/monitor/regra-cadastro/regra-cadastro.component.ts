@@ -8,7 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class RegraCadastroComponent implements OnInit {
 
-  @Input() codigo: string;
+  @Input() ativoCodigo: string;
+  @Input() monitorId: number;
   componenteSelecionado: string | null = null;
 
   ngOnInit(): void {

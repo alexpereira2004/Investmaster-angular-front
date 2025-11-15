@@ -16,7 +16,7 @@ import Swal from "sweetalert2";
 })
 export class RegraComprarHistoricoVendaComponent implements OnInit {
 
-  @Input() codigo: string;
+  @Input() ativoCodigo: string;
   @Input() monitorId: number;
   public movimentoVendaLista: MovimentoVenda[];
   public FRMregraComprarHistorico!: FormGroup;
@@ -36,7 +36,7 @@ export class RegraComprarHistoricoVendaComponent implements OnInit {
 
   ngOnInit(): void {
     let filter: MovimentoVendaFilter = {} as MovimentoVendaFilter;
-    filter.ativoCodigo = this.codigo;
+    filter.ativoCodigo = this.ativoCodigo;
     filter.sort = 'dataVenda,desc';
     this.movimentoVendaService.pesquisarComFiltroPaginado(filter).subscribe({
       next: (result: PageSpring<MovimentoVenda>) => {

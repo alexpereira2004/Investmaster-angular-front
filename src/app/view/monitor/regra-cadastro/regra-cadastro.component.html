@@ -20,11 +20,11 @@
       <div [ngSwitch]="componenteSelecionado">
         <div *ngSwitchDefault>Selecione uma regra</div>
 
-<!--        <app-monitor-regra-comprar-historico-->
-<!--          [codigo]="historico.codigo"-->
-<!--          [monitorId]="monitorId"-->
-<!--          *ngSwitchCase="'comprar-historico-vendas'">-->
-<!--        </app-monitor-regra-comprar-historico>-->
+        <app-regra-comprar-historico
+          [ativoCodigo]="ativoCodigo"
+          [monitorId]="monitorId"
+          *ngSwitchCase="'comprar-historico-vendas'">
+        </app-regra-comprar-historico>
         <!--          <app-tabela *ngSwitchCase="'tabela'"></app-tabela>-->
       </div>
     </div>

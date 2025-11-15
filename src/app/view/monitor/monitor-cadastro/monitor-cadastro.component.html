@@ -35,14 +35,14 @@
 
                 <app-monitor-historico
                   *ngIf="ativoHistorico"
-                  [historico]="ativoHistorico"
-                >
+                  [historico]="ativoHistorico">
                 </app-monitor-historico>
 
                 <app-regra-cadastro
                   *ngIf="codigoAtivoSelecionado"
+                  [ativoCodigo]="codigoAtivoSelecionado"
+                  [monitorId]="1"
                 >
-
                 </app-regra-cadastro>
 
 
