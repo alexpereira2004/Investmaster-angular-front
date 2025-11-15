@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 
 @Component({
   standalone: false,
-  selector: 'app-monitor-regra-comprar-historico',
+  selector: 'app-regra-comprar-historico',
   templateUrl: './regra-comprar-historico-venda.component.html',
   styleUrl: './regra-comprar-historico-venda.component.css'
 })
