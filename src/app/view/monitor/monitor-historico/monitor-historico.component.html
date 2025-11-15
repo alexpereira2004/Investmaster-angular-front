@@ -46,38 +46,6 @@
       </div>
     </div>
 
-    <div class="portlet">
-      <div class="portlet-header">
-        <h3 class="portlet-title">Regra de monitoramento</h3>
-      </div>
-      <div class="portlet-body">
-
-        <div class="col-md-6 mb-5">
-          <select class="form-select form-select-lg"
-                  [(ngModel)]="componenteSelecionado" >
-            <option value="padrao">Escolher uma opção</option>
-            <option value="comprar-historico-vendas">Comprar com base em Histórico de Vendas</option>
-            <option value="tabela">Tabela</option>
-            <option value="cards">Cards</option>
-          </select>
-        </div>
-
-        <div class="col-md-12">
-          <div [ngSwitch]="componenteSelecionado">
-            <div *ngSwitchDefault>Selecione uma regra</div>
-
-            <app-monitor-regra-comprar-historico
-              [codigo]="historico.codigo"
-              [monitorId]="monitorId"
-              *ngSwitchCase="'comprar-historico-vendas'">
-            </app-monitor-regra-comprar-historico>
-            <!--          <app-tabela *ngSwitchCase="'tabela'"></app-tabela>-->
-          </div>
-        </div>
-
-        <!--          <app-cards *ngSwitchCase="'cards'"></app-cards>-->
-      </div>
-    </div>
   </div>
 </div>
 
