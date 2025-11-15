@@ -13,7 +13,6 @@ import { DataMinimaMaxima } from "../../../model/dto/data-minima-maxima";
 export class MonitorHistoricoComponent implements OnInit {
 
   @Input() historico: AtivoHistorico;
-  @Input() monitorId: number;
 
   componenteSelecionado: string | null = null;
 
