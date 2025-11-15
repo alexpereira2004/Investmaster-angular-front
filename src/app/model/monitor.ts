@@ -1,6 +1,6 @@
 export class Monitor {
   id?: number;
-  codigoAtivo: string;
+  ativoCodigo: string;
   prioridade?: number;
   status?: string;
   nome: string;
