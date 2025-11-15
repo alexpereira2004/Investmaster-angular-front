@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   standalone: false,
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegraCadastroComponent implements OnInit {
 
+  @Input() codigo: string;
   componenteSelecionado: string | null = null;
 
   ngOnInit(): void {

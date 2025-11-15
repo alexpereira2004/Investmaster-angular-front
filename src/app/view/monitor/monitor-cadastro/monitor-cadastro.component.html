@@ -10,14 +10,44 @@
             <div class="portlet-body">
               <form [formGroup]="FRMregraMonitoramento" (ngSubmit)="onSubmit()">
 
-                <select id="ativo" name="ativo" formControlName="ativo"
-                        class="form-select form-select-lg">
-                  <option value="" disabled>Selecione um Ativo</option>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="ativo" class="form-label">Ativos Disponíveis:</label>
 
-                  <option *ngFor="let ativo of ativoLista "
-                          [value]="ativo.id"> {{ ativo.codigo }} - {{ ativo.nome }}
-                  </option>
-                </select>
+                    <select id="ativo" name="ativo" formControlName="ativo"
+                            class="form-select form-select-lg"
+                            #variavelTemplateAtivo>
+                      <option value="" disabled>Selecione um Ativo</option>
+                      <option *ngFor="let ativo of ativoLista "
+                              [value]="ativo.codigo"> {{ ativo.codigo }} - {{ ativo.nome }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4 mb-5 text-end">
+                    <button type="button"
+                            (click)="onAtivoSelecionado(variavelTemplateAtivo.value)"
+                            class="btn btn-primary mt-3">Pesquisar</button>
+                  </div>
+                </div>
+
+                <app-monitor-historico
+                  *ngIf="ativoHistorico"
+                  [historico]="ativoHistorico"
+                  [monitorId]="1"
+                >
+                </app-monitor-historico>
+
+                <app-regra-cadastro
+                  *ngIf="codigoAtivoSelecionado"
+                >
+
+                </app-regra-cadastro>
+
+
+
 
               </form>
             </div>
