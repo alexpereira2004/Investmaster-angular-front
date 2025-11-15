@@ -8,9 +8,10 @@
 
     <div class="col-md-6 mb-5">
       <select class="form-select form-select-lg"
-              [(ngModel)]="componenteSelecionado" >
+              [(ngModel)]="componenteSelecionado"
+              (change)="verificarDisponibilidadeDaRegraSelecionada()">
         <option value="padrao">Escolher uma opção</option>
-        <option value="comprar-historico-vendas">Comprar com base em Histórico de Vendas</option>
+        <option value="comprar-historico-vendas" [disabled]="bSemHistoricoDeVenda">Comprar com base em Histórico de Vendas</option>
         <option value="tabela">Tabela</option>
         <option value="cards">Cards</option>
       </select>
