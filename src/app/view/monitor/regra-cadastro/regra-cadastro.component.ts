@@ -58,7 +58,7 @@ export class RegraCadastroComponent implements OnInit {
         this.resetarSelecao();
         return [
           "Problema com as Vendas!",
-          "O ativo selecionado não possui histórico de vendas."
+          "O ativo selecionado não possui histórico de vendas. Para utilizar essa regra o ativo deve possuir vendas lançadas."
         ];
       }
       return ['', ''];
