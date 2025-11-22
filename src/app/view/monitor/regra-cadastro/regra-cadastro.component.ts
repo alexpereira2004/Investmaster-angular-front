@@ -24,7 +24,7 @@ export class RegraCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.componenteSelecionado = 'padrao';
+    this.resetarSelecao();
   }
 
   async verificarDisponibilidadeDaRegraSelecionada() {
