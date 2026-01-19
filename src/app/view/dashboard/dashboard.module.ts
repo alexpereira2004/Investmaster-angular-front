@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PrincipalComponent } from "./principal/principal.component";
 import { DividendoDiarioComponent } from "../dividendo/dividendo-diario/dividendo-diario.component";
+import { MonitorModule } from "../monitor/monitor.module";
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { DividendoDiarioComponent } from "../dividendo/dividendo-diario/dividend
     DividendoDiarioComponent
   ],
   imports: [
+    MonitorModule,
     CommonModule,
     DashboardRoutingModule
   ]

@@ -9,7 +9,10 @@
 
       <div class="row">
         <div class="col-md-3">
-          <app-dividendo-diario></app-dividendo-diario>
+          <div *ngFor="let item of lista">
+            {{item.id}}
+            <app-box-apresentacao></app-box-apresentacao>
+          </div>
         </div>
         <div class="col-md-9">
           <app-dividendo-diario></app-dividendo-diario>

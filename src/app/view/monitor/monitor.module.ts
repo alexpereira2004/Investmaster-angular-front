@@ -10,16 +10,21 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RegraComprarHistoricoVendaComponent } from "./regra-comprar-historico-venda/regra-comprar-historico-venda.component";
 import { MonitorCadastroComponent } from "./monitor-cadastro/monitor-cadastro.component";
 import { RegraCadastroComponent } from "./regra-cadastro/regra-cadastro.component";
+import { BoxApresentacaoComponent } from "./compra-por-historico-venda/box-apresentacao/box-apresentacao.component";
 
 
 @NgModule({
   declarations: [
+    BoxApresentacaoComponent,
     MonitorListagemComponent,
     MonitorItemComponent,
     MonitorHistoricoComponent,
     MonitorCadastroComponent,
     RegraComprarHistoricoVendaComponent,
     RegraCadastroComponent
+  ],
+  exports: [
+    BoxApresentacaoComponent
   ],
   imports: [
     CommonModule,
