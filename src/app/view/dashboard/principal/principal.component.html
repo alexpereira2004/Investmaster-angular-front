@@ -8,13 +8,16 @@
       </div>
 
       <div class="row">
-        <div class="col-md-3">
-          <div *ngFor="let item of lista">
-            {{item.id}}
-            <app-box-apresentacao></app-box-apresentacao>
+        <div class="col-md-6">
+          <div class="grid-monitores">
+            <div *ngFor="let item of lista">
+              <app-box-apresentacao
+                [monitorDados]="item"></app-box-apresentacao>
+            </div>
           </div>
         </div>
-        <div class="col-md-9">
+
+        <div class="col-md-6">
           <app-dividendo-diario></app-dividendo-diario>
         </div>
       </div>

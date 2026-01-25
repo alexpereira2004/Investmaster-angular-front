@@ -31,4 +31,6 @@ export class RegraCompraPorHistoricoVenda {
   observacao?: string;
   idMonitor: number;
   idMovimentoVenda?: number;
+  cotacaoAlvo?: number;
+  cotacaoAtual?: number;
 }

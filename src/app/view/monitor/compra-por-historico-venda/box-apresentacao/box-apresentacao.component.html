@@ -1,1 +1,18 @@
-<p>box-apresentacao works!</p>
+<div class="monitor-card"> <!-- Classe border-danger se quiser destacar -->
+  <button class="btn-close-custom">✖</button>
+
+  <div class="ticker-name">{{monitorDados.nome}}</div>
+  <div class="tipo-compra">Tipo Compra</div>
+
+  <div class="label-recomenda">Recomendação:</div>
+  <div class="valor-recomenda">
+    <span class="badge rounded-pill {{situacaoCss}}">{{recomendacao}}</span>
+  </div>
+
+  <div class="grande-numero">{{monitorDados.recomendacaoEscala}}</div>
+
+  <div class="detalhes-precos">
+    <div>Alvo: {{ monitorDados.cotacaoAlvo | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</div>
+    <div>Atual: {{ monitorDados.cotacaoAtual | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}</div>
+  </div>
+</div>

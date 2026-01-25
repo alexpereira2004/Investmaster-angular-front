@@ -1,0 +1,85 @@
+.monitor-card {
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 10px;
+  min-height: 150px;
+  position: relative;
+  background-color: #fff;
+  transition: transform 0.2s;
+}
+
+.monitor-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.ticker-name {
+  font-weight: 900;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.tipo-compra {
+  font-size: 0.75rem;
+  text-align: center;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.label-recomenda {
+  font-size: 0.85rem;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.valor-recomenda {
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.grande-numero {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 5px 0;
+}
+
+.detalhes-precos {
+  font-size: 1.0rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.btn-close-custom {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 0.7rem;
+  background: none;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 0.5em 0.9em;
+}
+
+/*.situacao-0 {*/
+/*  background-color: #fef9c3; color: #854d0e;*/
+/*}*/
+.situacao-0 { background-color: #fef9c3; color: #854d0e; }
+.situacao-1 { background-color: #f6f9b1; color: #854d0e; }
+.situacao-2 { background-color: #eef9a0; color: #854d0e; }
+.situacao-3 { background-color: #e1f88c; color: #854d0e; }
+.situacao-4 { background-color: #cff776; color: #3f6212; }
+.situacao-5 { background-color: #b8f55c; color: #3f6212; }
+.situacao-6 { background-color: #9af23e; color: #1a2e05; }
+.situacao-7 { background-color: #76ed1a; color: #1a2e05; }
+.situacao-8 { background-color: #4ce800; color: #1a2e05; }
+.situacao-9 { background-color: #26f500; color: #1a2e05; }
+.situacao-10 { background-color: #00ff00; color: #1a2e05; }
