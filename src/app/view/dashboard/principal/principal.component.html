@@ -7,26 +7,31 @@
         <h3 class="portlet-title">{{titulo}}</h3>
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="grid-monitores">
-            <div *ngFor="let item of lista">
-              <app-box-apresentacao
-                [monitorDados]="item"></app-box-apresentacao>
+      <div class="portlet-body">
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="grid-monitores">
+              <div *ngFor="let item of lista">
+                <app-box-apresentacao
+                  [monitorDados]="item"></app-box-apresentacao>
+              </div>
             </div>
+          </div>
+
+          <div class="col-md-6">
+            <app-dividendo-diario></app-dividendo-diario>
           </div>
         </div>
 
-        <div class="col-md-6">
-          <app-dividendo-diario></app-dividendo-diario>
+        <div class="row">
+          <div class="col-md-12">
+            <app-dividendo-diario></app-dividendo-diario>
+          </div>
         </div>
+
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <app-dividendo-diario></app-dividendo-diario>
-        </div>
-      </div>
 
     </div>
   </div>
