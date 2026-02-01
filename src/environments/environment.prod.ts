@@ -18,6 +18,7 @@ export const environment = {
       primeiraE_Ultima: "v1/cotacao/primeira-e-ultima",
       monitor: "v2/monitor",
       monitorListagemPaginado: "v2/monitor/listagem-paginado",
+      monitorRegrasCompraPorHistoricoVendaListagemPaginado: "v1/monitor/regras/compra-por-historico-venda/listagem-paginado",
       movimentoVendaListagemPaginado: "v1/movimento-venda/listagem-paginado",
       regraCompraPorHistoricoVenda: "v1/monitor/regras/compra-por-historico-venda",
     }
