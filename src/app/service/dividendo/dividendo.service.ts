@@ -37,7 +37,7 @@ export class DividendoService {
     if (size) {
       params['size'] = size;
     }
-    params['sort'] = 'id,desc';
+    params['sort'] = 'dataRecebimento,desc';
 
     return this.httpClient.get<PageSpring<Dividendo>>(url, {params: params});
   }
