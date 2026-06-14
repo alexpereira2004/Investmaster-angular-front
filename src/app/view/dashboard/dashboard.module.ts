@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PrincipalComponent } from "./principal/principal.component";
 import { DividendoDiarioComponent } from "../dividendo/dividendo-diario/dividendo-diario.component";
 import { MonitorModule } from "../monitor/monitor.module";
+import { MetaModule } from "../meta/meta.module";
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { MonitorModule } from "../monitor/monitor.module";
     DividendoDiarioComponent
   ],
   imports: [
+    MetaModule,
     MonitorModule,
     CommonModule,
     DashboardRoutingModule

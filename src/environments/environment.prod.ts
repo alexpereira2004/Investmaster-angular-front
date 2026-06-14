@@ -21,6 +21,7 @@ export const environment = {
       monitorRegrasCompraPorHistoricoVendaListagemPaginado: "v1/monitor/regras/compra-por-historico-venda/listagem-paginado",
       movimentoVendaListagemPaginado: "v1/movimento-venda/listagem-paginado",
       regraCompraPorHistoricoVenda: "v1/monitor/regras/compra-por-historico-venda",
+      metaCategoriaAno: "v1/meta/{categoria}/{ano}",
     }
   }
 };

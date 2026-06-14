@@ -20,6 +20,7 @@ import { DashboardModule } from "./view/dashboard/dashboard.module";
 import { NgxEchartsModule } from "ngx-echarts";
 import { MonitorModule } from "./view/monitor/monitor.module";
 import { MonitorRoutingModule } from "./view/monitor/monitor-routing.module";
+import { MetaModule } from "./view/meta/meta.module";
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -44,6 +45,7 @@ registerLocaleData(localePt, 'pt-BR');
     MatSortModule,
     MatTableModule,
     DashboardModule,
+    MetaModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     })
