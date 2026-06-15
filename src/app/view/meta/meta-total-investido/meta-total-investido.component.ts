@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MetaService } from "../../../service/meta/meta.service";
 import { CategoriaAnoFilter } from "../../../service/meta/filter/categoria-ano-filter";
+import { Meta } from "../../../model/meta";
 
 @Component({
   standalone: false,
@@ -21,9 +22,16 @@ export class MetaTotalInvestidoComponent implements OnInit {
     let filter: CategoriaAnoFilter = {} as CategoriaAnoFilter;
     filter.categoria = 'TOTAL_INVESTIDO';
     filter.ano = new Date().getFullYear();
-    this.metaService.pesquisarPorCategoriaEAno(filter).subscribe(resultado => {
-      console.log(resultado);
+    this.metaService.pesquisarPorCategoriaEAno(filter).subscribe({
+      next: (resultado: Meta) => {
+        console.log(resultado);
+      },
+      error: (err) => {
+        console.error('Erro ao buscar as metas', err);
+      }
     });
+
+
   }
 
 }
