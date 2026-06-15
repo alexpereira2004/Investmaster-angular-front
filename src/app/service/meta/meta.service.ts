@@ -3,8 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { ApiRequestsService } from "../util/api-requests.service";
 import { environment } from "../../../environments/environment";
 import { CategoriaAnoFilter } from "./filter/categoria-ano-filter";
-import { PageSpring } from "../../model/page-spring";
-import { Monitor } from "../../model/monitor";
+import { Meta } from "../../model/meta";
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +28,7 @@ export class MetaService {
         .replace('{ano}', `${filter.ano}`)
 
     ;
-    return this.httpClient.get<PageSpring<Monitor>>(url);
+    return this.httpClient.get<Meta>(url);
   }
 
 }
