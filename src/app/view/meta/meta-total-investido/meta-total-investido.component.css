@@ -1,10 +1,10 @@
 @media (max-width: 1300.98px) {
   .percentual-destaque {
-    color: red !important; /* Exemplo: cor escura para destacar no fundo amarelo */
-    background-color: #fef9c3;  /* Exemplo: fundo amarelo estilo o seu .situacao-0 */
+    color: red !important;
+    background-color: #fef9c3;
     padding: 4px 10px;
     border-radius: 4px;
-    margin-top: 8px;            /* Dá um respiro do bloco de cima */
-    display: inline-block !important; /* Faz o fundo abraçar só o texto, não a linha toda */
+    margin-top: 8px;
+    display: inline-block !important;
   }
 }
