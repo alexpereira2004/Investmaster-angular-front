@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MetaService } from "../../../service/meta/meta.service";
 import { CategoriaAnoFilter } from "../../../service/meta/filter/categoria-ano-filter";
 import { Meta } from "../../../model/meta";
@@ -7,10 +7,13 @@ import { Meta } from "../../../model/meta";
   standalone: false,
   selector: 'app-meta-total-investido',
   templateUrl: './meta-total-investido.component.html',
-  styleUrl: './meta-total-investido.component.css'
+  styleUrls: [
+    './meta-total-investido.component.css',
+    '../../dashboard/principal/principal.component.css'
+    ]
 })
 export class MetaTotalInvestidoComponent implements OnInit {
-
+  @Input() ano!: number;
   constructor( private metaService: MetaService ) {
   }
 
@@ -21,7 +24,7 @@ export class MetaTotalInvestidoComponent implements OnInit {
   pesquisarTotalInvestidoDoAnoCorrente() {
     let filter: CategoriaAnoFilter = {} as CategoriaAnoFilter;
     filter.categoria = 'TOTAL_INVESTIDO';
-    filter.ano = new Date().getFullYear();
+    filter.ano = this.ano;
     this.metaService.pesquisarPorCategoriaEAno(filter).subscribe({
       next: (resultado: Meta) => {
         console.log(resultado);
