@@ -15,6 +15,7 @@ import { Meta } from "../../../model/meta";
 export class MetaTotalInvestidoComponent implements OnInit {
   @Input() ano!: number;
   dados : Meta | undefined;
+  percentual : number | undefined;
 
   constructor( private metaService: MetaService ) {
   }
@@ -30,6 +31,7 @@ export class MetaTotalInvestidoComponent implements OnInit {
     this.metaService.pesquisarPorCategoriaEAno(filter).subscribe({
       next: (resultado: Meta) => {
         this.dados = resultado;
+        this.percentual = this.calcularPercentual(this.dados);
       },
       error: (err) => {
         console.error('Erro ao buscar as metas', err);
@@ -37,6 +39,16 @@ export class MetaTotalInvestidoComponent implements OnInit {
     });
 
 
+  }
+
+  private calcularPercentual(dados: Meta): number {
+    if (dados.metadata && dados.metadata.categoria === 'TOTAL_INVESTIDO') {
+      const metadata = dados.metadata;
+      const total = metadata.valorLimiteFinal - metadata.valorLimiteInicial;
+      if (total === 0) return 0;
+      return (dados.valorMeta / total) * 100;
+    }
+    return 0;
   }
 
 }
