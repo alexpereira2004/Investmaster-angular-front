@@ -12,17 +12,23 @@
       <div class="col-12 col-xl-6 border-end border-light pe-2">
         <div class="d-flex justify-content-between align-items-center mb-2">
           <span class="text-secondary small fw-medium me-2">Meta</span>
-          <span class="fw-bold text-dark text-nowrap">R$ 616.935,00</span>
+          <span class="fw-bold text-dark text-nowrap">
+            {{ $any(dados.metadata)?.valorLimiteFinal | currency: 'BRL': 'symbol': '1.2-2': 'pt-BR' }}
+          </span>
         </div>
 
         <div class="d-flex justify-content-between align-items-center mb-2">
           <span class="text-secondary small fw-medium me-2">Alcançado</span>
-          <span class="fw-bold text-dark text-nowrap">R$ 542.689,48</span>
+          <span class="fw-bold text-dark text-nowrap">
+            {{ dados.valorMeta | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}
+          </span>
         </div>
 
         <div class="d-flex justify-content-between align-items-center">
           <span class="text-secondary small fw-medium me-2">Limite Inicial</span>
-          <span class="fw-bold text-dark text-nowrap">R$ 504.791,00</span>
+          <span class="fw-bold text-dark text-nowrap">
+            {{ $any(dados.metadata)?.valorLimiteInicial | currency: 'BRL': 'symbol': '1.2-2': 'pt-BR' }}
+          </span>
         </div>
       </div>
 

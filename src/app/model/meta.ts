@@ -8,8 +8,8 @@ export interface MetaFinanceira {
 
 export interface TotalInvestido {
   categoria: 'TOTAL_INVESTIDO';
-  valorLimiteInicial: number;
-  valorLimiteFinal: number;
+  valorLimiteInicial?: number;
+  valorLimiteFinal?: number;
 }
 
 

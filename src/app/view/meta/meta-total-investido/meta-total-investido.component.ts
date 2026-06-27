@@ -14,6 +14,8 @@ import { Meta } from "../../../model/meta";
 })
 export class MetaTotalInvestidoComponent implements OnInit {
   @Input() ano!: number;
+  dados : Meta | undefined;
+
   constructor( private metaService: MetaService ) {
   }
 
@@ -27,7 +29,7 @@ export class MetaTotalInvestidoComponent implements OnInit {
     filter.ano = this.ano;
     this.metaService.pesquisarPorCategoriaEAno(filter).subscribe({
       next: (resultado: Meta) => {
-        console.log(resultado);
+        this.dados = resultado;
       },
       error: (err) => {
         console.error('Erro ao buscar as metas', err);
