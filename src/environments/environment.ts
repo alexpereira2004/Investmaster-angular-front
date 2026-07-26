@@ -22,6 +22,7 @@ export const environment = {
       movimentoVendaListagemPaginado: "v1/movimento-venda/listagem-paginado",
       regraCompraPorHistoricoVenda: "v1/monitor/regras/compra-por-historico-venda",
       metaCategoriaAno: "v1/meta/{categoria}/{ano}",
+      metaAnualBruto: "v1/meta/detalhes/anual-bruto/{ano}",
     }
   }
 };
