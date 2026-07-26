@@ -1,16 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EChartsOption } from "echarts/types/dist/echarts";
+import { MoedaService } from "../../../service/util/moeda.service";
+import { CategoriaAnoFilter } from "../../../service/meta/filter/categoria-ano-filter";
+import { DetalheInvestimentoAnualResponse } from "../../../model/dto/DetalheInvestimentoAnualResponse";
+import { MetaService } from "../../../service/meta/meta.service";
 
 @Component({
   standalone: false,
   selector: 'app-meta-total-investido-grafico',
   templateUrl: './meta-total-investido-grafico.component.html',
-  styleUrl: './meta-total-investido-grafico.component.css'
+  styleUrls: ['./meta-total-investido-grafico.component.css',
+              '../../dashboard/principal/principal.component.css']
 })
 export class MetaTotalInvestidoGraficoComponent implements OnInit {
+  @Input() ano!: number;
   chartOption: EChartsOption = {};
+  detalheInvestimentoAnualResponse : DetalheInvestimentoAnualResponse | undefined;
 
-  ngOnInit(): void {
+  constructor(private moedaService: MoedaService,
+              private metaService: MetaService) {
+  }
+
+
+
+  ngOnInit(): void
+  {
+    this.pesquisarMetaAnualBruta();
+  }
+
+
+  pesquisarMetaAnualBruta() {
+    let filter: CategoriaAnoFilter = {} as CategoriaAnoFilter;
+    filter.ano = this.ano;
+    this.metaService.pesquisarMetaAnualBrupoPorAno(filter).subscribe({
+      next: (resultado: DetalheInvestimentoAnualResponse) => {
+        this.detalheInvestimentoAnualResponse = resultado;
+        this.montarGrafico();
+      },
+      error: (err) => {
+        console.error('Erro ao buscar os dados para Gráfico Projeção de Investimentos Próprios', err);
+      }
+    });
+
+  }
+
+  montarGrafico() {
+    const formatador = (val: number) => this.moedaService.formatarParaReal(val);
+
+    const listaRendaFixaMensal: number[] = Array.from({ length: 12 }, (_, i) => {
+      const mesKey = (i + 1).toString();
+      return this.detalheInvestimentoAnualResponse.rendaFixaMensalMap[mesKey] ?? 0;
+    });
+n
+
+
+
     this.chartOption = {
       tooltip: {
         trigger: 'axis',
@@ -52,8 +96,8 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
           interval: 10000,
           axisLabel: {
             // Formata os valores do eixo Y para a moeda brasileira simplificada
-            formatter: function(value) {
-              return 'R$ ' + value;
+            formatter: function(value: number) {
+              return formatador(value);
             }
           },
           splitLine: {
@@ -69,24 +113,27 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
           name: 'Renda Fixa',
           type: 'bar',
           itemStyle: {
-            color: '#93c5fd' // Azul pastel discreto
+            color: '#93c5fd'
           },
           tooltip: {
-            valueFormatter: function (value) {
-              return 'R$ ' + value;
+            valueFormatter: (value: any) => {
+              const valorNumerico = Number(value);
+              return this.moedaService.formatarParaReal(valorNumerico);
             }
+
           },
-          data: [1000, 1000, 1000, 1000, 1000, 1000]
+          data: listaRendaFixaMensal
         },
         {
           name: 'Próprio',
           type: 'bar',
           itemStyle: {
-            color: '#fef08a' // Amarelo pastel suave
+            color: '#fef08a'
           },
           tooltip: {
-            valueFormatter: function (value) {
-              return 'R$ ' + value;
+            valueFormatter: (value: any) => {
+              const valorNumerico = Number(value);
+              return this.moedaService.formatarParaReal(valorNumerico);
             }
           },
           data: [4000, 4000, 4000, 4000, 4000, 4000]
@@ -95,11 +142,12 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
           name: 'Total',
           type: 'bar',
           itemStyle: {
-            color: '#86efac' // Verde pastel suave
+            color: '#86efac'
           },
           tooltip: {
-            valueFormatter: function (value) {
-              return 'R$ ' + value;
+            valueFormatter: (value: any) => {
+              const valorNumerico = Number(value);
+              return this.moedaService.formatarParaReal(valorNumerico);
             }
           },
           data: [5000, 5000, 5000, 5000, 5000, 5000]
@@ -107,18 +155,19 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
         {
           name: 'Estimado',
           type: 'line',
-          smooth: true, // Curva suave para visual moderno
+          smooth: true,
           yAxisIndex: 0,
           lineStyle: {
-            color: '#a8a29e', // Cinza neutro elegante para a meta base
+            color: '#a8a29e',
             width: 2
           },
           itemStyle: {
             color: '#a8a29e'
           },
           tooltip: {
-            valueFormatter: function (value) {
-              return 'R$ ' + value;
+            valueFormatter: (value: any) => {
+              const valorNumerico = Number(value);
+              return this.moedaService.formatarParaReal(valorNumerico);
             }
           },
           data: [4000, 8000, 12000, 16000, 20000, 24000, 28000, 32000, 36000, 40000, 44000, 48000]
@@ -129,15 +178,16 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
           smooth: true,
           yAxisIndex: 0,
           lineStyle: {
-            color: '#2563eb', // Azul royal marcante para o dinheiro real alcançado
+            color: '#2563eb',
             width: 3
           },
           itemStyle: {
             color: '#2563eb'
           },
           tooltip: {
-            valueFormatter: function (value) {
-              return 'R$ ' + value;
+            valueFormatter: (value: any) => {
+              const valorNumerico = Number(value);
+              return this.moedaService.formatarParaReal(valorNumerico);
             }
           },
           data: [4000, 8000, 12500, 16500, 20500, 25000, 29000]
@@ -149,15 +199,16 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
           yAxisIndex: 0,
           lineStyle: {
             type: 'dashed',
-            color: '#dc2626', // Vermelho/Coral corporativo destacado para o futuro estimado
+            color: '#dc2626',
             width: 2
           },
           itemStyle: {
             color: '#dc2626'
           },
           tooltip: {
-            valueFormatter: function (value) {
-              return 'R$ ' + value;
+            valueFormatter: (value: any) => {
+              const valorNumerico = Number(value);
+              return this.moedaService.formatarParaReal(valorNumerico);
             }
           },
           data: [null, null, null, null, null, null, 29000, 33500, 38600, 42700, 46800, 51000]

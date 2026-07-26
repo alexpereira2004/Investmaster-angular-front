@@ -1,10 +1,10 @@
 <div class="monitor-card p-0">
   <div class="card-header bg-transparent border-0 pt-3 pb-2 position-relative text-center w-100">
-  <button class="btn-close-custom">✖</button>
-  <div class="ticker-name w-100 text-center">
-    Meta Investimento Anual - Bruto
+    <button class="btn-close-custom">✖</button>
+    <div class="ticker-name w-100 text-center">
+      Meta Investimento Anual - Bruto
+    </div>
   </div>
-</div>
 
   <div class="card-body px-3 pt-2 pb-3">
     <div class="row align-items-center g-0">
@@ -40,5 +40,16 @@
 
     </div>
   </div>
+
+  <div class="card-header bg-transparent border-0 pt-3 pb-2 position-relative text-center w-100">
+    <div class="ticker-name w-100 text-center">
+      Gráfico Projeção de Investimentos Próprios
+    </div>
+  </div>
+
+  <app-meta-total-investido-grafico
+    *ngIf="ano"
+    [ano]="ano">
+  </app-meta-total-investido-grafico>
 
 </div>

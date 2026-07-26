@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MetaService } from "../../../service/meta/meta.service";
 import { CategoriaAnoFilter } from "../../../service/meta/filter/categoria-ano-filter";
 import { Meta } from "../../../model/meta";
+import { DetalheInvestimentoAnualResponse } from "../../../model/dto/DetalheInvestimentoAnualResponse";
 
 @Component({
   standalone: false,
@@ -15,6 +16,7 @@ import { Meta } from "../../../model/meta";
 export class MetaTotalInvestidoComponent implements OnInit {
   @Input() ano!: number;
   dados : Meta | undefined;
+  detalheInvestimentoAnualResponse : DetalheInvestimentoAnualResponse | undefined;
   percentual : number | undefined;
 
   constructor( private metaService: MetaService ) {
@@ -37,9 +39,8 @@ export class MetaTotalInvestidoComponent implements OnInit {
         console.error('Erro ao buscar as metas', err);
       }
     });
-
-
   }
+
 
   private calcularPercentual(dados: Meta): number {
     if (dados.metadata && dados.metadata.categoria === 'TOTAL_INVESTIDO') {
