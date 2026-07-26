@@ -51,9 +51,6 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
       const mesKey = (i + 1).toString();
       return this.detalheInvestimentoAnualResponse.rendaFixaMensalMap[mesKey] ?? 0;
     });
-n
-
-
 
     this.chartOption = {
       tooltip: {
