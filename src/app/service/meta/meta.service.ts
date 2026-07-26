@@ -4,6 +4,7 @@ import { ApiRequestsService } from "../util/api-requests.service";
 import { environment } from "../../../environments/environment";
 import { CategoriaAnoFilter } from "./filter/categoria-ano-filter";
 import { Meta } from "../../model/meta";
+import { DetalheInvestimentoAnualResponse } from "../../model/dto/DetalheInvestimentoAnualResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +26,15 @@ export class MetaService {
     const url = environment.portalApi.baseUrl
       + environment.portalApi.recurso.metaCategoriaAno
         .replace('{categoria}', filter.categoria)
-        .replace('{ano}', `${filter.ano}`)
-
-    ;
+        .replace('{ano}', `${filter.ano}`);
     return this.httpClient.get<Meta>(url);
+  }
+
+  pesquisarMetaAnualBrupoPorAno(filter: CategoriaAnoFilter) {
+    const url = environment.portalApi.baseUrl
+      + environment.portalApi.recurso.metaAnualBruto
+        .replace('{ano}', `${filter.ano}`);
+    return this.httpClient.get<DetalheInvestimentoAnualResponse>(url);
   }
 
 }
