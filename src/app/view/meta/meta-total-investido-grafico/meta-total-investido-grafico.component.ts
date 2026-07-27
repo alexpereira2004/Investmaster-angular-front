@@ -21,13 +21,10 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
               private metaService: MetaService) {
   }
 
-
-
   ngOnInit(): void
   {
     this.pesquisarMetaAnualBruta();
   }
-
 
   pesquisarMetaAnualBruta() {
     let filter: CategoriaAnoFilter = {} as CategoriaAnoFilter;
@@ -41,7 +38,6 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
         console.error('Erro ao buscar os dados para Gráfico Projeção de Investimentos Próprios', err);
       }
     });
-
   }
 
   montarGrafico() {
@@ -51,6 +47,19 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
       const mesKey = (i + 1).toString();
       return this.detalheInvestimentoAnualResponse.rendaFixaMensalMap[mesKey] ?? 0;
     });
+
+    const listaAporteProprioMensal: number[] = Array.from({ length: 12 }, (_, i) => {
+      const mesKey = (i + 1).toString();
+      return this.detalheInvestimentoAnualResponse.aporteProprioMensalMap[mesKey] ?? 0;
+    });
+
+    const listaTotalizadorMensal: number[] = listaRendaFixaMensal.map(
+      (rendaFixa, index) => rendaFixa + listaAporteProprioMensal[index]
+    );
+
+    const listaProjecaoInicialAportesAcumulada     = this.calcularValoresAcumulados(this.detalheInvestimentoAnualResponse?.projecaoInicialAportes);
+    const listaAporteProprioMensalAcumulada        = this.calcularValoresAcumulados(this.detalheInvestimentoAnualResponse?.aporteProprioMensalMap);
+    let listaprojecaoFuturaAportesAcumulada        = this.calcularProjecaoFutura(this.detalheInvestimentoAnualResponse?.projecaoFuturaAportes, listaAporteProprioMensalAcumulada);
 
     this.chartOption = {
       tooltip: {
@@ -133,7 +142,7 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
               return this.moedaService.formatarParaReal(valorNumerico);
             }
           },
-          data: [4000, 4000, 4000, 4000, 4000, 4000]
+          data: listaAporteProprioMensal
         },
         {
           name: 'Total',
@@ -147,7 +156,7 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
               return this.moedaService.formatarParaReal(valorNumerico);
             }
           },
-          data: [5000, 5000, 5000, 5000, 5000, 5000]
+          data: listaTotalizadorMensal
         },
         {
           name: 'Estimado',
@@ -167,7 +176,7 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
               return this.moedaService.formatarParaReal(valorNumerico);
             }
           },
-          data: [4000, 8000, 12000, 16000, 20000, 24000, 28000, 32000, 36000, 40000, 44000, 48000]
+          data: listaProjecaoInicialAportesAcumulada
         },
         {
           name: 'Alcançado',
@@ -187,7 +196,7 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
               return this.moedaService.formatarParaReal(valorNumerico);
             }
           },
-          data: [4000, 8000, 12500, 16500, 20500, 25000, 29000]
+          data: listaAporteProprioMensalAcumulada
         },
         {
           name: 'Projeção Futura',
@@ -208,9 +217,64 @@ export class MetaTotalInvestidoGraficoComponent implements OnInit {
               return this.moedaService.formatarParaReal(valorNumerico);
             }
           },
-          data: [null, null, null, null, null, null, 29000, 33500, 38600, 42700, 46800, 51000]
+          data: listaprojecaoFuturaAportesAcumulada
         }
       ]
     };
   }
+
+  private calcularValoresAcumulados(mapa: Record<string, number> | undefined, offset: number = 0 ): (number | null)[] {
+    let acumulado = 0;
+
+    return Array.from({ length: 12 }, (_, i) => {
+      const mesKey = (i + 1).toString();
+      const valorMes = mapa?.[mesKey];
+
+      if (valorMes !== undefined && valorMes !== null && valorMes > 0) {
+        acumulado += valorMes + offset;
+        return acumulado;
+      }
+
+      return null;
+    });
+  }
+
+  private calcularProjecaoFutura(
+    mapaProjecao: Record<string, number> | undefined,
+    listaAlcançado: (number | null)[]
+  ): (number | null)[] {
+
+    let ultimoIndiceAlcançado = -1;
+    for (let i = listaAlcançado.length - 1; i >= 0; i--) {
+      if (listaAlcançado[i] !== null && listaAlcançado[i] !== undefined) {
+        ultimoIndiceAlcançado = i;
+        break;
+      }
+    }
+
+    if (ultimoIndiceAlcançado === -1) {
+      return Array(12).fill(null);
+    }
+
+    const valorInicialReal = listaAlcançado[ultimoIndiceAlcançado]!;
+    let acumuladoFuturo = valorInicialReal;
+
+    return Array.from({ length: 12 }, (_, i) => {
+      // Para os meses ANTERIORES ao último mês realizado, fica null
+      if (i < ultimoIndiceAlcançado) {
+        return null;
+      }
+
+      if (i === ultimoIndiceAlcançado) {
+        return valorInicialReal;
+      }
+
+      const mesKey = (i + 1).toString();
+      const projecaoMes = mapaProjecao?.[mesKey] ?? 0;
+
+      acumuladoFuturo += projecaoMes;
+      return acumuladoFuturo;
+    });
+  }
+
 }
