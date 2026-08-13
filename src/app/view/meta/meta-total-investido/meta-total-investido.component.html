@@ -9,23 +9,24 @@
   <div class="card-body px-3 pt-2 pb-3">
     <div class="row align-items-center g-0">
 
-      <div class="col-12 col-xl-6 border-end border-light pe-2">
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="text-secondary small fw-medium me-2">Meta</span>
+      <div class="col-6 col-xl-6 border-end border-light pe-2">
+        <!-- Removido justify-content-between e adicionado lacuna (gap) -->
+        <div class="d-flex align-items-center mb-2 gap-3">
+          <span class="text-secondary small fw-medium text-nowrap" style="min-width: 90px;">Meta</span>
           <span class="fw-bold text-dark text-nowrap">
             {{ $any(dados.metadata)?.valorLimiteFinal | currency: 'BRL': 'symbol': '1.2-2': 'pt-BR' }}
           </span>
         </div>
 
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="text-secondary small fw-medium me-2">Alcançado</span>
+        <div class="d-flex align-items-center mb-2 gap-3">
+          <span class="text-secondary small fw-medium text-nowrap" style="min-width: 90px;">Alcançado</span>
           <span class="fw-bold text-dark text-nowrap">
             {{ dados.valorMeta | currency: 'BRL':'symbol':'1.2-2':'pt-BR'}}
           </span>
         </div>
 
-        <div class="d-flex justify-content-between align-items-center">
-          <span class="text-secondary small fw-medium me-2">Limite Inicial</span>
+        <div class="d-flex align-items-center gap-3">
+          <span class="text-secondary small fw-medium text-nowrap" style="min-width: 90px;">Limite Inicial</span>
           <span class="fw-bold text-dark text-nowrap">
             {{ $any(dados.metadata)?.valorLimiteInicial | currency: 'BRL': 'symbol': '1.2-2': 'pt-BR' }}
           </span>
