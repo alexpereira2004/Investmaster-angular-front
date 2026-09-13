@@ -4,20 +4,59 @@
   left: 100px;
   z-index: 1050;
   display: flex;
+  font-family: inherit; /* Herda a mesma fonte do seu painel */
 }
 
+/* Container principal do modal */
 .draggable-modal-container .modal-content {
   resize: both;
-  overflow: auto;
-  min-width: 300px;
+  overflow: hidden; /* Mantém as bordas arredondadas perfeitas */
+  min-width: 320px;
   min-height: 200px;
-  width: 600px;
-  height: 400px;
+  width: 650px;
+  height: 450px;
   background-color: #ffffff;
-  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Cabeçalho personalizado com o Azul do Investmaster */
+.draggable-modal-container .modal-header-custom {
+  background-color: #3598DC;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-bottom: none;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+/* Título e Tipografia */
+.draggable-modal-container .modal-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  margin: 0;
 }
 
 .draggable-modal-container .modal-header-drag {
   cursor: move;
   user-select: none;
+}
+
+.draggable-modal-container .modal-body {
+  padding: 16px;
+  overflow-y: auto;
+  background-color: #ffffff;
+  height: calc(100% - 48px);
+}
+
+.draggable-modal-container .btn-close {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.draggable-modal-container .btn-close:hover {
+  opacity: 1;
 }

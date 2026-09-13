@@ -66,12 +66,10 @@
       [initialLeft]="modal.left"
       (isOpenChange)="fecharModal(i)">
 
-      <!-- Se for o modal de META, carrega o seu componente de metas -->
       <ng-container *ngIf="modal.tipo === 'META'">
         <app-meta-total-investido [ano]="2026"></app-meta-total-investido>
       </ng-container>
 
-      <!-- Se for o modal de ATIVO, exibe a tabela ou o monitor do ativo -->
       <ng-container *ngIf="modal.tipo === 'ATIVO'">
         <app-box-apresentacao [monitorDados]="modal.dadosAtivo"></app-box-apresentacao>
       </ng-container>

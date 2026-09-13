@@ -2,10 +2,10 @@
      #modalDialog
      [style.display]="isOpen ? 'flex' : 'none'"
      [style.z-index]="zIndex">
-  <div class="modal-content shadow-lg">
+  <div class="modal-content shadow">
 
-    <div class="modal-header bg-dark text-white modal-header-drag" #modalHeader>
-      <h5 class="modal-title fs-6 me-auto">{{ title }}</h5>
+    <div class="modal-header modal-header-custom modal-header-drag" #modalHeader>
+      <h6 class="modal-title me-auto">{{ title }}</h6>
       <button type="button" class="btn-close btn-close-white" (click)="close()"></button>
     </div>
 
