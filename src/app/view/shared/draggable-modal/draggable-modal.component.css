@@ -1,0 +1,23 @@
+.draggable-modal-container {
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  z-index: 1050;
+  display: flex;
+}
+
+.draggable-modal-container .modal-content {
+  resize: both;
+  overflow: auto;
+  min-width: 300px;
+  min-height: 200px;
+  width: 600px;
+  height: 400px;
+  background-color: #ffffff;
+  border-radius: 6px;
+}
+
+.draggable-modal-container .modal-header-drag {
+  cursor: move;
+  user-select: none;
+}

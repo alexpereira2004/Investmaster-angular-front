@@ -1,0 +1,21 @@
+<div class="draggable-modal-container"
+     #modalDialog
+     [style.display]="isOpen ? 'flex' : 'none'"
+     [style.z-index]="zIndex">
+  <div class="modal-content shadow-lg">
+
+    <div class="modal-header bg-dark text-white modal-header-drag" #modalHeader>
+      <h5 class="modal-title fs-6 me-auto">{{ title }}</h5>
+      <button type="button" class="btn-close btn-close-white" (click)="close()"></button>
+    </div>
+
+    <div class="modal-body">
+      <ng-content></ng-content>
+    </div>
+
+    <div class="modal-footer" *ngIf="showFooter">
+      <button type="button" class="btn btn-sm btn-secondary" (click)="close()">Fechar</button>
+    </div>
+
+  </div>
+</div>
