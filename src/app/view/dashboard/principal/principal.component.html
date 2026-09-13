@@ -50,18 +50,14 @@
 
     <!-- Botões para abrir os popups de ativos -->
     <div class="d-flex gap-2 mb-4">
-      <button class="btn btn-outline-primary" (click)="abrirModal('PETR4')">
-        Abrir PETR4
+      <button class="btn btn-outline-primary" (click)="abrirModalMetas()">
+        Abrir Metas
       </button>
-      <button class="btn btn-outline-primary" (click)="abrirModal('VALE3')">
-        Abrir VALE3
-      </button>
-      <button class="btn btn-outline-primary" (click)="abrirModal('ITUB4')">
-        Abrir ITUB4
+      <button class="btn btn-outline-primary" (click)="abrirModalAtivo('VALE3')">
+        Modal Ativo VALE3
       </button>
     </div>
 
-    <!-- Loop que renderiza N janelas simultâneas -->
     <app-draggable-modal
       *ngFor="let modal of modaisAbertos; let i = index"
       [title]="modal.titulo"
@@ -70,32 +66,18 @@
       [initialLeft]="modal.left"
       (isOpenChange)="fecharModal(i)">
 
-      <!-- Conteúdo HTML que vai DENTRO de cada janela -->
-      <div class="p-3">
-        <h5>Ativo: {{ modal.dadosAtivo.codigo }}</h5>
-        <p>Exemplo de dados dinâmicos da API para este modal especificamente.</p>
+      <!-- Se for o modal de META, carrega o seu componente de metas -->
+      <ng-container *ngIf="modal.tipo === 'META'">
+        <app-meta-total-investido [ano]="2026"></app-meta-total-investido>
+      </ng-container>
 
-        <table class="table table-sm border mt-3">
-          <thead>
-          <tr>
-            <th>Indicador</th>
-            <th>Valor</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>P/L</td>
-            <td>5.42</td>
-          </tr>
-          <tr>
-            <td>DY</td>
-            <td>8.2%</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
+      <!-- Se for o modal de ATIVO, exibe a tabela ou o monitor do ativo -->
+      <ng-container *ngIf="modal.tipo === 'ATIVO'">
+        <app-box-apresentacao [monitorDados]="modal.dadosAtivo"></app-box-apresentacao>
+      </ng-container>
 
     </app-draggable-modal>
+
   </div>
 </div>
 

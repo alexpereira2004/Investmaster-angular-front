@@ -32,24 +32,28 @@ export class PrincipalComponent implements OnInit {
 // Array que armazena todas as janelas abertas
   modaisAbertos: ModalItem[] = [];
 
-  // Método chamado pelos botões da tela
-  abrirModal(simbolo: string) {
-    const total = this.modaisAbertos.length;
-
-    // Calcula a posição inicial em cascata para não empilhar exatamente no mesmo lugar
-    const offsetTop = 100 + (total * 30);
-    const offsetLeft = 120 + (total * 30);
-
+  abrirModalMetas() {
     this.modaisAbertos.push({
-      id: Date.now(), // ID único baseado no timestamp
-      titulo: `Análise de Ativo - ${simbolo}`,
-      top: offsetTop,
-      left: offsetLeft,
-      dadosAtivo: { codigo: simbolo }
+      id: Date.now(),
+      titulo: 'Meta de Investimentos',
+      tipo: 'META',
+      top: 150,
+      left: 150
     });
   }
 
-  fecharModal(index: number) {
+  abrirModalAtivo(codigo: string) {
+    this.modaisAbertos.push({
+      id: Date.now(),
+      titulo: `Monitor - ${codigo}`,
+      tipo: 'ATIVO',
+      dadosAtivo: { codigo },
+      top: 180,
+      left: 180
+    });
+  }
+
+  fecharModal(index: number): void {
     this.modaisAbertos.splice(index, 1);
   }
 
