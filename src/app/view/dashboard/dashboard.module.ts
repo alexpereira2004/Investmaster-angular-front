@@ -6,6 +6,7 @@ import { PrincipalComponent } from "./principal/principal.component";
 import { DividendoDiarioComponent } from "../dividendo/dividendo-diario/dividendo-diario.component";
 import { MonitorModule } from "../monitor/monitor.module";
 import { MetaModule } from "../meta/meta.module";
+import { SharedModule } from "../shared/shared.module";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MetaModule } from "../meta/meta.module";
     MetaModule,
     MonitorModule,
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

@@ -43,6 +43,60 @@
 
     </div>
   </div>
+
+  <div class="container mt-4">
+    <h2>Dashboard Investmaster</h2>
+    <hr>
+
+    <!-- Botões para abrir os popups de ativos -->
+    <div class="d-flex gap-2 mb-4">
+      <button class="btn btn-outline-primary" (click)="abrirModal('PETR4')">
+        Abrir PETR4
+      </button>
+      <button class="btn btn-outline-primary" (click)="abrirModal('VALE3')">
+        Abrir VALE3
+      </button>
+      <button class="btn btn-outline-primary" (click)="abrirModal('ITUB4')">
+        Abrir ITUB4
+      </button>
+    </div>
+
+    <!-- Loop que renderiza N janelas simultâneas -->
+    <app-draggable-modal
+      *ngFor="let modal of modaisAbertos; let i = index"
+      [title]="modal.titulo"
+      [isOpen]="true"
+      [initialTop]="modal.top"
+      [initialLeft]="modal.left"
+      (isOpenChange)="fecharModal(i)">
+
+      <!-- Conteúdo HTML que vai DENTRO de cada janela -->
+      <div class="p-3">
+        <h5>Ativo: {{ modal.dadosAtivo.codigo }}</h5>
+        <p>Exemplo de dados dinâmicos da API para este modal especificamente.</p>
+
+        <table class="table table-sm border mt-3">
+          <thead>
+          <tr>
+            <th>Indicador</th>
+            <th>Valor</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>P/L</td>
+            <td>5.42</td>
+          </tr>
+          <tr>
+            <td>DY</td>
+            <td>8.2%</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </app-draggable-modal>
+  </div>
 </div>
 
 
