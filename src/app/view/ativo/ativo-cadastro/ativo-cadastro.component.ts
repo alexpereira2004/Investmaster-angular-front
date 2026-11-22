@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Ativo } from '../../../model/ativo';
 import { AtivoService } from '../../../service/ativo/ativo.service';
 import { AlertaUtil } from "../../../service/util/alerta-util";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   standalone: false,
@@ -15,6 +16,10 @@ export class AtivoCadastroComponent implements OnInit {
   titulo = 'Cadastrar novo ativo';
   FRMnovoCadastro: FormGroup;
   salvando = false;
+  ativoId: number | string | null = null;
+  isEdicao = false;
+  carregando = false;
+
   mensagemErro: string | null = null;
   mensagemSucesso: string | null = null;
   readonly opcoesSeguindo = [
@@ -25,9 +30,19 @@ export class AtivoCadastroComponent implements OnInit {
     { codigo: '5', descricao: 'Diariamente' }
   ];
 
+  private readonly valoresIniciais = {
+    codigo: '',
+    nome: '',
+    cnpj: '',
+    tipo: '',
+    seguindo: '1'
+  };
+
   constructor(
     private formBuilder: FormBuilder,
-    private ativoService: AtivoService
+    private ativoService: AtivoService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.FRMnovoCadastro = this.formBuilder.group({
       codigo: ['', [Validators.required, Validators.maxLength(10)]],
@@ -41,6 +56,17 @@ export class AtivoCadastroComponent implements OnInit {
 
   ngOnInit(): void {
     this.titulo = 'Cadastrar novo ativo';
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+      this.isEdicao = true;
+      this.ativoId = id;
+      this.titulo = 'Editar ativo';
+      this.carregarAtivo(id);
+    } else {
+      this.isEdicao = false;
+      this.titulo = 'Cadastrar novo ativo';
+    }
   }
 
   onSubmit(): void {
@@ -61,13 +87,7 @@ export class AtivoCadastroComponent implements OnInit {
       next: () => {
         this.salvando = false;
         this.mensagemSucesso = `Ativo ${payload.codigo} cadastrado com sucesso!`;
-        // this.FRMnovoCadastro.reset({
-        //   codigo: '',
-        //   nome: '',
-        //   cnpj: '',
-        //   tipo: '',
-        //   seguindo: 1
-        // });
+
       },
       error: (err) => {
         this.salvando = false;
@@ -76,20 +96,23 @@ export class AtivoCadastroComponent implements OnInit {
       },
       complete: () => {
         AlertaUtil.sucesso(this.mensagemSucesso);
+        if (!this.isEdicao) {
+          this.FRMnovoCadastro.reset(this.valoresIniciais);
+        }
       }
     });
   }
 
+  voltar(): void {
+    this.router.navigate(['/ativo']);
+    return;
+  }
+
+
   limparFormulario(): void {
     this.mensagemErro = null;
     this.mensagemSucesso = null;
-    this.FRMnovoCadastro.reset({
-      codigo: '',
-      nome: '',
-      cnpj: '',
-      tipo: '',
-      seguindo: 1
-    });
+    this.FRMnovoCadastro.reset(this.valoresIniciais);
   }
 
 
@@ -97,6 +120,7 @@ export class AtivoCadastroComponent implements OnInit {
     const formValue = this.FRMnovoCadastro.getRawValue();
     const ativo = new Ativo();
 
+    ativo.id = this.route.snapshot.paramMap.get('id');
     ativo.codigo = (formValue.codigo || '').trim().toUpperCase();
     ativo.nome = (formValue.nome || '').trim();
     ativo.cnpj = (formValue.cnpj || '').trim();
@@ -114,5 +138,32 @@ export class AtivoCadastroComponent implements OnInit {
   isCampoInvalido(campo: string): boolean {
     const control = this.FRMnovoCadastro.get(campo);
     return !!(control && control.invalid && (control.dirty || control.touched));
+  }
+
+  private carregarAtivo(id: string): void {
+    this.carregando = true;
+
+    this.ativoService.pesquisarPorId(id).subscribe({
+      next: (ativo: Ativo) => {
+        this.carregando = false;
+
+        this.FRMnovoCadastro.patchValue({
+          codigo: ativo.codigo ?? '',
+          nome: ativo.nome ?? '',
+          cnpj: ativo.cnpj ?? '',
+          tipo: ativo.tipo ?? '',
+          seguindo: ativo.seguindo ? String(ativo.seguindo) : '1'
+        });
+
+        // Marca como intocado/limpo após carregar os dados iniciais
+        this.FRMnovoCadastro.markAsPristine();
+        this.FRMnovoCadastro.markAsUntouched();
+      },
+      error: (err) => {
+        this.carregando = false;
+        AlertaUtil.erro(err?.error?.message || 'Não foi possível carregar os dados do ativo.');
+        this.router.navigate(['/ativo/listagem']);
+      }
+    });
   }
 }

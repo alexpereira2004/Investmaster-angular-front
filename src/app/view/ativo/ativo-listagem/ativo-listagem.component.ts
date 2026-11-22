@@ -33,7 +33,7 @@ export class AtivoListagemComponent implements AfterViewInit {
     this.montarDataTable();
   }
 
-  private montarDataTable(page: number = 0, size: number = 10) {
+  private montarDataTable(page: number = 0, size: number = 100) {
     this.ativoService.pesquisarPaginado(page, size).subscribe({
       next: (result) => {
         this.dataSource = new MatTableDataSource(result.content);

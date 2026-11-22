@@ -32,7 +32,7 @@ export class AtivoService {
   }
 
   atualizar(ativo: Ativo) {
-    const url = environment.portalApi.baseUrl;
+    const url = environment.portalApi.baseUrl + environment.portalApi.recurso.ativo;
     return this.httpClient.put(url, ativo);
   }
 
