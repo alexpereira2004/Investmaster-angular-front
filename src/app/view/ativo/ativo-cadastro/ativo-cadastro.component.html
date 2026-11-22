@@ -1,77 +1,91 @@
 <div class="content">
   <div class="container-fluid g-4">
 
-    <div class="portlet">
-
-      <div class="portlet-header portlet-header-bordered">
-        <h3 class="portlet-title">{{titulo}}</h3>
+    <div class="portlet shadow-sm">
+      <div class="portlet-header portlet-header-bordered d-flex align-items-center justify-content-between">
+        <h3 class="portlet-title mb-0">{{titulo}}</h3>
       </div>
 
-      <div class="portlet-body">
-        <p>Give textual form controls like <code>&lt;input&gt;</code>s and <code>&lt;textarea&gt;</code>s an upgrade with custom styles, sizing, focus states, and more.</p>
-        <hr>
+      <div class="portlet-body p-4">
+        <form [formGroup]="FRMnovoCadastro" (ngSubmit)="onSubmit()">
 
-        <div class="d-grid gap-3">
-
-          <form [formGroup]="FRMnovoCadastro" (ngSubmit)="onSubmit()">
-
-            <div class="row">
-              <div class="col-md-12">
-                <div>
-                  <label for="codigo" class="form-label">Código:</label>
-                  <input class="form-control form-control-lg" id="codigo" formControlName="codigo" maxlength="10" required>
-                </div>
-              </div>
+          <!-- Linha 1: Código (menor), Tipo (médio) e Nome (maior) -->
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label for="codigo" class="form-label fw-semibold">Código <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control text-uppercase"
+                id="codigo"
+                formControlName="codigo"
+                placeholder="Ex: BBAS3"
+                maxlength="10"
+                required>
             </div>
 
-            <div class="row">
-              <div class="col-md-12">
-                <label for="nome" class="form-label mt-3">Nome:</label>
-                <input class="form-control form-control-lg" id="nome" formControlName="nome" maxlength="200" required>
-              </div>
+            <div class="col-md-4">
+              <label for="tipo" class="form-label fw-semibold">Tipo de Ativo</label>
+              <select class="form-select" id="tipo" formControlName="tipo">
+                <option value="A">Ação</option>
+                <option value="F">Fundo Imobiliário (FII)</option>
+                <option value="B">BDR</option>
+              </select>
             </div>
 
-            <div class="row">
-              <div class="col-md-12">
-                <label for="cnpj" class="form-label mt-3">CNPJ:</label>
-                <input class="form-control form-control-lg" id="cnpj" formControlName="cnpj" required>
-              </div>
+            <div class="col-md-5">
+              <label for="cnpj" class="form-label fw-semibold">CNPJ <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                id="cnpj"
+                formControlName="cnpj"
+                placeholder="00.000.000/0001-00"
+                required>
+            </div>
+          </div>
+
+          <!-- Linha 2: Nome da Empresa/Fundo e Status -->
+          <div class="row g-3 mt-1 align-items-center">
+            <div class="col-md-8">
+              <label for="nome" class="form-label fw-semibold">Razão Social / Nome <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                id="nome"
+                formControlName="nome"
+                placeholder="Ex: Banco do Brasil S.A."
+                maxlength="200"
+                required>
             </div>
 
-            <div class="row">
-              <div class="col-md-4">
-                <label for="tipo" class="form-label mt-3">Tipo:</label>
-                <select class="form-select form-select-lg" id="tipo" formControlName="tipo">
-                  <option value="A">Ação</option>
-                  <option value="F">Fundo Imobiliário</option>
-                  <option value="B">BDR</option>
-                </select>
+            <div class="col-md-4 pt-md-4">
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="seguindo"
+                  formControlName="seguindo">
+                <label class="form-check-label fw-semibold ms-1" for="seguindo">
+                  Monitorar ativo (Seguindo)
+                </label>
               </div>
             </div>
+          </div>
 
-            <div class="row">
-              <div class="col-md4">
-                <div class="col-md-4">
-                  <label for="seguindo" class="form-label form-check-label mt-3">Seguindo:</label>
-                  <input id="seguindo" type="checkbox" formControlName="seguindo" class="form-check-input mt-3 ml-">
-                </div>
-              </div>
-            </div>
+          <!-- Rodapé com ações alinhadas -->
+          <hr class="my-4 text-muted opacity-25">
 
-            <div class="row">
-              <div class="col-md4">
-                <button class="btn btn-primary mt-3" type="submit" >Enviar</button>
-              </div>
-            </div>
+          <div class="d-flex justify-content-end gap-2">
+            <button type="button" class="btn btn-light border px-4">Cancelar</button>
+            <button type="submit" class="btn btn-primary px-4">
+              Salvar Cadastro
+            </button>
+          </div>
 
-          </form>
-
-        </div>
+        </form>
       </div>
-
     </div>
 
   </div>
 </div>
-
-
