@@ -15,6 +15,7 @@ import { AtivoComparativoComponent } from "./ativo-comparativo/ativo-comparativo
 import { Select2 } from "ng-select2-component";
 import { NgxMaskDirective, provideEnvironmentNgxMask } from "ngx-mask";
 import { SharedModule } from "../shared/shared.module";
+import { RouterModule } from "@angular/router";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SharedModule } from "../shared/shared.module";
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     AtivoRoutingModule,
     MatFormFieldModule,
