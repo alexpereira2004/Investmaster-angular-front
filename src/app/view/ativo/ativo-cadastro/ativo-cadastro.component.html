@@ -9,27 +9,41 @@
       <div class="portlet-body p-4">
         <form [formGroup]="FRMnovoCadastro" (ngSubmit)="onSubmit()">
 
-          <!-- Linha 1: Código (menor), Tipo (médio) e Nome (maior) -->
+          <!-- Linha 1: Código (menor), Tipo (médio) e CNPJ -->
           <div class="row g-3">
             <div class="col-md-3">
               <label for="codigo" class="form-label fw-semibold">Código <span class="text-danger">*</span></label>
               <input
                 type="text"
                 class="form-control text-uppercase"
+                [class.is-invalid]="isCampoInvalido('codigo')"
                 id="codigo"
                 formControlName="codigo"
                 placeholder="Ex: BBAS3"
-                maxlength="10"
-                required>
+                maxlength="10">
+              <div class="invalid-feedback">
+                Informe o código do ativo (máx. 10 caracteres).
+              </div>
             </div>
 
             <div class="col-md-4">
-              <label for="tipo" class="form-label fw-semibold">Tipo de Ativo</label>
-              <select class="form-select" id="tipo" formControlName="tipo">
+              <label for="tipo" class="form-label fw-semibold">
+                Tipo de Ativo
+                <span class="text-danger">*</span>
+              </label>
+              <select
+                class="form-select"
+                [class.is-invalid]="isCampoInvalido('tipo')"
+                id="tipo"
+                formControlName="tipo">
+                <option value="" disabled>Selecione</option>
                 <option value="A">Ação</option>
                 <option value="F">Fundo Imobiliário (FII)</option>
                 <option value="B">BDR</option>
               </select>
+              <div class="invalid-feedback">
+                Selecione o tipo de ativo.
+              </div>
             </div>
 
             <div class="col-md-5">
@@ -37,38 +51,50 @@
               <input
                 type="text"
                 class="form-control"
+                [class.is-invalid]="isCampoInvalido('cnpj')"
                 id="cnpj"
                 formControlName="cnpj"
-                placeholder="00.000.000/0001-00"
-                required>
+                mask="99.999.999/9999-99"
+                placeholder="00.000.000/0001-00">
+              <div class="invalid-feedback">
+                <span *ngIf="FRMnovoCadastro.get('cnpj')?.errors?.['required']">Informe o CNPJ.</span>
+                <span *ngIf="FRMnovoCadastro.get('cnpj')?.errors?.['invalidCnpj']">CNPJ inválido.</span>
+              </div>
             </div>
           </div>
 
           <!-- Linha 2: Nome da Empresa/Fundo e Status -->
-          <div class="row g-3 mt-1 align-items-center">
+          <div class="row g-3 mt-1 align-items-start">
             <div class="col-md-8">
               <label for="nome" class="form-label fw-semibold">Razão Social / Nome <span class="text-danger">*</span></label>
               <input
                 type="text"
                 class="form-control"
+                [class.is-invalid]="isCampoInvalido('nome')"
                 id="nome"
                 formControlName="nome"
                 placeholder="Ex: Banco do Brasil S.A."
-                maxlength="200"
-                required>
+                maxlength="200">
+              <div class="invalid-feedback">
+                Informe a razão social ou nome do ativo.
+              </div>
             </div>
 
-            <div class="col-md-4 pt-md-4">
-              <div class="form-check form-switch">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  id="seguindo"
-                  formControlName="seguindo">
-                <label class="form-check-label fw-semibold ms-1" for="seguindo">
-                  Monitorar ativo (Seguindo)
-                </label>
+            <div class="col-md-4">
+              <label for="seguindo" class="form-label fw-semibold">
+                Seguindo <span class="text-danger">*</span>
+              </label>
+              <select
+                class="form-select"
+                [class.is-invalid]="isCampoInvalido('seguindo')"
+                id="seguindo"
+                formControlName="seguindo">
+                <option *ngFor="let op of opcoesSeguindo" [value]="op.codigo">
+                  {{ op.descricao }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Selecione a frequência de acompanhamento.
               </div>
             </div>
           </div>
@@ -77,9 +103,11 @@
           <hr class="my-4 text-muted opacity-25">
 
           <div class="d-flex justify-content-end gap-2">
-            <button type="button" class="btn btn-light border px-4">Cancelar</button>
-            <button type="submit" class="btn btn-primary px-4">
-              Salvar Cadastro
+            <button type="button" class="btn btn-light border px-4" (click)="limparFormulario()" [disabled]="salvando">
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary px-4" [disabled]="salvando">
+              {{ salvando ? 'Salvando...' : 'Salvar Cadastro' }}
             </button>
           </div>
 

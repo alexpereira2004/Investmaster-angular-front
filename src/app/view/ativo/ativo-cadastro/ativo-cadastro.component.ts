@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Ativo } from "../../../model/ativo";
-import { AtivoService } from "../../../service/ativo/ativo.service";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Ativo } from '../../../model/ativo';
+import { AtivoService } from '../../../service/ativo/ativo.service';
+import { AlertaUtil } from "../../../service/util/alerta-util";
 
 @Component({
   standalone: false,
@@ -11,8 +12,18 @@ import { AtivoService } from "../../../service/ativo/ativo.service";
 })
 export class AtivoCadastroComponent implements OnInit {
 
-  titulo: string;
+  titulo = 'Cadastrar novo ativo';
   FRMnovoCadastro: FormGroup;
+  salvando = false;
+  mensagemErro: string | null = null;
+  mensagemSucesso: string | null = null;
+  readonly opcoesSeguindo = [
+    { codigo: '1', descricao: 'Não' },
+    { codigo: '2', descricao: 'Mensalmente' },
+    { codigo: '3', descricao: 'Quinzenalmente' },
+    { codigo: '4', descricao: 'Semanalmente' },
+    { codigo: '5', descricao: 'Diariamente' }
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,51 +33,86 @@ export class AtivoCadastroComponent implements OnInit {
       codigo: ['', [Validators.required, Validators.maxLength(10)]],
       nome: ['', [Validators.required, Validators.maxLength(200)]],
       cnpj: ['', [Validators.required]],
-      tipo: ['A', Validators.required],
-      seguindo: [false, Validators.required]
+      // cnpj: ['', [Validators.required, CnpjUtil.validator]],
+      tipo: ['', Validators.required],
+      seguindo: ['1', Validators.required]
     });
   }
 
   ngOnInit(): void {
-    this.titulo = "Cadastrar novo ativo";
+    this.titulo = 'Cadastrar novo ativo';
   }
 
-  onSubmit() {
-    // if (this.FRMnovoCadastro.invalid) {
-    //   // this.contextService.openGenericDialog('warning', 'user-form.invalid-form');
-    //   return;
-    // }
+  onSubmit(): void {
+    this.mensagemErro = null;
+    this.mensagemSucesso = null;
 
-    this.ativoService.salvar(this.carregarFormulario()).subscribe({
-    //
-    });
-
-  }
-
-  // Função para validar o formato do CNPJ
-  cnpjValidator(control) {
-    const cnpj = control.value;
-
-    if (!cnpj) {
-      return null;
+    if (this.FRMnovoCadastro.invalid) {
+      this.FRMnovoCadastro.markAllAsTouched();
+      this.mensagemErro = 'Preencha todos os campos obrigatórios corretamente.';
+      AlertaUtil.erro(this.mensagemErro);
+      return;
     }
 
-    const validCnpj = true;/* Lógica de validação do CNPJ */;
+    this.salvando = true;
+    const payload = this.carregarFormulario();
 
-    return validCnpj ? null : { invalidCnpj: true };
+    this.ativoService.salvar(payload).subscribe({
+      next: () => {
+        this.salvando = false;
+        this.mensagemSucesso = `Ativo ${payload.codigo} cadastrado com sucesso!`;
+        // this.FRMnovoCadastro.reset({
+        //   codigo: '',
+        //   nome: '',
+        //   cnpj: '',
+        //   tipo: '',
+        //   seguindo: 1
+        // });
+      },
+      error: (err) => {
+        this.salvando = false;
+        this.mensagemErro = err?.error?.message || 'Erro ao salvar o ativo. Tente novamente.';
+        AlertaUtil.erro(this.mensagemErro);
+      },
+      complete: () => {
+        AlertaUtil.sucesso(this.mensagemSucesso);
+      }
+    });
   }
 
-  private carregarFormulario() {
-    let ativo = new Ativo();
-    ativo.nome = this.FRMnovoCadastro.get('nome')?.value;
-    ativo.nomeCompleto = this.FRMnovoCadastro.get('nomeCompleto')?.value;
-    ativo.codigo = this.FRMnovoCadastro.get('codigo')?.value;
-    ativo.cnpj = this.FRMnovoCadastro.get('cnpj')?.value;
-    ativo.tipo = this.FRMnovoCadastro.get('tipo')?.value;
-    ativo.seguindo = this.FRMnovoCadastro.get('seguindo')?.value ? 'A' : 'I';
-    ativo.pais = this.FRMnovoCadastro.get('pais')?.value;
-    ativo.caminho = this.FRMnovoCadastro.get('caminho')?.value;
-    return ativo;
+  limparFormulario(): void {
+    this.mensagemErro = null;
+    this.mensagemSucesso = null;
+    this.FRMnovoCadastro.reset({
+      codigo: '',
+      nome: '',
+      cnpj: '',
+      tipo: '',
+      seguindo: 1
+    });
+  }
 
+
+  private carregarFormulario(): Ativo {
+    const formValue = this.FRMnovoCadastro.getRawValue();
+    const ativo = new Ativo();
+
+    ativo.codigo = (formValue.codigo || '').trim().toUpperCase();
+    ativo.nome = (formValue.nome || '').trim();
+    ativo.cnpj = (formValue.cnpj || '').trim();
+    ativo.tipo = formValue.tipo;
+    ativo.seguindo = formValue.seguindo;
+
+    // Mantém compatibilidade caso o model Ativo espere esses campos
+    ativo.nomeCompleto = ativo.nomeCompleto ?? ativo.nome;
+    ativo.pais = ativo.pais ?? 'BR';
+    ativo.caminho = ativo.caminho ?? '';
+
+    return ativo;
+  }
+
+  isCampoInvalido(campo: string): boolean {
+    const control = this.FRMnovoCadastro.get(campo);
+    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 }
