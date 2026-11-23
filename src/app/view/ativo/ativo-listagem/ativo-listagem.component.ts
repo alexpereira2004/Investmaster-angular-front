@@ -5,6 +5,7 @@ import { MatSort } from "@angular/material/sort";
 import { AtivoService } from "../../../service/ativo/ativo.service";
 import { Ativo } from "../../../model/ativo";
 import { Pagination } from "../../../model/pagination";
+import { AtivoFiltro } from "../../../model/filter/ativo-filter";
 
 @Component({
   standalone: false,
@@ -19,14 +20,30 @@ export class AtivoListagemComponent implements AfterViewInit {
 
   formData = {
     codigo: '',
-    option: ''
+    seguindo: null as number | null,
+    exclusivo: true
+  };
+
+  opcoesSeguindo = [
+    { valor: 1, label: 'Não' },
+    { valor: 2, label: 'Mensalmente' },
+    { valor: 3, label: 'Quinzenalmente' },
+    { valor: 4, label: 'Semanalmente' },
+    { valor: 5, label: 'Diariamente' } // ajuste para os nomes exatos do seu enum
+  ];
+
+  ativoFiltro: AtivoFiltro = {
+    codigo: null,
+    seguindo: null,
+    exclusivo: false,
+    page: 0,
+    size: 100
   };
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private ativoService: AtivoService) {
-    this.montarDataTable();
   }
 
   ngAfterViewInit(): void {
@@ -34,7 +51,7 @@ export class AtivoListagemComponent implements AfterViewInit {
   }
 
   private montarDataTable(page: number = 0, size: number = 100) {
-    this.ativoService.pesquisarPaginado(page, size).subscribe({
+    this.ativoService.pesquisarListagem(this.ativoFiltro).subscribe({
       next: (result) => {
         this.dataSource = new MatTableDataSource(result.content);
         this.pagination.totalElements = result.totalElements;
@@ -58,14 +75,34 @@ export class AtivoListagemComponent implements AfterViewInit {
   }
 
   onPageChange(event: any) {
-    this.pagination.page = event.pageIndex++;
-    this.pagination.pageSize = event.pageSize;
-    this.montarDataTable(this.pagination.page, this.pagination.pageSize);
+    // this.pagination.page = event.pageIndex++;
+    // this.pagination.pageSize = event.pageSize;
+    this.ativoFiltro.page = event.pageIndex++;
+    this.ativoFiltro.size = event.pageSize;
+    this.montarDataTable();
   }
 
-  submitForm() {
-    console.log('Código:', this.formData.codigo);
-    console.log('Opção:', this.formData.option);
+  pesquisar(): void {
+
+    this.ativoFiltro.codigo = this.formData.codigo?.trim() || null,
+    this.ativoFiltro.seguindo = this.formData.seguindo ?? null,
+    this.ativoFiltro.exclusivo = this.formData.seguindo ? this.formData.exclusivo : false
+    this.ativoFiltro.page = 0;
+
+    this.ativoService
+      .pesquisarListagem(this.ativoFiltro)
+      .subscribe({
+      next: (result) => {
+        this.dataSource = new MatTableDataSource(result.content);
+        this.pagination.totalElements = result.totalElements;
+        this.pagination.pageSize = result.size;
+        this.pagination.page = result.number;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {}
+    });
   }
 
 }

@@ -11,34 +11,74 @@
 
               <div class="d-grid gap-3">
                 <form #form="ngForm">
-                  <div class="row">
+                  <div class="row align-items-end g-3">
 
                     <div class="col-md-4">
-                      <div>
-                        <label for="codigo" class="form-label">Código:</label>
-                        <input class="form-control form-control-lg" id="codigo" name="codigo" maxlength="10" required [(ngModel)]="formData.codigo">
-                      </div>
+                      <label for="codigo" class="form-label">Código ou Nome:</label>
+                      <input
+                        class="form-control form-control-lg"
+                        id="codigo"
+                        name="codigo"
+                        maxlength="10"
+                        [(ngModel)]="formData.codigo"
+                      />
                     </div>
 
                     <div class="col-md-4">
-                      <label for="option" class="form-label">Código:</label>
-                      <select class="form-select form-select-lg" id="option" name="option" [(ngModel)]="formData.option">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                      <label for="seguindo" class="form-label">Seguindo:</label>
+                      <select
+                        class="form-select form-select-lg"
+                        id="seguindo"
+                        name="seguindo"
+                        [(ngModel)]="formData.seguindo"
+                      >
+                        <option [ngValue]="null">Todos</option>
+                        <option *ngFor="let item of opcoesSeguindo" [ngValue]="item.valor">
+                          {{ item.label }}
+                        </option>
                       </select>
                     </div>
 
+                    <div class="col-md-4">
+                      <div class="form-check form-switch mb-2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="exclusivo"
+                          name="exclusivo"
+                          [(ngModel)]="formData.exclusivo"
+                          [disabled]="!formData.seguindo"
+                        />
+                        <label class="form-check-label" for="exclusivo">
+                          Exclusivo (apenas o selecionado)
+                        </label>
+                      </div>
+                      <small class="text-muted d-block">
+                        {{
+                        !formData.seguindo
+                          ? 'Selecione uma frequência para filtrar'
+                          : formData.exclusivo
+                          ? 'Busca exata no nível escolhido'
+                          : 'Inclui níveis iguais ou superiores'
+                        }}
+                      </small>
+                    </div>
+
                   </div>
 
-                  <div class="row">
-                    <div class="col-md4">
-                      <button class="btn btn-primary mt-3" type="submit" (click)="submitForm()" >Enviar</button>
+                  <div class="row mt-2">
+                    <div class="col-12 d-flex gap-2">
+                      <a routerLink="/ativo/cadastro" class="btn btn-outline-primary">
+                        <i class="fas fa-plus-circle me-2"></i> Novo Ativo
+                      </a>
+                      <button type="button" class="btn btn-primary" (click)="pesquisar()">
+                        <i class="fas fa-search me-2"></i> Pesquisar
+                      </button>
                     </div>
                   </div>
-                </form>
 
+                </form>
               </div>
 
               <div class="mt-5">
@@ -70,7 +110,7 @@
 
                   <ng-container matColumnDef="cnpj">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header class="sorting"> CNPJ </th>
-                    <td mat-cell *matCellDef="let row"> {{row.cnpj}} </td>
+                    <td mat-cell *matCellDef="let row"> {{row.cnpj | cnpj }} </td>
                   </ng-container>
 
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
